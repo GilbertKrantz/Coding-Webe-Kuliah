@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 int main(int argc, char const *argv[])
 {
@@ -7,28 +8,26 @@ int main(int argc, char const *argv[])
 
     for (int i = 1; i <= T; i++)
     {
-        int count = 0, discChar = 0;
+        int count = 0, j, k;
         char str[10000];
         scanf("%s", str);
 
-        for (int j = 0; j < strlen(str); j++)
+        for (j = 0; j < strlen(str); j++)
         {
-            for (int k = 0; k < strlen(str); k++)
+            for (k = 0; k < j; k++)
             {
-                if ( j < k )
+                if (str[j] == str[k])
                 {
-                    if (str[j] == str[k])
-                    {
-                        count++;
-                    }
+                    break;
                 }
+            }
+
+            if ( j == k ) {
+                count++;
             }
         }
 
-        discChar = strlen(str) - count;
-        printf("%d %d %d", discChar, strlen(str), count);
-        
-        if (discChar % 2 == 0)
+        if (count % 2 == 0)
         {
             printf("Case #%d: Yay\n", i);
         } else {
