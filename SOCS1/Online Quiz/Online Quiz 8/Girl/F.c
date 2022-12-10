@@ -7,7 +7,7 @@ int main(int argc, char const *argv[])
 
     for (int i = 1; i <= T; i++)
     {
-        int count = 0;
+        int count = 0, discChar = 0;
         char str[10000];
         scanf("%s", str);
 
@@ -25,7 +25,8 @@ int main(int argc, char const *argv[])
             }
         }
 
-        int discChar = strlen(str) - count;
+        discChar = strlen(str) - count;
+        printf("%d %d %d", discChar, strlen(str), count);
         
         if (discChar % 2 == 0)
         {
