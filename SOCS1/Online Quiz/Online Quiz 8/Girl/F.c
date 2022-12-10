@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
         {
             printf("Case #%d: Yay\n", i);
         } else {
-            printf("Case #%d: Ewwww”\n", i);
+            printf("Case #%d: Ewwww\n", i);
         }
         
         
