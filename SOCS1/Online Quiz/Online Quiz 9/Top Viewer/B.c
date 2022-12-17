@@ -2,55 +2,77 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct data
+typedef struct
 {
     char title[10000];
     char artist[10000];
     int view;
-};
+}data;
 
+struct buffer
+{
+    data items[100];
+}buffer;
+
+
+void swap(data *a, data *b) {
+    data temp = *a;
+    *a = *b;
+    *b = temp;
+} 
+
+void bubbleSort(int structSize) {
+    for (size_t i = 0; i < structSize; i++)
+    {
+        for (int j = 0; j < structSize - 1 - i; j++)
+        {
+            if (buffer.items[j].view < buffer.items[j + 1].view)
+            {
+                swap(&buffer.items[j], &buffer.items[j + 1]);
+            }
+            
+        }
+    }
+
+}
 
 int main(int argc, char const *argv[])
 {
     FILE* file;
-    long fileSize;
-    char* buffer;
-    size_t res;
+    char ch;
+    char title[10000];
+    char artist[10000];
+    int view;
+    int structCount = 0;
+    
+    file = fopen("testdata.in", "r");
 
-    file = fopen("testdata.in", "r+");
-
-    if (NULL == file) {
-        printf("file can't be opened \n");
-
-        exit(1);
-    }
-
-    fseek(file, 0, SEEK_END);
-    fileSize = ftell(file);
-    rewind(file);
-
-    buffer = (char*) malloc (sizeof(char) * fileSize);
-    if (buffer == NULL) {
-        fputs("Memory Error", stderr);
-        exit(2);
-    }
-
-    res = fread (buffer,1,fileSize,file);
-    if (res != fileSize) {
-        fputs ("Reading error",stderr); 
-        exit (3);
-    }
-
-    char* strtok_res;
-    strtok_res = strtok(buffer, "#");
-    while (strtok_res != NULL)
+    if (NULL == file)
     {
-        printf("%s", strtok_res);
-        strtok_res = strtok (NULL, "#");
+        printf("File can't be Opened\n");
+        exit(0);
     }
 
-    fclose(file);
-    free (buffer);
+    while (!feof(file))
+    {
+        fscanf(file, "%99[^#]#%99[^#]#%d", title, artist, &view);
+        strcpy(buffer.items[structCount].title, title);
+        strcpy(buffer.items[structCount].artist, artist);
+        buffer.items[structCount].view = view;
+        structCount++;
+    }
+
+    int structSize = structCount - 1;
+    bubbleSort(structSize);
+    
+    
+
+    for (size_t i = 0; i < structCount; i++)
+    {
+        printf("%s by %s - %d", buffer.items[i].title, buffer.items[i].artist, buffer.items[i].view);
+    }
+    
+
 
     return 0;
 }
