@@ -1,25 +1,12 @@
 #include <stdio.h>
 
-long double factorialCalc(int N) {
-    int A[N];
-    long double factorial[N];
-    long double sum = 1;
-    
-    for (int j = 0; j < N; j++)
-    {
-        factorial[j] = 1;
-        scanf("%d", &A[j]);
-        
+const int buffer = 1000000007;
 
-        for (int k = 1; k <= A[j] ; k++)
-        {
-            factorial[j] *= k;
-        }
-
-        sum *= factorial[j];
-    }
-
-    return sum;
+long long factorialCalc(int n) {
+    if(n >= 2)
+        return (n * factorialCalc(n - 1)) % buffer;
+    else
+        return 1;
 }
 
 int main(int argc, char const *argv[])
@@ -33,10 +20,22 @@ int main(int argc, char const *argv[])
         int N;
         scanf("%d", &N);
         getchar();
-        
-        long double sum =  factorialCalc(N);
 
-        printf("Case #%d: %.0Lf\n", i, sum);
+        long long int sum = 1;
+
+        for (int j = 0; j < N; j++)
+        {
+            int n;
+            scanf("%d", &n);
+            getchar();
+
+            sum *= factorialCalc(n);
+            sum %= buffer;
+        }
+        
+
+
+        printf("Case #%d: %lld\n", i, sum);
         
         
     }
