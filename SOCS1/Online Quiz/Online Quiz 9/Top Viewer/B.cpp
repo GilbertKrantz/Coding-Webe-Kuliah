@@ -3,8 +3,8 @@
 
 struct data
 {
-    char title[10000];
-    char artist[10000];
+    char title[1010];
+    char artist[1010];
     long long view;
 }items[105];
 
@@ -16,7 +16,7 @@ void swap(data *a, data *b) {
     *b = temp;
 } 
 
-void bubbleSort(struct data items[], int structSize) {
+void bubbleSort(data items[], int structSize) {
     for (int i = 0; i < structSize - 1; i++)
     {
         for (int j = 0; j < structSize - 1 - i; j++)
@@ -30,12 +30,9 @@ void bubbleSort(struct data items[], int structSize) {
     }
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
     FILE* file;
-    char title[10000];
-    char artist[10000];
-    long long view;
     int structCount = 0;
     
     file = fopen("testdata.in", "r");
@@ -57,7 +54,7 @@ int main(int argc, char const *argv[])
     {
         printf("%s by %s - %lld\n", items[i].title, items[i].artist, items[i].view);
     }
-    getchar();
+    // getchar();
 
 
     return 0;
