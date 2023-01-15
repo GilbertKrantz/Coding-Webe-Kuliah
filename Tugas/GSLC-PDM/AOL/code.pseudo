@@ -1,0 +1,25 @@
+set table_data = import Todaysvisitors.dat
+
+set totalTemp
+set normalTemp
+set susTemp
+set totalVisit
+
+
+foreach (i in table_data.temp) {
+    totalTemp += i
+    
+    totalVisit += 1
+    
+    if (i <= 37.1 ) {
+        normalTemp += 1
+    } else {
+        susTemp += 1
+    }
+}
+
+print "Today's Visitor Count by Body Temperature: ", totalTemp
+
+print "Normal Body Temperature: ", normalTemp
+print "Body temperature suspected for covid: ", susTemp
+print "Total visitors:", totalVisit

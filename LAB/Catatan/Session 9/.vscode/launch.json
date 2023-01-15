@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/wilbert/University/Kuliah/SOCS1/Online Quiz/Online Quiz 11/Rank",
-      "program": "/home/wilbert/University/Kuliah/SOCS1/Online Quiz/Online Quiz 11/Rank/build/Debug/outDebug",
+      "cwd": "/home/wilbert/University/Kuliah/LAB/Catatan/Session 9",
+      "program": "/home/wilbert/University/Kuliah/LAB/Catatan/Session 9/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

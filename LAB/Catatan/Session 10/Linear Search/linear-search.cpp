@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 int linearSearch(int arr[], int size, int find) {
 
@@ -11,6 +12,19 @@ int linearSearch(int arr[], int size, int find) {
     }
 
     return -1;
+}
+
+int stringSearch(char *arr[], int size, char *find) {
+    
+    for (int i = 0; i < size; i++)
+    {
+        if (strcmp(arr[i], find) == 0)
+        {
+            return i;
+        }
+        
+    }
+    
 }
 
 int main()

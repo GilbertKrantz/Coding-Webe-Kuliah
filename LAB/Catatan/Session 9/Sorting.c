@@ -62,7 +62,7 @@ void mergeSort(int arr[], int left, int right) {
 
 // quicksort
 
-int swap(int *a, int *b) {
+void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
@@ -102,7 +102,7 @@ void printArray(int arr[], int size) {
     
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
     
     int numbers[] = {10, 9, 12, 11, 8, 2, 3, 1, 4, 6, 5, 7};
