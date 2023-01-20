@@ -1,0 +1,2 @@
+KLCC,Kuala-Lumpur,780000,2,1,0,Built-up,980,Fully
+KLCC,Kuala-Lumpur,780000,2,1,0,Built-up,980,Fully
