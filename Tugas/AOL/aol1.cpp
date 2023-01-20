@@ -694,4 +694,3 @@ void describePrice(data datas[], int size) {
 
     return;
 }
-
