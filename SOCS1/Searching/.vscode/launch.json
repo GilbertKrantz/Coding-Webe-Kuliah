@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/kanek/Documents/Kuliah/Coding/SOCS1/Function & Recursion/A Man",
-      "program": "c:/Users/kanek/Documents/Kuliah/Coding/SOCS1/Function & Recursion/A Man/build/Debug/outDebug",
+      "cwd": "c:/Users/kanek/Documents/Kuliah/Coding/SOCS1/Searching/Bibi and Bananas",
+      "program": "c:/Users/kanek/Documents/Kuliah/Coding/SOCS1/Searching/Bibi and Bananas/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

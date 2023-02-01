@@ -25,6 +25,8 @@ void readFile(data datas[], int& size) {
         return;
         
     } else {
+        char trash[100];
+        fscanf(f, "%[^\n]\n", trash);
         while (!feof(f))
         {
             fscanf(f, "%[^,],%[^,],%lf,%d,%d,%d,%[^,],%d,%[^\n]\n", datas[size].location_1, datas[size].location_2, &datas[size].price, &datas[size].rooms, &datas[size].bathrooms, &datas[size].carParks, datas[size].type, &datas[size].area, datas[size].furnish);
@@ -52,7 +54,7 @@ void searchFurnish(data datas[], char find[], int size);
 int main() {
     int size = 0;
 
-    data datas[3939];
+    data datas[3940];
 
     readFile(datas, size);
 
@@ -94,7 +96,12 @@ void searchLoc1(data datas[], char find[], int size) {
     int check = 0;
     for (int i = 0; i < size; i++)
     {
-        if (strcasestr(datas[i].location_1, find) != NULL)
+        char tempStr[size];
+        strcpy(tempStr, datas[i].location_1);
+        strlwr(tempStr);
+        strlwr(find);
+
+        if (strstr(tempStr, find) != NULL)
         {
             display(datas, i);
             check++;
@@ -112,7 +119,12 @@ void searchLoc2(data datas[], char find[], int size) {
     int check = 0;
     for (int i = 0; i < size; i++)
     {
-        if (strcasestr(datas[i].location_2, find) != NULL)
+        char tempStr[size];
+        strcpy(tempStr, datas[i].location_2);
+        strlwr(tempStr);
+        strlwr(find);
+
+        if (strstr(tempStr, find) != NULL)
         {
             display(datas, i);
             check++;
@@ -132,7 +144,7 @@ void searchRooms(data datas[], char find[], int size) {
         char convInt[2];
         sprintf(convInt, "%d", datas[i].rooms);
 
-        if (strcasestr(convInt, find) != NULL)
+        if (strstr(convInt, find) != NULL)
         {
             display(datas, i);
             check++;
@@ -152,7 +164,7 @@ void searchBath(data datas[], char find[], int size) {
         char convInt[2];
         sprintf(convInt, "%d", datas[i].bathrooms);
 
-        if (strcasestr(convInt, find) != NULL)
+        if (strstr(convInt, find) != NULL)
         {
             display(datas, i);
             check++;
@@ -172,7 +184,7 @@ void searchCar(data datas[], char find[], int size) {
         char convInt[1];
         sprintf(convInt, "%d", datas[i].carParks);
 
-        if (strcasestr(convInt, find) != NULL)
+        if (strstr(convInt, find) != NULL)
         {
             display(datas, i);
             check++;
@@ -189,7 +201,12 @@ void searchType(data datas[], char find[], int size) {
     int check = 0;
     for (int i = 0; i < size; i++)
     {
-        if (strcasestr(datas[i].type, find) != NULL)
+        char tempStr[size];
+        strcpy(tempStr, datas[i].type);
+        strlwr(tempStr);
+        strlwr(find);
+
+        if (strstr(tempStr, find) != NULL)
         {
             display(datas, i);
             check++;
@@ -206,7 +223,12 @@ void searchFurnish(data datas[], char find[], int size) {
     int check = 0;
     for (int i = 0; i < size; i++)
     {
-        if (strcasestr(datas[i].furnish, find) != NULL)
+        char tempStr[size];
+        strcpy(tempStr, datas[i].furnish);
+        strlwr(tempStr);
+        strlwr(find);
+
+        if (strstr(tempStr, find) != NULL)
         {
             display(datas, i);
             check++;

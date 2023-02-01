@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/kanek/Documents/Kuliah/Coding/SOCS1/Function & Recursion/A Man",
-      "program": "c:/Users/kanek/Documents/Kuliah/Coding/SOCS1/Function & Recursion/A Man/build/Debug/outDebug",
+      "cwd": "c:/Users/kanek/Documents/Kuliah/Coding/Catatan/Algoprog-LEC/Latihan UAS/Student Assignment Scores",
+      "program": "c:/Users/kanek/Documents/Kuliah/Coding/Catatan/Algoprog-LEC/Latihan UAS/Student Assignment Scores/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

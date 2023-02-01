@@ -17,40 +17,60 @@ struct data
 
 void readFile(data datas[], int& size);
 
-void describeMenu(data datas[], int size);
+void describeLoc1(data datas[], int size);
+void describeLoc2(data datas[], int size);
+void describeRoom(data datas[], int size);
+void describeBathroom(data datas[], int size);
+void describeCarPark(data datas[], int size);
+void describeType(data datas[], int size);
+void describeFurnish(data datas[], int size);
+
+void describeArea(data datas[], int size);
+void describePrice(data datas[], int size);
 
 int main()
 {
-    data datas[3939];
+    data datas[3940];
     int size = 0;
 
     readFile(datas, size);
 
-    printf("%d\n", size);
+    char input[10];
 
-    int input;
+    printf("What do you want to describe : ");
+    scanf("%s", input); getchar();
 
-    printf("\tMenu\n");
-    printf("1. Describe\n");
-    printf("2. Search\n");
-
-    do
+    if (strcmp(input, "loc1") == 0)
     {
-        printf("Choose: ");
-        scanf("%d", &input); 
-        getchar();
-
-        switch (input)
-        {
-        case 1:
-            describeMenu(datas, size);
-            break;
-        case 2: 
-            break;
-        default:
-            break;
-        }
-    } while (input != 0);
+        describeLoc1(datas, size);
+    } else if (strcmp(input, "loc2") == 0)
+    {
+        describeLoc2(datas, size);
+    } else if (strcmp(input, "room") == 0)
+    {
+        describeRoom(datas, size);
+    } else if (strcmp(input, "bathrooms") == 0)
+    {
+        describeBathroom(datas, size);
+    } else if (strcmp(input, "carparks") == 0)
+    {
+        describeCarPark(datas, size);
+    } else if (strcmp(input, "type") == 0)
+    {
+        describeType(datas, size);
+    } else if (strcmp(input, "furnish") == 0)
+    {
+        describeFurnish(datas, size);
+    } else if (strcmp(input, "area") == 0)
+    {
+        describeArea(datas, size);
+    } else if (strcmp(input, "price") == 0)
+    {
+        describePrice(datas, size);
+    } else {
+        printf("Column Not Found!!\n");
+    }
+    
 
     return 0;
 }
@@ -66,6 +86,8 @@ void readFile(data datas[], int& size) {
         return;
         
     } else {
+        char trash[100];
+        fscanf(f, "%[^\n]\n", trash);
         while (!feof(f))
         {
             fscanf(f, "%[^,],%[^,],%lf,%d,%d,%d,%[^,],%d,%[^\n]\n", datas[size].location_1, datas[size].location_2, &datas[size].price, &datas[size].rooms, &datas[size].bathrooms, &datas[size].carParks, datas[size].type, &datas[size].area, datas[size].furnish);
@@ -77,90 +99,6 @@ void readFile(data datas[], int& size) {
     
 }
 
-void describeLoc1(data datas[], int size);
-void describeLoc2(data datas[], int size);
-void describeRoom(data datas[], int size);
-void describeBathroom(data datas[], int size);
-void describeCarPark(data datas[], int size);
-void describeType(data datas[], int size);
-void describeFurnish(data datas[], int size);
-
-void describeArea(data datas[], int size);
-void describePrice(data datas[], int size);
-
-void describeMenu(data datas[], int size) {
-
-    int input;
-    do {
-        printf("What to Describe?\n");
-        printf("1. Location 1\n");
-        printf("2. Location 2\n");
-        printf("3. Room\n");
-        printf("4. Bathroom\n");
-        printf("5. Car Parks\n");
-        printf("6. Type\n");
-        printf("7. Furnish\n");
-        printf("8. Area\n");
-        printf("9. Price\n");
-
-        printf("Choose: ");
-        scanf("%d", &input);
-        getchar();
-
-        switch (input)
-        {
-        case 1:
-            describeLoc1(datas, size);
-            getchar();
-            system("clear");
-            break;
-        case 2:
-            describeLoc2(datas, size);
-            getchar();
-            system("clear");
-            break;
-        case 3:
-            describeRoom(datas, size);
-            getchar();
-            system("clear");
-            break;
-        case 4:
-            describeBathroom(datas, size);
-            getchar();
-            system("clear");
-            break;
-        case 5:
-            describeCarPark(datas, size);
-            getchar();
-            system("clear");
-            break;
-        case 6:
-            describeType(datas, size);
-            getchar();
-            system("clear");
-            break;
-        case 7:
-            describeFurnish(datas, size);
-            getchar();
-            system("clear");
-            break;
-        case 8:
-            describeArea(datas, size);
-            getchar();
-            system("clear");
-            break;
-        case 9:
-            describePrice(datas, size);
-            getchar();
-            system("clear");
-            break;
-        default:
-            break;
-        }
-    } while (input != 0);
-
-    return;
-}
 
 void describeLoc1(data datas[], int size) {
     char loc[65][100] = {'0'};

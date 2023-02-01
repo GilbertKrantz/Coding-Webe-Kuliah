@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": "/home/wilbert/University/Kuliah/SOCS1/Selection/Not Equal",
-      "program": "/home/wilbert/University/Kuliah/SOCS1/Selection/Not Equal/build/Debug/outDebug",
+      "externalConsole": true,
+      "cwd": "c:/Users/kanek/Documents/Kuliah/Coding/SOCS1/Selection/Not Equal",
+      "program": "c:/Users/kanek/Documents/Kuliah/Coding/SOCS1/Selection/Not Equal/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

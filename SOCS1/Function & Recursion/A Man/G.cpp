@@ -3,12 +3,14 @@
 #include <string.h>
 
 int revStr(char string[], int size) {
-    char newStr[size];
+    char newStr[size+1];
 
     for (int i = 0; i < size; i++)
     {
         newStr[i] = string[size - i - 1];
     }
+
+    newStr[size] = '\0';
 
     if (strcmp(newStr, string) == 0)
     {
@@ -30,9 +32,7 @@ int main() {
         scanf("%s", string);
         getchar();
 
-        int size = strlen(string);
-
-        if(revStr(string, size) == 1)
+        if(revStr(string, strlen(string)) == 1)
             printf("Case #%d: yes\n", i);
         else 
             printf("Case #%d: no\n", i);
