@@ -1,0 +1,54 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+colors <- c("blue", "red", "orange", 'grey', "purple")
+```
+```{r}
+hist(mtcars$mpg,
+     col = colors, main = "Motor Trend - 70s Vehicle",
+     breaks = 10,
+     xlim = range(10:35),
+     xlab = "MPG",
+     ylab = "# of Vehicle")
+```
+```{r}
+boxplot(mpg ~ cyl, data = mtcars, 
+        main = "Milage Data Boxplot",
+        ylab = "Miles per Gallon(mpg)",
+        xlab = "No. of Cylinders",
+        col = "orange")
+```
+```{r}
+library(tidyverse)
+
+ggplot(mtcars, aes(as.factor(cyl), fill = as.factor(cyl) )) + geom_bar() + scale_fill_hue(c = 100)
+```
+```{r}
+library(tidyverse)
+
+ggplot(mtcars, aes(as.factor(cyl), fill = as.factor(cyl) )) + geom_bar() + scale_fill_brewer(palette = "Set1")
+```
+```{r}
+# library
+library(tidyverse)
+
+# Create a dataset
+specie = c(rep("apple", 3), rep("mango", 3), rep("banana", 3), rep("peach", 3)) 
+condition = rep(c("normal", "stress", "Nitrogen"), 4) 
+value = abs(rnorm(12, 0 , 15)) 
+
+data = data.frame(specie, condition, value)
+
+head(data)
+
+#Groupes
+ggplot(data, aes(fill = condition, y = value, x = specie)) + geom_bar(position = "dodge", stat = "identity")
+
+```
+
+
+
