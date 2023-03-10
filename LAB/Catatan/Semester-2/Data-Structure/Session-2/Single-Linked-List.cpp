@@ -231,7 +231,6 @@ int main()
         puts("Data Not Found\n");
     }
     
-
     print_all();
     return 0;
 }
