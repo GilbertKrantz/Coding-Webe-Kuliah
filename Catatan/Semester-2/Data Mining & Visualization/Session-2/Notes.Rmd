@@ -1,0 +1,67 @@
+---
+title: "LEC-Session-2"
+output: html_notebook
+---
+
+Import Library
+```{r}
+library(ggplot2)
+
+library(MASS)
+```
+
+# Code
+
+## Structure of the data
+```{r}
+str(whiteside) # str stand for Structure (to show the data type of a variable)
+```
+## Showing all of the data visualization
+```{r}
+plot(whiteside)
+```
+Scatter Plot of Temp with Gas
+```{r}
+plot(whiteside$Temp, whiteside$Gas, 
+     xlab = "Temp",
+     ylab = "Gas")
+```
+
+```{r}
+plot(whiteside$Insul) #Barplot
+```
+
+```{r}
+boxplot(data = whiteside, Gas ~ Insul)
+```
+
+```{r}
+data("UScereal")
+
+par(mfrow = c(1,1))
+x <- UScereal$sugars
+y <- UScereal$calories
+
+plot(x, y,
+     xlab = "Grams of Sugar per Serving",
+     ylab = "kcals per Serving", type = 'n')
+
+# Set the limit of outlier value
+index <- which(y > 300)
+points(x[-index], y[-index], pch = 16) #solid Circle (Non- Outlier)
+points(x[index], y[index], pch = 18, cex = 2) # cex = 2 --> twice as large as other points (outlier points)
+
+olsmodel <- lm(y~x)
+abline(olsmodel, lty = 1)
+
+# Adding text to plot
+pointlabels <- paste(rownames(UScereal)[index], "-->")
+text(11, y[index], pointlabels, adj = 1, font = 2)
+```
+
+
+## 
+```{r}
+ggplot(data = whiteside, aes(x = Temp, y = Gas)) + geom_point()
+```
+

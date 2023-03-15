@@ -1,0 +1,137 @@
+---
+title: "New-Notes"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+##  Exploring New Dataset
+
+### Basic Sequence
+1. Assess the general characteristics of the dataset. Ex :
+    a. How many rows/observation/records we have?
+    b. How many column/variables/features we have?
+    c. What is the variables names and are they meaningfull? (meaningfull = menggabarkan isinya, jika tidak then ganti namanya)
+    d. What is the type of each data. (numeric(quantitative) / categorical : (nominal(no ranks) / ordinal(have ranks)) (qualitative) / logical(boolean))
+    e. How many unique values does each variable have? (value in a variable without counting for frequency or double) Ex : in age 10-12 have {10, 11, 12} as unique values.
+    f. What is the value is the mode and what is it's frequency?
+    g. Are there missing observation? if there are, then what is it's frequency?
+    
+2. Examine the descriptive statistics of each variable :
+    - mean
+    - median
+    - mode
+    - standart deviation
+    - varians
+    - range
+    - quartile
+    - min/max
+    - IQR
+    - Kurtosis
+    - Skewness
+    
+    Descriptive Statistics is divided by 2 :
+     a. Central Tendencies :
+          - mean
+          - median
+          - mode
+     b. Variability :
+          - most use standart deviation
+          
+3. When possible make the visualization for the variable of interest (variable yang interesting) (maybe subjective) :
+    a. can be from the data description
+    b. can be from personal experience
+    
+4. When possible seatch for the anomally/outlier :
+    a. explain the anomally/outlier (what and why)
+    b. delete if make sense
+    c. doesn't have to be deleted (if not needed)
+    d. more in assignment
+    
+5. Look for the relation between variable of interest/key variable :
+    a. don't just explain the relation but also the key variable first
+    
+6. Summarize data in the form of data dictionary 
+
+## Data (Hands on)
+```{r}
+library(carData)
+data("Chile")
+
+```
+
+search fot the dimension and the type of the variables
+```{r}
+dim(Chile)
+str(Chile)
+mean(Chile$population)
+quantile(Chile$population, c(0.25, 0.5, 0.75))
+summary(Chile)
+```
+
+Analysis result : the dataframe have 2700 objects and 8 variables...
+
+How many Unique values a variable have
+```{r}
+# Unique
+unique(Chile$region) # Return Factor
+
+# Levels
+levels(Chile$region) # Return Character
+
+# Table
+table(Chile$region) # Gives the Frequency too
+```
+
+User Defined Function to give basic summary
+```{r}
+basicSummary <- function(df, dgts) {
+  m <- ncol(df) # column
+  varNames <- colnames(df)
+  varType <- vector("character", m)
+  topLevel <- vector("character", m)
+  topCount <- vector("numeric", m)
+  missCount <- vector("numeric", m)
+  levels <- vector("numeric", m)
+  
+  for (i in 1:m) {
+    x <- df[,i]
+    varType[i] <- class(x)
+    xtab <- table(x, useNA = "ifany")
+    levels[i] <- length(xtab)
+    nums <- as.numeric(xtab)
+    maxnum <- max(nums)
+    topCount[i] <- maxnum
+    maxIndex <- which.max(nums)
+    lvls <- names(xtab)
+    topLevel[i] <- lvls[maxIndex]
+    missIndex <- which((is.na(x)) | (x == "") | (x == " "))
+    missCount[i] <- length(missIndex)
+  }
+  n <- nrow(df) # Rows
+  topFrac <- round(topCount/n, digits = dgts)
+  missFrac <- round(missCount/n, digits = dgts)
+  summaryFrame <- data.frame(variable = varNames, 
+                             type = varType, 
+                             levels = levels,
+                             topLevel = topLevel,
+                             topCount = topCount,
+                             topFrac = topFrac,
+                             missFraq = missCount,
+                             missFrac = missFrac)
+  return(summaryFrame)
+}
+```
+
+```{r}
+basicSummary(Chile)
+```
+
+
+
+
+

@@ -1,0 +1,64 @@
+---
+title: "Exercise 10-3-2023"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Q1
+to display picture
+![](1_1.png)
+
+```{r}
+library(MASS)
+data(fgl) # fgp = forensic glass
+
+plot(fgl$Mg, xlab = "Record Number", ylab = "Mg concentration", las = 1)
+```
+
+## Q2
+```{r}
+plot(fgl$type, fgl$Mg, xlab = "Forensic glass type", ylab = "Mg concentration", las = 1)
+```
+
+## Q4a
+```{r}
+xTab <- table(fgl$type)
+
+barplot(sort(xTab), xlab = "Records listing glass type", font.lab = 2, las = 1, horiz = TRUE)
+```
+
+## Q4b
+```{r}
+tString <- paste("Horizontal barplot of the", nlevels(fgl$type), "glass types")
+tString
+```
+
+## Q4c
+```{r}
+barplot(sort(xTab), xlab = "Records listing glass type", font.lab = 2, las = 1, horiz = TRUE)
+
+title(tString, font.main = 3)
+```
+
+## Q5
+```{r}
+par(mfrow = c(2,2))
+
+plot(fgl$Mg, xlab = "Record number in dataset", ylab = "Mg oxide concentration")
+title("Magnesium")
+
+plot(fgl$Ca, xlab = "Record number in dataset", ylab = "Ca oxide concentration")
+title("Calcium")
+
+plot(fgl$K, xlab = "Record number in dataset", ylab = "K oxide concentration")
+title("Potassium")
+
+plot(fgl$Ba, xlab = "Record number in dataset", ylab = "Ba oxide concentration")
+title("Barium")
+```
+
+## Q6

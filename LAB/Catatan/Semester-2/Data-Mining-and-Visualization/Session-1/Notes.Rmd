@@ -1,0 +1,124 @@
+---
+title: "LAB-Session-1"
+output: html_notebook
+---
+
+```{r}
+data("UScereal")
+
+head(UScereal[c("sugars", "shelf")], 10)
+
+boxplot(sugars ~ shelf, 
+        data = UScereal,
+        axes = FALSE,
+        xlab = "Shelf",
+        ylab = "Grams of sugar per serving")
+
+# X Axis
+axis(side = 1, at = c(1, 2, 3), labels = c(1, 2, 3)) 
+# side = 1 : x axis, at : location of labels
+
+#Y Axis
+yrange = seq(0, max(UScereal$sugars), 5) # Set the range of Y with min 0 and max of sugars and intervals of 5
+axis(side = 2, at = yrange, labels = yrange)
+# side = 2 : y axis
+
+axis(side = 3, at = c(1, 2, 3), labels = c("Floor", "Mid", "Top"))
+# side = 3 : Top x axis
+```
+
+```{r}
+library(insuranceData)
+
+data("dataCar")
+head(dataCar)
+str(dataCar)
+
+xtab <- table(dataCar$veh_body)
+par(mfrow = c(1,3)) # Make a matrix of spaces for graph
+pie(xtab, col = rainbow(12)) # Max 6 Category
+
+barplot(xtab)
+
+barplot(sort(xtab), las = 1, horiz = TRUE)
+# Sort to sort the xtab by frequency
+# las to make the words Horizontal
+# horiz to make the graph Horizontal
+```
+
+# Multiple Plot
+```{r}
+par(mfrow = c(1,2))
+
+plot(Cars93$Horsepower, 
+     Cars93$MPG.city, 
+     ylim = c(15, 50),
+     xlab = "Horsepower",
+     ylab = "MPG in City")
+title("Plot 1")
+
+plot(Cars93$Horsepower, 
+     Cars93$MPG.highway, 
+     ylim = c(15, 50),
+     xlab = "Horsepower",
+     ylab = "MPG in Highway")
+title("Plot 2")
+```
+
+```{r}
+par(mfrow = c(2, 2))
+
+plot(Cars93$Cylinders, Cars93$MPG.city,
+     las = 2,
+     ylim = c(15, 50),
+     xlab = "Cylinders",
+     ylab = "MPG in City")
+title("MPG.City vs Cylinders")
+
+plot(Cars93$Cylinders, Cars93$MPG.highway,
+     las = 2,
+     ylim = c(15, 50),
+     xlab = "Cylinders",
+     ylab = "MPG in Highway")
+title("MPG.City vs Cylinders")
+
+plot(Cars93$MPG.city, Cars93$MPG.highway,
+     xlim = c(15, 50),
+     ylim = c(15, 50),
+     xlab = "MPG in City",
+     ylab = "MPG in Highway")
+title("mpg.Highway vs mpg.City")
+
+delta <- Cars93$MPG.highway - Cars93$MPG.city
+plot(Cars93$Cylinders, delta, las = 2)
+title("Milage Difference vs Cylinders")
+
+```
+
+```{r}
+vectorofnumbers <- c(rep(0, 6), rep(c(1, 1, 2, 2, 3, 3), 4), rep(0, 6)) # Define Position of Matrix
+vectorofnumbers
+
+layoutMatrix <- matrix(vectorofnumbers, nrow = 6, byrow = TRUE) #Print Position Matric
+layoutMatrix
+
+layout(layoutMatrix)
+plot(Cars93$Cylinders, Cars93$MPG.city,
+     las = 2,
+     ylim = c(15, 50),
+     xlab = "Cylinders",
+     ylab = "MPG in City")
+title("MPG.City vs Cylinders")
+
+plot(Cars93$Cylinders, Cars93$MPG.highway,
+     las = 2,
+     ylim = c(15, 50),
+     xlab = "Cylinders",
+     ylab = "MPG in Highway")
+title("MPG.City vs Cylinders")
+
+
+```
+
+
+

@@ -1,0 +1,19 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+##  Exploring New Dataset
+
+### Basic Sequence
+1. Assess the general characteristics of the dataset. Ex :
+    a. How many rows/observation/records we have?
+    b. How many column/variables/features we have?
+    c. What is the variables names and are they meaningfull? (meaningfull = menggabarkan isinya, jika tidak then ganti namanya)
+    d. what is the type of each data. (numeric(quantitative) / categorical : (nominal / ordinal(have ranks)) (qualitative) / logical)
+2. 
+
+```{r}
+
+```
+
