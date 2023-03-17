@@ -1,0 +1,109 @@
+---
+title: "Session1_EDA"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Import Library and Data
+```{r}
+library(car)
+
+data(Davis)
+ls()
+Davis
+```
+
+User Defined Function to give basic summary
+```{r}
+basicSummary <- function(df, dgts) {
+  m <- ncol(df) # column
+  varNames <- colnames(df)
+  varType <- vector("character", m)
+  topLevel <- vector("character", m)
+  topCount <- vector("numeric", m)
+  missCount <- vector("numeric", m)
+  levels <- vector("numeric", m)
+  
+  for (i in 1:m) {
+    x <- df[,i]
+    varType[i] <- class(x)
+    xtab <- table(x, useNA = "ifany")
+    levels[i] <- length(xtab)
+    nums <- as.numeric(xtab)
+    maxnum <- max(nums)
+    topCount[i] <- maxnum
+    maxIndex <- which.max(nums)
+    lvls <- names(xtab)
+    topLevel[i] <- lvls[maxIndex]
+    missIndex <- which((is.na(x)) | (x == "") | (x == " "))
+    missCount[i] <- length(missIndex)
+  }
+  n <- nrow(df) # Rows
+  topFrac <- round(topCount/n, digits = dgts)
+  missFrac <- round(missCount/n, digits = dgts)
+  summaryFrame <- data.frame(variable = varNames, 
+                             type = varType, 
+                             levels = levels,
+                             topLevel = topLevel,
+                             topCount = topCount,
+                             topFrac = topFrac,
+                             missFraq = missCount,
+                             missFrac = missFrac)
+  return(summaryFrame)
+}
+```
+
+```{r}
+basicSummary(Davis, 3)
+```
+
+The Davis Data frame is 2 dimention with 200 objects and 5 variables with the description of
+- sex : Categorical data with 2 unique values with "F" being the most often calue occuring 112 times. With no missing values
+- weight : Numerical data with 54 unique values with 55 being the most often value occuring 9 times. With no missing values
+- height : Numerical data with 43 unique values with 178 being the most often value occuring 12 times. With no missing values.
+- repwt : Numerical data with 54 unique values with NA being the most often value occuring 17 times. With 17 missing values
+- repht : Numerical data with 33 unique values with 165 being the most often value occuring 23 times. With 17 missing values
+
+
+```{r}
+summary(Davis)
+```
+The Descriptive Statistics of the Davis Datasets :
+
+weight : Have minimum value of 39, median of 63, mean of 65, max of 166, the 1st Quartile is 55, and the 3rt Quartile is 74 
+height : Have minimum value of 57, median of 169.5, mean of 170, max of 197, the 1st Quartile is 164, and the 3rt Quartile is 177.2 
+repwt : Have minimum value of 41, median of 63, mean of 65.62, max of 124, the 1st Quartile is 55, and the 3rt Quartile is 73 and missing values of 17.
+repht : Have minimum value of 148, median of 168, mean of 168.5, max of 200, the 1st Quartile is 160.5, and the 3rt Quartile is 175 and missing value of 17.
+
+```{r}
+plot(Davis, las = 1)
+```
+```{r}
+par(mfrow = c(2,2))
+
+x <- Davis$height
+y <- Davis$weight
+
+plot(x, y, xlab = "Height", ylab = "Weight", ylim = c(40, 170))
+index <- which(y > 140)
+points(x[-index], y[-index], pch = 16)
+points(x[index], y[index], pch = 18, cex = 2, col = "#009999")
+title("Plot Weight vs Height")
+
+plot(Davis$height, Davis$repht, xlab = "Measured Height in cm", ylab = "Reported Height in cm", xlim = c(50, 200), col = "#0000FF", main = "Plot Measured Height vs Reported Height")
+
+plot(Davis$weight, Davis$repwt, xlab = "Measured Weight in kg", ylab = "Reported Weight in kg", ylim = c(40, 130), col = "red", main = "Plot Measured Weight vs Reported Weight")
+
+plot(Davis$repwt, Davis$repht, xlab = "Reported Weight in kg", ylab = "Reported Height in cm", ylim = c(140, 200), col = "green", main = "Plot Reported Weight vs Reported Height")
+```
+Weight vs Height Description :
+  from the plot above we can see that the heavier someone is then they are slightly (positive corellation)
+
+
+
+
