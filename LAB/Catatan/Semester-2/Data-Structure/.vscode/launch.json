@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/wilbert/University/Kuliah/LAB/Catatan/Semester-2/Data-Structure/Session-3",
-      "program": "/home/wilbert/University/Kuliah/LAB/Catatan/Semester-2/Data-Structure/Session-3/build/Debug/outDebug",
+      "cwd": "/home/wilbert/University/Kuliah/LAB/Catatan/Semester-2/Data-Structure/Session-4",
+      "program": "/home/wilbert/University/Kuliah/LAB/Catatan/Semester-2/Data-Structure/Session-4/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
