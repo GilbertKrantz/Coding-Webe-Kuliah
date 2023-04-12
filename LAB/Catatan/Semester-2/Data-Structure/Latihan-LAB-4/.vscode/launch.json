@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/kanek/University/Coding-Webe-Kuliah/LAB/Catatan/Semester-2/Data-Structure",
-      "program": "c:/Users/kanek/University/Coding-Webe-Kuliah/LAB/Catatan/Semester-2/Data-Structure/build/Debug/outDebug",
+      "cwd": "c:/Users/kanek/University/Coding-Webe-Kuliah/LAB/Catatan/Semester-2/Data-Structure/Latihan-LAB-4",
+      "program": "c:/Users/kanek/University/Coding-Webe-Kuliah/LAB/Catatan/Semester-2/Data-Structure/Latihan-LAB-4/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

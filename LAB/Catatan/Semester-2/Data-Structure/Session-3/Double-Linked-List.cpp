@@ -9,7 +9,7 @@ struct Food
 
     char name[225];
     int price;
-    char custID[10]; // Random
+    char custID[10]; // Random CU256-CU123-CU999...
 
     Food *next;
     Food *prev;
@@ -34,7 +34,7 @@ Food* createNode(char name[], int price) {
     // cust ID [Random]
     char cusID_temp[10];
     int cusID_num = rand() % 1000; // 1000 from 999 + 1 (upper limit + 1)
-    sprintf(cusID_temp, "CU%03d", cusID_num);
+    sprintf(cusID_temp, "CU%03d", cusID_num); // CU001-CU999
     strcpy(node->custID, cusID_temp);
 
     return node;
