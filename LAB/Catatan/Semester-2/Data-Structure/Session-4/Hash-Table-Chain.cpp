@@ -15,13 +15,13 @@ struct People
 } *head[SIZE], *tail[SIZE];
 
 People *createNode(char name[], int age) {
-    People *curr = (People*) malloc(sizeof(People));
+    People *curr = (People*) malloc(sizeof(People)); // Malloc is a function to allocate memory
 
-    strcpy(curr->name, name);
-    curr->age = age;
+    strcpy(curr->name, name); // strcpy is used to copy name to curr->name
+    curr->age = age; // asigning age to curr->age
     curr->next = curr->prev = NULL;
 
-    return curr;
+    return curr; // returning the created node
 }
 
 int hash(char name[]) {
