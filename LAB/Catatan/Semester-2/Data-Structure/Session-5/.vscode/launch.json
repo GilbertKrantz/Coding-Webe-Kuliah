@@ -7,9 +7,15 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
+<<<<<<< HEAD:LAB/Catatan/Semester-2/Data-Structure/Session-5/.vscode/launch.json
       "externalConsole": true,
       "cwd": "c:/Users/kanek/University/Coding-Webe-Kuliah/LAB/Catatan/Semester-2/Data-Structure/Session-5",
       "program": "c:/Users/kanek/University/Coding-Webe-Kuliah/LAB/Catatan/Semester-2/Data-Structure/Session-5/build/Debug/outDebug",
+=======
+      "externalConsole": false,
+      "cwd": "/home/wilbert/University/Kuliah/LAB/Catatan/Semester-2/Data-Structure/Session-6",
+      "program": "/home/wilbert/University/Kuliah/LAB/Catatan/Semester-2/Data-Structure/Session-6/build/Debug/outDebug",
+>>>>>>> 3e2791a (Et Cetera):LAB/Catatan/Semester-2/Data-Structure/.vscode/launch.json
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
