@@ -1,0 +1,116 @@
+---
+title: "Working with Text Data"
+author: "Wilbert"
+date: "2023-05-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Fundamentals of text data analysis
+Basic Steps : 
+- Get the text to analyze
+- Normalize the text by eliminating irrelevant details, cth :
+    a. Remobe case : all text become upper or lower case.
+    b. Remove useless character : punctuaion, symbols, numbers.
+    c. Parse the text into words
+    d. Remove non-informative stopwords
+    e. Stem the text, removing word endings like "ing", "s", or "ed".
+- Convert the normalized text to numbers 
+- Apply mathematical analysis to the numbers
+- Intepret the analysis results
+
+Text analysis can be done in R using R native function or using tm or quanteda packages
+
+Important base function : 
+- nchar   : character count
+- grep    : finds vector
+- gsub    : replace substring
+- tolower : to lower
+
+# Creating Word Cloud
+
+## Load Packages
+```{r}
+library(tm)
+library(SnowballC)
+library(wordcloud)
+library(RColorBrewer)
+```
+
+## Making word cloud
+
+### Reading Text File
+
+- 1st Way
+```{r}
+text <- readLines(file.choose())
+```
+- 2nd Way
+```{r}
+filePath <- "text-mining.txt"
+text <- readLines(filePath)
+```
+### Looking data as corpus and inspecting
+```{r}
+docs <- Corpus(VectorSource(text))
+
+inspect(docs)
+```
+### Text Transformation
+
+```{r}
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))
+docs <- tm_map(docs, toSpace, "/")
+docs <- tm_map(docs, toSpace, "@")
+docs <- tm_map(docs, toSpace, "\\|")
+```
+
+### Text Cleaning
+```{r}
+# Convert the text to lower case
+docs <- tm_map(docs, content_transformer(tolower))
+
+# Remove numbers
+docs <- tm_map(docs, removeNumbers)
+
+# Remove english common stopwords
+docs <- tm_map(docs, removeWords, stopwords("english"))
+
+# Remove your own stop word
+
+# specify your stopwords as a character vector
+docs <- tm_map(docs, removeWords, c("blabla1", "blabla2")) 
+
+# Remove punctuations
+docs <- tm_map(docs, removePunctuation)
+
+# Eliminate extra white spaces
+docs <- tm_map(docs, stripWhitespace)
+
+# Text stemming
+docs <- tm_map(docs, stemDocument)
+```
+
+### Build a term document matrix
+```{r}
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+d
+```
+### Generate Word Cloud
+```{r}
+set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 4,
+          max.words=200, random.order=FALSE, rot.per=0.20, 
+          colors=brewer.pal(8, "Dark2"))
+```
+
+
+
+
+

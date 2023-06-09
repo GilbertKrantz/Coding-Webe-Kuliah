@@ -1,0 +1,4 @@
+Used Reference for this AOL Assigment
+
+GeeksforGeeks. (2023). Deletion in an AVL Tree. GeeksforGeeks. https://www.geeksforgeeks.org/deletion-in-an-avl-tree/
+Thareja, R. (2014). Data Structures Using C. Oxford University Press, USA.

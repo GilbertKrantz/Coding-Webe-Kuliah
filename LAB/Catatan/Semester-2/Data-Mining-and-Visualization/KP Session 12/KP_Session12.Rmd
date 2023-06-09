@@ -1,0 +1,169 @@
+---
+title: "GeneralPredictive2"
+author: "Muhammad Athariq Naufal"
+date: "6/9/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages()
+```
+
+```{r}
+library(mlbench)
+library(pROC)
+library(rpart)
+
+data("PimaIndiansDiabetes")
+df <- PimaIndiansDiabetes
+```
+
+
+```{r}
+BasicSummary <- function(df, dgts = 3){
+m <- ncol(df)
+varNames <- colnames(df)
+varType <- vector("character",m)
+topLevel <- vector("character",m)
+topCount <- vector("numeric",m)
+missCount <- vector("numeric",m)
+levels <- vector("numeric", m)
+for (i in 1:m){
+x <- df[,i]
+varType[i] <- class(x)
+xtab <- table(x, useNA = "ifany")
+levels[i] <- length(xtab)
+nums <- as.numeric(xtab)
+maxnum <- max(nums)
+topCount[i] <- maxnum
+maxIndex <- which.max(nums)
+lvls <- names(xtab)
+topLevel[i] <- lvls[maxIndex]
+missIndex <- which((is.na(x)) | (x == "") | (x == " "))
+missCount[i] <- length(missIndex)
+}
+
+n <- nrow(df)
+topFrac <- round(topCount/n, digits = dgts)
+missFrac <- round(missCount/n, digits = dgts)
+summaryFrame <- data.frame(variable = varNames, type = varType,
+levels = levels, topLevel = topLevel,
+topCount = topCount, topFrac = topFrac,
+missFreq = missCount, missFrac = missFrac)
+return(summaryFrame)
+}
+```
+
+```{r}
+BasicSummary(df)
+```
+
+# levels
+# toplevel
+# topcount =  jumlah output toplevel (17 observasi yang hasilnya 99)
+# topfrac = 
+# missfreq = missing variable 
+# missfrac = missing fraction dari missfreq
+
+# Tricep and Insulin = tidak diikutsertakan 
+# observing that the tricep and insulin are not qualified due to their th value are "0" (30% and 50%)
+# binary observation is considered 
+
+```{r}
+keepvars <- c("pregnant","glucose", "pressure", "mass", "pedigree", "age", "diabetes")
+PimaSub <- PimaIndiansDiabetes [, keepvars]
+```
+
+
+#1.   Replacing the respo
+
+```{r}
+set.seed(123) #menghasilkan bilangan acak
+
+n <- nrow(PimaSub)
+train <- sample(n, round(0.7 * n)) #70% dari row dfFiltered
+pimaTrain <- PimaSub[train,] #mengambil 70% data secara acak
+pimaValidation <- PimaSub[-train,] #mengambil sisa pimaTrain secara acak
+```
+
+#2.   Converting labels to discrete   
+
+```{r}
+diabetesFlag <- ifelse (PimaIndiansDiabetes$diabetes == 'neg', 0, 1)
+PimaSub$diabetes <- diabetesFlag
+```
+
+#3.    Split data into training set and test set
+```{r}
+# Train a decision in tree model
+DiabetesModel1 <- rpart(formula = diabetes ~.,
+                        data = pimaTrain,
+                        method = "class")
+DiabetesModel1$variable.importance
+```
+
+```{r}
+library(rpart.plot)
+# yesno = 2, provides yes no 
+rpart.plot (x = DiabetesModel1, yesno = 2, type = 0)
+```
+
+
+#4. Fit the model using full set of variables
+
+```{r}
+DiabetesModel2 <- rpart(formula = diabetes ~glucose + mass + age,
+                        data = pimaTrain,
+                        method = "class")
+```
+minsplit: mininmum number of observation that must exist in the node in order for a split to be attemppted
+maxdepth: the maximum depth of any node of the final tree
+
+
+#5. Model Validation
+```{r}
+PredModel1 <- predict(DiabetesModel1, newdata = pimaValidation, type = "class")
+PredModel2 <- predict(DiabetesModel2, newdata = pimaValidation, type = "class")
+```
+
+
+#6. Model Performance
+##6a. Confusion matrix for 1st model
+
+```{r}
+# Build confusion matrix w/ a threshold of 0.5
+
+cm <- table(PredModel1, pimaValidation$diabetes)
+
+accuracy <- sum (cm[1], cm[4]) / sum (cm[1:4])
+precision <- cm[4] / sum (cm[4], cm[2])
+sensitivity <- cm[4] / sum (cm[4], cm[3])
+fscore <- (2 * (sensitivity * precision)) / (sensitivity * precision)
+specificity <- cm[1] / sum(cm[1], cm[2])
+sprintf("Accuracy  is %s", round(accuracy,3))
+```
+
+##6b. confusion matrix for second model
+```{r}
+cm <- table(PredModel2, pimaValidation$diabetes)
+cm
+accuracy <- sum (cm[1], cm[4]) / sum (cm[1:4])
+precision <- cm[4] / sum (cm[4], cm[2])
+sensitivity <- cm[4] / sum (cm[4], cm[3])
+fscore <- (2 * (sensitivity * precision)) / (sensitivity + precision)
+specificity <- cm[1] / sum(cm[1], cm[2])
+sprintf("Accuracy  is %s", round(accuracy,3))
+```
+
+#7. conclusion
+
+
+
+
+
+
+

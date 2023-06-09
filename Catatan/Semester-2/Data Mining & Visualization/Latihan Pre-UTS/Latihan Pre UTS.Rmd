@@ -1,0 +1,71 @@
+---
+title: "Latihan-Pre-UTS"
+author: "Wilbert"
+date: "2023-04-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Import Data
+```{r}
+library(readr)
+library(ggplot2)
+library(tidyverse)
+library(ggpubr)
+
+data <- read.csv("customer_churn.csv")
+data
+```
+
+# General Characteristic
+```{r}
+str(data)
+
+sapply(data, function(x) length(unique(x)))
+
+sapply(data, function(x) sum(is.na(x)))
+
+sapply(data, function(x) names(which.max(table(x))))
+```
+# Descriptive Statistics
+```{r}
+summary(data)
+```
+# Visualization
+```{r}
+plot(data)
+```
+
+
+```{r}
+ggplot(data, aes(x = Account_Manager, y = Total_Purchase, group = Account_Manager)) + geom_boxplot()
+```
+```{r}
+ggplot(data, aes(x = Total_Purchase, y = Years)) + geom_point()
+```
+
+```{r}
+ggplot(data, aes(x = Num_Sites, y = Years, group = Num_Sites)) + geom_boxplot()
+```
+
+# Linear Regression
+```{r}
+model <- lm(data$Num_Sites ~ data$Years, data = data)
+
+summary(model)
+```
+From the summary given above we can see that the model didn't fit the data well because it have a value of 0.122 but it does show that there is slight positive Relationship between Num_Sites and Years with 0.0715-unit(+-0.05) increase in Num_Sites for every unit increase in Years. 
+```{r}
+par(mfrow = c(2,2))
+plot(model)
+```
+
+From the graph above we can see that our model have good homodascity by seeing the red line that generally in the center which means that in our model there's little to none extreme values that can effect the model.
+
+```{r}
+ggplot(data, aes(x = Num_Sites, y = Years)) + geom_point() + geom_smooth(method = "lm", col = "black") + stat_regline_equation(label.x = 3, label.y = 7)
+```
+From the graph above we can see that we have a positive regression line with a formula of y = 5 + 0.037x.

@@ -1,0 +1,145 @@
+---
+title: "Session 12_KP"
+author: "Wilbert"
+date: "2023-06-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(mlbench)
+library(pROC)
+library(MLmetrics)
+
+data <- Boston
+head(data)
+```
+```{r}
+BasicSummary <- function(df, dgts = 3){
+m <- ncol(df)
+varNames <- colnames(df)
+varType <- vector("character",m)
+topLevel <- vector("character",m)
+topCount <- vector("numeric",m)
+missCount <- vector("numeric",m)
+levels <- vector("numeric", m)
+for (i in 1:m){
+x <- df[,i]
+varType[i] <- class(x)
+xtab <- table(x, useNA = "ifany")
+levels[i] <- length(xtab)
+nums <- as.numeric(xtab)
+maxnum <- max(nums)
+topCount[i] <- maxnum
+maxIndex <- which.max(nums)
+lvls <- names(xtab)
+topLevel[i] <- lvls[maxIndex]
+missIndex <- which((is.na(x)) | (x == "") | (x == " "))
+missCount[i] <- length(missIndex)
+}
+
+n <- nrow(df)
+topFrac <- round(topCount/n, digits = dgts)
+missFrac <- round(missCount/n, digits = dgts)
+summaryFrame <- data.frame(variable = varNames, type = varType,
+levels = levels, topLevel = topLevel,
+topCount = topCount, topFrac = topFrac,
+missFreq = missCount, missFrac = missFrac)
+return(summaryFrame)
+}
+```
+
+```{r}
+BasicSummary(data)
+summary(data)
+```
+From the observation above, we can conclude that the TopLevel of zn and chas are "0" around 30-50% of the data .Therefore , the binary classifiers cosidered here omit both of these variables from the set.
+
+```{r}
+keepvars <- c("crim", "indus", "nox", "rm", "age", "dis", "rad", "tax", "ptratio", "black", "lstat", "medv")
+BostonSub <- Boston[, keepvars]
+```
+
+# Coverting Labels to Discrete
+```{r}
+medvFlag <- ifelse(Boston$medv <= 21, 0, 1)
+BostonSub$medv <- as.factor(medvFlag)
+```
+
+# Separate Train and Test Data
+```{r}
+set.seed(123)
+
+n <- nrow(BostonSub)
+train <- sample(n, (0.7 * n)) # 70% of the data
+bostonTrain <- BostonSub[train,]
+bostonTest <- BostonSub[-train,]
+```
+
+# Train a Decission Tree
+## Fitting the model with all of the variables
+```{r}
+medvModel1 <- rpart(formula = medv ~.,
+                    data = bostonTrain,
+                    method = "class")
+medvModel1$variable.importance
+```
+```{r}
+library(rpart.plot)
+rpart.plot(x = medvModel1, yesno = 2, type = 0)
+```
+
+## Fit the model only with top 3 most important variables
+```{r}
+medvModel2 <- rpart(formula = medv ~ lstat + rm + nox,
+                    data = bostonTrain,
+                    method = "class")
+medvModel2$variable.importance
+```
+
+# Model Validation
+```{r}
+predModel1 <- predict(medvModel1, newdata = bostonTest, type = "class")
+predModel2 <- predict(medvModel2, newdata = bostonTest, type = "class")
+```
+
+# Model Performance
+```{r}
+confusionMatrix <- function(Model, testData) {
+  cm <- table(Model, testData)
+
+  accuracy <- sum (cm[1], cm[4]) / sum (cm[1:4])
+  precision <- cm[4] / sum (cm[4], cm[2])
+  sensitivity <- cm[4] / sum (cm[4], cm[3])
+  fscore <- (2 * (sensitivity * precision)) / (sensitivity * precision)
+  specificity <- cm[1] / sum(cm[1], cm[2])
+  sprintf("Accuracy  is %s", round(accuracy,3))
+}
+```
+
+## Confusion Matrix for 1st Model
+```{r}
+confusionMatrix(predModel1, bostonTest$medv)
+```
+
+## Confusion Matrix for 2nd Model
+```{r}
+confusionMatrix(predModel2, bostonTest$medv)
+```
+
+## Conclusion
+Since the second model involves only 3 prediction variables and provides higher accuracy than the first one. Moreover, it is substantially simpler model (i.e., it is easier to explain to others withl limited technical background).
+
+
+
+
+
+
+
+
+
+
+

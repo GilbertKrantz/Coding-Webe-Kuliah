@@ -1,0 +1,127 @@
+---
+title: "AOL"
+author: "Wilbert"
+date: "2023-06-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(ggpubr)
+library(corrplot)
+library(reshape2)
+library(readxl)
+library(caret)
+```
+
+```{r}
+df <- read_excel("cobaini.xlsx")
+head(df)
+```
+
+```{r}
+# Check Missing Value
+
+missing_values <- colSums(is.na(df))
+missing_values
+```
+```{r}
+# Menampilkan informasi mengenai setiap atribut values yang ada pada dataset
+str(df)
+
+# Menampilkan informasi statistika dasar dari dataset
+summary(df)
+```
+```{r}
+# Menempatkan kolom numerik dalam satu frame 
+numerical_columns <- c('HDI', 'FDI (USD)', 'Portofolio Investment', 'GDP (USD)', 'Jumlah UMKM Indonesia')
+
+# Buat objek scaler MinMax
+scaler <- preProcess(df[, numerical_columns], method = c("range"))
+
+# Normalisasi kolom numerik yang diidentifikasi
+df[, numerical_columns] <- predict(scaler, df[, numerical_columns])
+
+# Tampilkan dataset yang telah dinormalisasi
+head(df)
+```
+```{r}
+# Menggunakan dataset
+
+ggplot(df, aes(x = HDI, y = `GDP (USD)`, color = `GDP (USD)`)) +
+  geom_point() +
+  labs(title = 'Scatter plot of HDI vs GDP (USD)') +
+  theme_minimal()
+
+# Heat Map
+  # Create Corr
+num_df <- subset(df, select = -c(Years, Tahun))
+cor_mat <- round(cor(num_df), 2)
+
+  # Melt the data frame
+melted_cormat <- melt(cor_mat)
+
+  #create correlation heatmap
+ggplot(data = melted_cormat, aes(x=Var1, y=Var2, fill=value)) + 
+  geom_tile() +
+  geom_text(aes(Var2, Var1, label = value), size = 5) +
+  scale_fill_gradient2(low = "blue", high = "red",
+                       limit = c(-1,1), name="Correlation") +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.background = element_blank())
+
+
+categorical_features = c('HDI', 'FDI (USD)', 'Portofolio Investment','Jumlah UMKM Indonesia')
+for (feature in categorical_features) {
+  ggplot(df, aes(x = df[[feature]], y = `GDP (USD)`, color = df[[feature]])) +
+    geom_boxplot() +
+    labs(title = paste('Box plot of GDP (USD) vs', feature)) +
+    theme_minimal()
+}
+
+
+hist(df$HDI, breaks = 30, col = 'blue', main = 'Histogram of HDI', xlab = "HDI")
+hist(df$`FDI (USD)`, breaks = 30, col = 'red', main = 'Histogram of FDI (USD)', xlab = 'FDI (USD)')
+hist(df$`Portofolio Investment`, breaks = 30, col = 'green', main = 'Histogram of Portofolio Investment', xlab = 'Portofolio Investment')
+hist(df$`Jumlah UMKM Indonesia`, breaks = 30, col = 'purple', main = 'Histogram of Jumlah UMKM Indonesia', xlab = 'Jumlah UMKM Indonesia')
+
+```
+
+```{r}
+# Subset the data frame to remove unnecessary columns
+new_df <- subset(df, select = -c(Years, Tahun))
+
+GDP.lm <- lm(`GDP (USD)` ~ HDI + `FDI (USD)` + `Portofolio Investment` + `Jumlah UMKM Indonesia`, data = new_df)
+
+summary(GDP.lm)
+
+par(mfrow=c(2,2))
+plot(GDP.lm)
+par(mfrow=c(1,1))
+
+plotting.data<-expand.grid(
+  HDI = seq(min(df$HDI), max(df$HDI), length.out=30),
+  `FDI (USD)` = seq(min(df$`FDI (USD)`), max(df$`FDI (USD)`), length.out=30),
+  `Portofolio Investment` = seq(min(df$`Portofolio Investment`), max(df$`Portofolio Investment`), length.out=30),
+  `Jumlah UMKM Indonesia` = seq(min(df$`Jumlah UMKM Indonesia`), max(df$`Jumlah UMKM Indonesia`), length.out=30))
+
+plotting.data$predicted.y <- predict.lm(GDP.lm, newdata=plotting.data)
+
+original_plot <- ggplot(new_df, aes(x=HDI, y=`GDP (USD)`)) +
+  geom_point()
+
+original_plot
+
+original_plot + geom_line(data=plotting.data, aes(x=HDI, y=predicted.y, color=`Jumlah UMKM Indonesia`), size=1.25)
+```
+
+
+
+
+
+

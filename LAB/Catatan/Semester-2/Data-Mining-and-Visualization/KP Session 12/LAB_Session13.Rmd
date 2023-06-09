@@ -1,0 +1,157 @@
+---
+title: "KP"
+author: "Elvina"
+date: "2023-06-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+#("MLmetrics")
+
+```
+
+#1. load libraries
+```{r}
+library(mlbench)
+library(pROC)
+library(MLmetrics)
+data("PimaIndiansDiabetes")
+
+```
+
+#2. 
+```{r}
+BasicSummary <- function(df, dgts = 3){
+m <- ncol(df)
+varNames <- colnames(df)
+varType <- vector("character",m)
+topLevel <- vector("character",m)
+topCount <- vector("numeric",m)
+missCount <- vector("numeric",m)
+levels <- vector("numeric", m)
+for (i in 1:m){
+x <- df[,i]
+varType[i] <- class(x)
+xtab <- table(x, useNA = "ifany")
+levels[i] <- length(xtab)
+nums <- as.numeric(xtab)
+maxnum <- max(nums)
+topCount[i] <- maxnum
+maxIndex <- which.max(nums)
+lvls <- names(xtab)
+topLevel[i] <- lvls[maxIndex]
+missIndex <- which((is.na(x)) | (x == "") | (x == " "))
+missCount[i] <- length(missIndex)
+}
+n <- nrow(df)
+topFrac <- round(topCount/n, digits = dgts)
+missFrac <- round(missCount/n, digits = dgts)
+summaryFrame <- data.frame(variable = varNames, type = varType,
+levels = levels, topLevel = topLevel,
+topCount = topCount, topFrac = topFrac,
+missFreq = missCount, missFrac = missFrac)
+return(summaryFrame)
+}
+
+```
+
+
+```{r}
+BasicSummary(PimaIndiansDiabetes)
+
+```
+From the observation above, we can conclude that the TopLevel of Insulin and Triceps are "0" around 30-50% of the data .Therefore , the binary classifiers cosidered here omit both of these variables from the set.
+
+```{r}
+keepvar<-c("pregnant", "glucose", "pressure", "mass", "pedigree", "age", "diabetes")
+pimasub <- PimaIndiansDiabetes[,keepvar]
+BasicSummary(pimasub)
+```
+
+#3. Split data into training and test set
+```{r}
+set.seed(123)
+n <- nrow(pimasub)
+train <- sample(n, round(0.7 * n))
+pimaTrain <- pimasub[train,]
+pimaValidation<-pimasub[-train,]
+```
+
+```{r}
+#install.packages("rpart")
+#install.packages("rpart.plot")
+```
+#3. Model Building using full set variables
+```{r}
+#Train a decisiom tree model
+library(rpart)
+library(rpart.plot)
+DiabetesModel1 <- rpart(formula = diabetes ~., data = pimaTrain, method = "class")
+DiabetesModel1$variable.importance
+```
+tiap variabel yang kita sertakan di nilainya
+semakain besar nilainya, semakin penting variabel tersebut
+
+# Model Plotting
+# Bentuk pohon keputusan
+```{r}
+rpart.plot(x = DiabetesModel1, yesno=2, type=0)
+#yesno = 2 -> privides yes or no text
+```
+
+#4. Model that includes only 3 most important variables
+# disini dipakai 3 teratas
+```{r}
+#train a decision model
+DiabetesModel2 <- rpart(formula = diabetes ~ glucose + mass + age, data = pimaTrain, method = "class")
+```
+minsplit: the minimum number of observation that must exist in the node in order for a split to be attemped
+maxdepth: the maximum depth of any node of the final tree
+
+#5. Model validation
+```{r}
+PredModel1 <- predict(DiabetesModel1, newdata = pimaValidation, type = "class")
+PredModel2 <- predict(DiabetesModel2, newdata = pimaValidation, type = "class")
+```
+
+#6. Model Performance
+##6a. Confusion matrix for 1st model
+```{r}
+# Built confusion matrix with a threshold of 0.5
+cm <- table(PredModel1, pimaValidation$diabetes)
+cm
+cm[2]
+
+accuracy <- sum(cm[1], cm[4]) / sum(cm[1:4])
+precision <- cm[4] / sum(cm[4], cm[2])
+sensitivity <- cm[4] / sum(cm[4], cm[3])
+fscore <- (2 * (sensitivity*precision)) / (sensitivity+precision)
+specificity <- cm[1] / sum(cm[1], cm[2])
+sprintf("Accuracy is %s", round(accuracy, 3))
+```
+
+##6b. Confusion matrix for 2nd model
+```{r}
+# Built confusion matrix with a threshold of 0.5
+cm <- table(PredModel2, pimaValidation$diabetes)
+cm
+cm[2]
+
+accuracy <- sum(cm[1], cm[4]) / sum(cm[1:4])
+precision <- cm[4] / sum(cm[4], cm[2])
+sensitivity <- cm[4] / sum(cm[4], cm[3])
+fscore <- (2 * (sensitivity*precision)) / (sensitivity+precision)
+specificity <- cm[1] / sum(cm[1], cm[2])
+sprintf("Accuracy is %s", round(accuracy, 3))
+```
+The second model has higher accuracy than the first model.
+
+#7. Conclusion
+Since the second model involves only 3 prediction variables and provides higher accuracy than the first one. Moreover, it is substantially simpler model (i.e., it is easier to explain to others withl limited technical background).
+
+

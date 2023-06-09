@@ -111,8 +111,8 @@ Node* inOrder(Node *curr) {
 
 int main() {
     root = NULL;
-    root = insertion(root, createNode(50, "Budi"));
-    root = insertion(root, createNode(40, "Jason"));
-    root = insertion(root, createNode(30, "Vito"));
+    root = insertion(root, createNode(6, "Budi"));
+    root = insertion(root, createNode(7, "Jason"));
+    root = insertion(root, createNode(8, "Vito"));
     inOrder(root);
 }
