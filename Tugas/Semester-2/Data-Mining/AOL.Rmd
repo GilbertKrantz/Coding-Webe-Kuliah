@@ -52,7 +52,7 @@ head(df)
 ```{r}
 # Menggunakan dataset
 
-ggplot(df, aes(x = HDI, y = `GDP (USD)`, color = `GDP (USD)`)) +
+ggplot(df, aes(x = HDI, y = `GDP (USD)`, color = `Jumlah UMKM Indonesia`)) +
   geom_point() +
   labs(title = 'Scatter plot of HDI vs GDP (USD)') +
   theme_minimal()
@@ -96,7 +96,7 @@ hist(df$`Jumlah UMKM Indonesia`, breaks = 30, col = 'purple', main = 'Histogram 
 # Subset the data frame to remove unnecessary columns
 new_df <- subset(df, select = -c(Years, Tahun))
 
-GDP.lm <- lm(`GDP (USD)` ~ HDI + `FDI (USD)` + `Portofolio Investment` + `Jumlah UMKM Indonesia`, data = new_df)
+GDP.lm <- lm(`GDP (USD)` ~ HDI + `FDI (USD)` + `Jumlah UMKM Indonesia`, data = new_df)
 
 summary(GDP.lm)
 
@@ -117,7 +117,9 @@ original_plot <- ggplot(new_df, aes(x=HDI, y=`GDP (USD)`)) +
 
 original_plot
 
-original_plot + geom_line(data=plotting.data, aes(x=HDI, y=predicted.y, color=`Jumlah UMKM Indonesia`), size=1.25)
+ggplot(plotting.data, aes(x=HDI, y=predicted.y, color=`Jumlah UMKM Indonesia`)) + geom_point(data=plotting.data, size=1.25)
+
+head(plotting.data)
 ```
 
 

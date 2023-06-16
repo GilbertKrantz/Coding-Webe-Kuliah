@@ -1,0 +1,31 @@
+---
+title: "EDA Second Look"
+author: "Wilbert"
+date: "2023-06-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Important :
+
+- We mostly use sample to be analyzed.
+- Confidence Level : 1-alpha (mostly used : 90%, 95%, 99%)
+- Level of significance : the chances of the data is real and not just a lucky chance.
+- p-value <= 0.05 -> Independent varibale is statistically significant with the dependent varibale
+- Recomended to use confidence interval : Search for lower limit and upper limit.
+- If we have a binary varibale then check for binomial distribution.
+- If we have count variable then check for poisson distribution.
+- If we have a discrete or continuous then check for normal distribution (QQ-plot).
+- If 2 of numerical variable then search for coefficient of corellation 1 being the best
+- Pearson is for Interval (Nominal)
+- Spearman is for Ordinal
+- We can search fo corelation of categorical we can use chi-squared
+
+## EDA Steps :
+
+- Search for Descriptive Statistics 
+- Do Bivariate Analysis (2 Variable) -> plot and friends
+- Do Multivariate Analysis (corr coefficient)

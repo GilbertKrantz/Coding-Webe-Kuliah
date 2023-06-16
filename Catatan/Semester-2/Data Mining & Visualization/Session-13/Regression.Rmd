@@ -1,0 +1,183 @@
+---
+title: "Regression Model"
+author: "Wilbert"
+date: "2023-06-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Regression vs Classification
+
+- Regression -> Continuous
+- Classification -> Discrete (Labels & Categorical)
+
+Regression and Classification is differentiated by it's dependent variable.
+
+# 1. Data Description
+
+https://archive.ics.uci.edu/dataset/9/auto+mpg
+
+    1. mpg:           continuous (Miles per Gallon, in gallon)
+    2. cylinders:     multi-valued discrete (Number of Cylinders)
+    3. displacement:  continuous (Engine Capacity)
+    4. horsepower:    continuous (Engine Power)
+    5. weight:        continuous (Vehicle Weight)
+    6. acceleration:  continuous (Vehicle Acceleration)
+    7. model year:    multi-valued discrete
+    8. origin:        multi-valued discrete
+    9. car name:      string (unique for each instance)
+    
+# 2. Load libraries & data
+```{r}
+library(rpart)
+library(rpart.plot)
+library(MLmetrics) 
+# Regression use RMSF & Rsquared, pROC -> ROC
+# Classification Sensivity, Specificity, Accuracy
+
+autompg <- read.table("auto-mpg.data")
+colnames(autompg) <- c("mpg", "cylinders", "displacement", "horsepower", "weight", "acceleration", "model_year", "origin", "car_name")
+head(autompg)
+```
+
+# 3. Statistics Summary
+```{r}
+basicSummary <- function(df, dgts = 3) {
+  m <- ncol(df) # column
+  varNames <- colnames(df)
+  varType <- vector("character", m)
+  topLevel <- vector("character", m)
+  topCount <- vector("numeric", m)
+  missCount <- vector("numeric", m)
+  levels <- vector("numeric", m)
+  
+  for (i in 1:m) {
+    x <- df[,i]
+    varType[i] <- class(x)
+    xtab <- table(x, useNA = "ifany")
+    levels[i] <- length(xtab)
+    nums <- as.numeric(xtab)
+    maxnum <- max(nums)
+    topCount[i] <- maxnum
+    maxIndex <- which.max(nums)
+    lvls <- names(xtab)
+    topLevel[i] <- lvls[maxIndex]
+    missIndex <- which((is.na(x)) | (x == "") | (x == " "))
+    missCount[i] <- length(missIndex)
+  }
+  n <- nrow(df) # Rows
+  topFrac <- round(topCount/n, digits = dgts)
+  missFrac <- round(missCount/n, digits = dgts)
+  summaryFrame <- data.frame(variable = varNames, 
+                             type = varType, 
+                             levels = levels,
+                             topLevel = topLevel,
+                             topCount = topCount,
+                             topFrac = topFrac,
+                             missFreq = missCount,
+                             missFrac = missFrac)
+  return(summaryFrame)
+}
+```
+```{r}
+basicSummary(autompg)
+# Because Horse wpoer is not the right data type, we must change it to the correct data type
+```
+# 4. Data Preparation
+
+In Summary : 
+Data Problems.
+
+1. car_name is meaningless -> "remove"
+2. convert all var into numerical
+3. Horsepower have missng value
+
+Rule of thumb : if missing value < 20% of total data then we can remove it, if not then median is recomended
+```{r}
+# Remove car_name
+autompg <- subset(autompg, select = -c(car_name))
+
+# Change all var into numerical
+autompg$horsepower <- as.numeric(autompg$horsepower)
+autompg$cylinders <- as.numeric(autompg$cylinders)
+autompg$model_year <- as.numeric(autompg$model_year)
+autompg$origin <- as.numeric(autompg$origin)
+
+# Change missing value with mean
+autompg$horsepower[is.na(autompg$horsepower)] <- mean(autompg$horsepower, na.rm = T)
+basicSummary(autompg)
+```
+Warning -> becasue some of the character strings aren't properly structures integrers and so can't be translated to numeric
+
+
+# 5. Split data 
+```{r}
+set.seed(123)
+n <- nrow(autompg)
+train <- sample(n, round(0.7 * n))
+autoTrain <- autompg[train,]
+autoTest <- autompg[-train,]
+```
+
+# 6. Fit the Model
+## 6A. Linear Regression Models
+```{r}
+LRModel1 <- lm(mpg ~., autoTrain) # Model 1
+#summary(LRModel1)
+
+LRModel2 <- lm(mpg ~ weight + model_year + origin, autoTrain) # Model2
+```
+
+## 6B. Decission Tree Models
+```{r}
+DTModel1 <- rpart(mpg ~ ., autoTrain) # Model 1
+#DTModel1$variable.importance
+DTModel2 <- rpart(mpg ~ displacement + weight + cylinders + horsepower, autoTrain) # Model 2
+```
+Getting top 4 for the 2nd Model
+```{r}
+rpart.plot(DTModel1)
+rpart.plot(DTModel2)
+```
+
+# 7. Model Validation
+```{r}
+predLR1 <- predict(LRModel1, autoTest)
+predLR2 <- predict(LRModel2, autoTest)
+predDT1 <- predict(DTModel1, autoTest)
+predDT2 <- predict(DTModel2, autoTest)
+```
+
+# 8. Model Performance
+```{r}
+# Calculating RMSE
+valLR1 <- RMSE(predLR1, autoTest$mpg)
+valLR2 <- RMSE(predLR2, autoTest$mpg)
+valDT1 <- RMSE(predDT1, autoTest$mpg)
+valDT2 <- RMSE(predDT2, autoTest$mpg)
+
+sprintf("RMSE of Linear Model 1 is %s", valLR1)
+sprintf("RMSE of Linear Model 2 is %s", valLR2)
+sprintf("RMSE of Decission Tree Model 1 is %s", valDT1)
+sprintf("RMSE of Decission Tree Model 2 is %s", valDT2)
+
+# Calculationg R2_Score
+valLR1 <- R2_Score(predLR1, autoTest$mpg)
+valLR2 <- R2_Score(predLR2, autoTest$mpg)
+valDT1 <- R2_Score(predDT1, autoTest$mpg)
+valDT2 <- R2_Score(predDT2, autoTest$mpg)
+
+sprintf("R2_Score of Linear Model 1 is %s", valLR1)
+sprintf("R2_Score of Linear Model 2 is %s", valLR2)
+sprintf("R2_Score of Decission Tree Model 1 is %s", valDT1)
+sprintf("R2_Score of Decission Tree Model 2 is %s", valDT2)
+```
+
+# 9. Conclusion
+We can conclude that the best model is the Linear Regression Model 2 because it has the least RMSE and the highest R2_Score
+
+
+
