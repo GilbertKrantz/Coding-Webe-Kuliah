@@ -1,0 +1,184 @@
+---
+title: "Latihan-UAS-1-Regression"
+author: "Wilbert"
+date: "2023-07-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Data Description
+
+https://www.statsmodels.org/dev/datasets/generated/longley.html
+
+    1. TOTEMP - Total Employment
+    2. GNPDEFL - GNP deflator
+    3. GNP - GNP
+    4. UNEMP - Number of unemployed
+    5. ARMED - Size of armed forces
+    6. POP - Population
+    7. YEAR - Year (1947 - 1962)
+    
+# 2. Load libraries & data
+```{r}
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+library(MLmetrics)
+```
+
+
+```{r}
+data(longley)
+
+head(longley)
+```
+
+# 3. Statistics Summary
+```{r}
+basicSummary <- function(df, dgts = 3) {
+  m <- ncol(df) # column
+  varNames <- colnames(df)
+  varType <- vector("character", m)
+  topLevel <- vector("character", m)
+  topCount <- vector("numeric", m)
+  missCount <- vector("numeric", m)
+  levels <- vector("numeric", m)
+  
+  for (i in 1:m) {
+    x <- df[,i]
+    varType[i] <- class(x)
+    xtab <- table(x, useNA = "ifany")
+    levels[i] <- length(xtab)
+    nums <- as.numeric(xtab)
+    maxnum <- max(nums)
+    topCount[i] <- maxnum
+    maxIndex <- which.max(nums)
+    lvls <- names(xtab)
+    topLevel[i] <- lvls[maxIndex]
+    missIndex <- which((is.na(x)) | (x == "") | (x == " "))
+    missCount[i] <- length(missIndex)
+  }
+  n <- nrow(df) # Rows
+  topFrac <- round(topCount/n, digits = dgts)
+  missFrac <- round(missCount/n, digits = dgts)
+  summaryFrame <- data.frame(variable = varNames, 
+                             type = varType, 
+                             levels = levels,
+                             topLevel = topLevel,
+                             topCount = topCount,
+                             topFrac = topFrac,
+                             missFreq = missCount,
+                             missFrac = missFrac)
+  return(summaryFrame)
+}
+```
+```{r}
+basicSummary(longley)
+```
+GNP deflator : numeric variable with 16 objects, with each object appearing once adn there's no missin value.
+GNP : numeric variable with 16 objects, with each object appearing once adn there's no missin value.
+Unemployed : numeric variable with 16 objects, with each object appearing once adn there's no missin value.
+Armed Forces : numeric variable with 16 objects, with each object appearing once adn there's no missin value.
+Population : numeric variable with 16 objects, with each object appearing once adn there's no missin value.
+Employed : numeric variable with 16 objects, with each object appearing once adn there's no missin value.
+Year : Integer variable with 16 objects, with each object appearing once adn there's no missin value.-> Should be treated as a Category
+
+```{r}
+summary(longley)
+```
+GNP deflator : numeric variable with Min of 83, Median of 100.60, Mean of 101.68, Max of 116.90, Q1 of 94.53, and Q3 of 111.25
+GNP : numeric variable with Min of 234.3, Median of 231.4, Mean of 387.7, Max of 554.9, Q1 of 317.9, and Q3 of 454.1
+Unemployed : numeric variable with Min of 187, Median of 314.4, Mean of 319.3, Max of 480.6, Q1 of 234.8, and Q3 of 384.2
+Armed Forces : numeric variable with Min of 145.6, Median of 217.8, Mean of 260.7, Max of 359.4, Q1 of 229.8, and Q3 of 306.1
+Population : numeric variable with Min of 107.6, Median of 116.8, Mean of 117.4, Max of 130.1, Q1 of 111.8, and Q3 of 122.3
+Year : Integer variable with Min of 1947, Median of 1954, Mean of 1954, Max of 1962, Q1 of 1951, and Q3 of 1958
+Employed : numeric variable with Min of 60.17, Median of 65.5, Mean of 65.32, Max of 70.55, Q1 of 62.71, and Q3 of 68.29
+
+# 4. Data Preparation
+- Change Year Variable to Numerical
+- Create a subset for the numerical data
+
+```{r}
+longley$Year <- as.numeric(longley$Year)
+```
+```{r}
+basicSummary(longley)
+head(longley)
+```
+
+# 5. Check For Normality
+```{r}
+par(mfrow = c(2, 3))
+hist(longley$GNP.deflator)
+hist(longley$GNP)
+hist(longley$Unemployed)
+hist(longley$Armed.Forces)
+hist(longley$Population)
+hist(longley$Employed)
+```
+From the Graph above we can see that only the Employed Variable is not Normaly distributed thus will be excluded from the model
+
+# 6. Split Data
+```{r}
+longley <- subset(longley, select = -c(Employed))
+set.seed(123)
+n <- nrow(longley)
+train <- sample(n, round(0.7 * n))
+longleyTrain <- longley[train,]
+longleyTest <- longley[-train,]
+```
+
+# 7. Fit the Model
+## 7A. Linear Regression Model
+```{r}
+LRModel1 <- lm(GNP ~ ., longleyTrain)
+```
+```{r}
+res <- resid(LRModel1)
+plot(fitted(LRModel1), res)
+abline(0,0)
+plot(density(res))
+```
+
+From the Residual and Density polt Above we can conclude that the LR1Model is Normally Distributed
+```{r}
+summary(LRModel1)
+```
+We will use top the variable with 1 star and above for the 2nd Linear Model
+```{r}
+LRModel2 <- lm(GNP ~ Unemployed + GNP.deflator + Year + Population, longleyTrain)
+```
+
+## 7B. Decission Tree Model
+```{r}
+DTModel1 <- rpart(GNP ~ ., longleyTrain)
+DTModel1$variable.importance
+```
+Based on the Result ABove we can say that Decission Tree Model is not suitable
+
+# 8. Model Validation
+```{r}
+predLR1 <- predict(LRModel1, longleyTest)
+predLR2 <- predict(LRModel2, longleyTest)
+```
+
+# 9. Model Performance
+```{r}
+# Calculating RMSE
+valLR1 <- RMSE(predLR1, longleyTest$GNP)
+valLR2 <- RMSE(predLR2, longleyTest$GNP)
+
+sprintf("RMSE of Linear Model 1 is %s", valLR1)
+sprintf("RMSE of Linear Model 2 is %s", valLR2)
+
+# Calculationg R2_Score
+valLR1 <- R2_Score(predLR1, longleyTest$GNP)
+valLR2 <- R2_Score(predLR2, longleyTest$GNP)
+
+sprintf("R2_Score of Linear Model 1 is %s", valLR1)
+sprintf("R2_Score of Linear Model 2 is %s", valLR2)
+```
+We can conclude that the best model is the Linear Regression Model 1 because it has the least RMSE and the highest R2_Score
