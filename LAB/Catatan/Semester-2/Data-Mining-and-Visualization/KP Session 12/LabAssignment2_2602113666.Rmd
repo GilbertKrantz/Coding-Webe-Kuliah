@@ -2,7 +2,9 @@
 title: "Session 12_KP"
 author: "Wilbert"
 date: "2023-06-09"
-output: html_document
+output:
+  word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -13,6 +15,9 @@ knitr::opts_chunk$set(echo = TRUE)
 library(mlbench)
 library(pROC)
 library(MLmetrics)
+library(MASS)
+library(rpart)
+library(rpart.plot)
 
 data <- Boston
 head(data)

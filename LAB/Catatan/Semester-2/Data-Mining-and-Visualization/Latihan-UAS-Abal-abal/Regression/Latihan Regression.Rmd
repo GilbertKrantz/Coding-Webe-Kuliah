@@ -1,0 +1,146 @@
+---
+title: "Latihan UAS Regression"
+author: "Wilbert"
+date: "2023-07-10"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Import Data and Libraries
+```{r}
+library(MLmetrics)
+library(rpart)
+library(rpart.plot)
+library(tidyverse)
+
+df <- read.csv("C:/Users/kanek/University/Coding-Webe-Kuliah/LAB/Catatan/Semester-2/Data-Mining-and-Visualization/Latihan-UAS-Abal-abal/Regression/Life Expectancy Data.csv")
+
+head(df)
+```
+
+# 2. General Statistics
+```{r}
+basicSummary <- function(df, dgts = 3) {
+  m <- ncol(df) # column
+  varNames <- colnames(df)
+  varType <- vector("character", m)
+  topLevel <- vector("character", m)
+  topCount <- vector("numeric", m)
+  missCount <- vector("numeric", m)
+  levels <- vector("numeric", m)
+  
+  for (i in 1:m) {
+    x <- df[,i]
+    varType[i] <- class(x)
+    xtab <- table(x, useNA = "ifany")
+    levels[i] <- length(xtab)
+    nums <- as.numeric(xtab)
+    maxnum <- max(nums)
+    topCount[i] <- maxnum
+    maxIndex <- which.max(nums)
+    lvls <- names(xtab)
+    topLevel[i] <- lvls[maxIndex]
+    missIndex <- which((is.na(x)) | (x == "") | (x == " "))
+    missCount[i] <- length(missIndex)
+  }
+  n <- nrow(df) # Rows
+  topFrac <- round(topCount/n, digits = dgts)
+  missFrac <- round(missCount/n, digits = dgts)
+  summaryFrame <- data.frame(variable = varNames, 
+                             type = varType, 
+                             levels = levels,
+                             topLevel = topLevel,
+                             topCount = topCount,
+                             topFrac = topFrac,
+                             missFreq = missCount,
+                             missFrac = missFrac)
+  return(summaryFrame)
+}
+```
+```{r}
+basicSummary(df)
+```
+ # 3. Data Preparation
+ Data Problems : 
+ - Change all Integer to numeric
+ - Chnage all missing value to Median
+ - Remove useless variable
+ 
+```{r}
+df <- df %>% 
+  mutate_if(is.numeric, function(x) ifelse(is.na(x), median(x, na.rm = T), x))
+
+df <- subset(df, select = -c(Country, ))
+basicSummary(df)
+```
+ 
+ # 5. Split data 
+```{r}
+set.seed(123)
+n <- nrow(df)
+train <- sample(n, round(0.7 * n))
+dfTrain <- df[train,]
+dfTest <- df[-train,]
+```
+
+# 6. Fit the Model
+## 6A. Linear Regression Models
+```{r}
+LRModel1 <- lm(Life.expectancy ~., df) # Model 1
+# summary(LRModel1)
+
+LRModel2 <- lm(Life.expectancy ~ Status + Adult.Mortality + infant.deaths + Hepatitis.B + BMI + Polio + under.five.deaths + Diphtheria + HIV.AIDS + Income.composition.of.resources + Schooling, df) # Model2
+#summary(LRModel2)
+```
+
+## 6B. Decission Tree Models
+```{r}
+DTModel1 <- rpart(Life.expectancy ~., df) # Model 1
+#DTModel1$variable.importance
+DTModel2 <- rpart(Life.expectancy ~ HIV.AIDS + Adult.Mortality + Income.composition.of.resources, df) # Model 2
+```
+Getting top 4 for the 2nd Model
+```{r}
+rpart.plot(DTModel1)
+rpart.plot(DTModel2)
+```
+
+# 7. Model Validation
+```{r}
+predLR1 <- predict(LRModel1, dfTest)
+predLR2 <- predict(LRModel2, dfTest)
+predDT1 <- predict(DTModel1, dfTest)
+predDT2 <- predict(DTModel2, dfTest)
+```
+
+# 8. Model Performance
+```{r}
+# Calculating RMSE
+valLR1 <- RMSE(predLR1, dfTest$Life.expectancy)
+valLR2 <- RMSE(predLR2, dfTest$Life.expectancy)
+valDT1 <- RMSE(predDT1, dfTest$Life.expectancy)
+valDT2 <- RMSE(predDT2, dfTest$Life.expectancy)
+
+sprintf("RMSE of Linear Model 1 is %s", valLR1)
+sprintf("RMSE of Linear Model 2 is %s", valLR2)
+sprintf("RMSE of Decission Tree Model 1 is %s", valDT1)
+sprintf("RMSE of Decission Tree Model 2 is %s", valDT2)
+
+# Calculationg R2_Score
+valLR1 <- R2_Score(predLR1, dfTest$Life.expectancy)
+valLR2 <- R2_Score(predLR2, dfTest$Life.expectancy)
+valDT1 <- R2_Score(predDT1, dfTest$Life.expectancy)
+valDT2 <- R2_Score(predDT2, dfTest$Life.expectancy)
+
+sprintf("R2_Score of Linear Model 1 is %s", valLR1)
+sprintf("R2_Score of Linear Model 2 is %s", valLR2)
+sprintf("R2_Score of Decission Tree Model 1 is %s", valDT1)
+sprintf("R2_Score of Decission Tree Model 2 is %s", valDT2)
+```
+
+RMSE LOWEST R@ HIGHEST IS DTM2
