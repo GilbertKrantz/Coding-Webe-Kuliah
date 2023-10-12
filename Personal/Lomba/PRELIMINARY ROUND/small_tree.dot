@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="dst_host_serror_rate <= 0.9\ngini = 0.6\nsamples = 56858\nvalue = [1514, 2603, 29664, 1050, 48369, 2228, 2602, 1926]"] ;
+1 [label="src_bytes <= 28.5\ngini = 0.4\nsamples = 41196\nvalue = [1503, 2603, 5256, 929, 48215, 2228, 2602, 1926]"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="dst_host_same_src_port_rate <= 0.0\ngini = 0.8\nsamples = 10782\nvalue = [637, 2540, 5210, 722, 3269, 2111, 2583, 0]"] ;
+1 -> 2 ;
+3 [label="gini = 0.4\nsamples = 4247\nvalue = [7, 0, 4941, 0, 306, 1, 1476, 0]"] ;
+2 -> 3 ;
+4 [label="gini = 0.8\nsamples = 6535\nvalue = [630, 2540, 269, 722, 2963, 2110, 1107, 0]"] ;
+2 -> 4 ;
+5 [label="srv_count <= 326.0\ngini = 0.1\nsamples = 30414\nvalue = [866, 63, 46, 207, 44946, 117, 19, 1926]"] ;
+1 -> 5 ;
+6 [label="gini = 0.1\nsamples = 29530\nvalue = [866, 63, 46, 207, 44821, 117, 19, 651]"] ;
+5 -> 6 ;
+7 [label="gini = 0.2\nsamples = 884\nvalue = [0, 0, 0, 0, 125, 0, 0, 1275]"] ;
+5 -> 7 ;
+8 [label="dst_host_same_srv_rate <= 0.9\ngini = 0.0\nsamples = 15662\nvalue = [11, 0, 24408, 121, 154, 0, 0, 0]"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="dst_host_srv_count <= 1.5\ngini = 0.0\nsamples = 15609\nvalue = [0, 0, 24367, 121, 120, 0, 0, 0]"] ;
+8 -> 9 ;
+10 [label="gini = 0.2\nsamples = 918\nvalue = [0, 0, 1323, 120, 13, 0, 0, 0]"] ;
+9 -> 10 ;
+11 [label="gini = 0.0\nsamples = 14691\nvalue = [0, 0, 23044, 1, 107, 0, 0, 0]"] ;
+9 -> 11 ;
+12 [label="dst_host_same_src_port_rate <= 0.8\ngini = 0.6\nsamples = 53\nvalue = [11, 0, 41, 0, 34, 0, 0, 0]"] ;
+8 -> 12 ;
+13 [label="gini = 0.3\nsamples = 28\nvalue = [0, 0, 39, 0, 11, 0, 0, 0]"] ;
+12 -> 13 ;
+14 [label="gini = 0.5\nsamples = 25\nvalue = [11, 0, 2, 0, 23, 0, 0, 0]"] ;
+12 -> 14 ;
+}

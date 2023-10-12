@@ -1,0 +1,196 @@
+---
+title: "Lomba"
+output: html_document
+date: "2023-09-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Library
+```{r}
+library(ggplot2)
+library(mlbench)
+library(pROC)
+library(MLmetrics)
+```
+
+EDA
+```{r}
+library(readr)
+data = read_csv('Data_Prediction.csv', show_col_types  = F)
+head(data)
+```
+```{r}
+dataTrain = read_csv('DataTrain_Preliminary.csv', show_col_types = FALSE)
+head(dataTrain)
+```
+```{r}
+# Ubah dari ; menjadi tabel normal
+
+dataTrain <- read.table('DataTrain_Preliminary.csv', sep = ';', header = TRUE, stringsAsFactors = FALSE, na.strings = '*')
+
+head(dataTrain)
+```
+```{r}
+str(dataTrain)
+```
+
+
+```{r}
+summary(dataTrain)
+```
+```{r}
+table(dataTrain$type_of_attack)
+```
+
+```{r}
+BasicSummary <- function(df, dgts = 3){
+m <- ncol(df)
+varNames <- colnames(df)
+varType <- vector("character", m)
+topLevel <- vector("character", m)
+topCount <- vector("numeric", m)
+missCount <- vector("numeric", m)
+levels <- vector("numeric", m)
+for(i in 1:m){
+  x <- df[,i]
+  varType[i] <- class(x)
+  xtab <- table(x, useNA = "ifany")
+  levels[i] <- length(xtab)
+  nums <- as.numeric(xtab)
+  maxnum <- max(nums)
+  topCount[i] <- max(nums)
+  maxIndex <- which.max(nums)
+  lvls <- names(xtab)
+  topLevel[i] <- lvls[maxIndex]
+  missIndex <- which((is.na(x)) | (x == "") | (x == " "))
+  missCount[i] <- length(missIndex)
+}
+#output
+n <- nrow(df)
+topFrac <- round(topCount/n, digits = dgts)
+missFrac <- round(missCount/n, digits = dgts)
+summaryFrame <- data.frame(variable = varNames, type = varType,
+levels = levels, topLevel = topLevel,
+topCount = topCount, topFrac = topFrac,
+missFreq = missCount, missFrac = missFrac)
+return(summaryFrame)
+}
+
+BasicSummary(dataTrain)
+```
+
+Data Preparation
+
+change data type based on variable
+```{r}
+newTrain <- dataTrain
+
+str(newTrain)
+```
+```{r}
+newTrain$land <- as.logical(newTrain$land)
+newTrain$logged_in <- as.logical(newTrain$logged_in)
+newTrain$root_shell <- as.logical(newTrain$root_shell)
+newTrain$su_attempted <- as.logical(newTrain$su_attempted)
+newTrain$is_host_login <- as.logical(newTrain$is_host_login)
+newTrain$is_guest_login <- as.logical(newTrain$is_guest_login)
+
+newTrain$dst_host_same_src_port_rate <- as.numeric(newTrain$dst_host_same_src_port_rate)
+newTrain$dst_host_rerror_rate <- as.numeric(newTrain$dst_host_serror_rate)
+```
+
+change all character as factor
+```{r}
+newTrain$type_of_attack <- as.factor(newTrain$type_of_attack)
+newTrain$protocol_type <- as.factor(newTrain$protocol_type)
+newTrain$service <- as.factor(newTrain$service)
+newTrain$flag <- as.factor(newTrain$flag)
+```
+
+identifying and transforming missing values
+```{r}
+summary(newTrain)
+```
+
+```{r}
+library(dplyr)
+newTrain <- newTrain %>% replace(. == 99999, NA)
+newTrain <- newTrain %>% replace(. == "   ", NA)
+newTrain <- newTrain %>% replace(. == "#NA", NA)
+
+summary(newTrain)
+```
+
+```{r}
+BasicSummary(newTrain)
+```
+
+
+```{r}
+summary(newTrain)
+```
+change all missing value as mode of the prespective variable
+```{r}
+calc_mode <- function(x) {
+  # List the distinct / unique values
+  dst_val <- unique(x)
+  
+  # Count the occurrence of each distinct value
+  dst_tab <- tabulate(match(x, dst_val))
+  
+  # Return the value with the highest occurrence
+  dst_val[which.max(dst_tab)]
+}
+
+
+calc_mode(newTrain[["land"]])
+```
+
+```{r}
+for (i in colnames(newTrain)) {
+  
+  if ((is.numeric(newTrain[[i]])) || (is.integer(newTrain[[i]]))) {
+    newTrain[[i]][is.na(newTrain[[i]])] <- median(newTrain[[i]], na.rm = TRUE)
+  } else {
+    mode <- calc_mode(newTrain[[i]])
+    newTrain[[i]][is.na(newTrain[[i]])] <- mode
+  }
+}
+
+summary(newTrain)
+```
+
+Visualization
+
+```{r}
+for (col in colnames(newTrain)) {
+  if (col != "type_of_attack") {
+    plot(newTrain$type_of_attack, newTrain[[col]], xlab = "Type of Attack", ylab = col)
+  }
+}
+```
+
+
+Modelling (Categorical)
+```{r}
+#Train a decisiom tree model
+#library(rpart)
+#library(rpart.plot)
+#DiabetesModel1 <- rpart(formula = type_of_attack ~., data = newTrain, method = "class")
+#DiabetesModel1$variable.importance
+```
+
+```{r}
+library(caret)
+library(randomForest)
+
+set.seed(51)
+model <- train( type_of_attack ~ count + srv_count + dst_host_count + dst_host_rerror_rate, data = newTrain, method = 'rf', trControl = trainControl(method = 'cv', number = 5)) # Use 5 folds for cross-validation
+```
+
+
+
+
