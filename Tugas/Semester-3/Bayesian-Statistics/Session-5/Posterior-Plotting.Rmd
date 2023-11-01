@@ -1,0 +1,83 @@
+---
+title: "Bayesian Assignment 2"
+author: "Wilbert"
+date: "2023-10-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Problem 1
+
+```{r}
+## Plot the distribution
+theta <- seq(0, 1, by = 0.001)
+y <- 10
+m <- 5
+a <- b <- 1
+posterior <- dbeta(theta, y+a, m+b)
+
+## Credible intervals
+ci <- qbeta(c(0.025,0.975),y+a, m+b) #95% credible interval
+ci_lo <- ci[1]
+ci_up <- ci[2]
+
+plot(theta,posterior,type = 'l')
+abline(v = c(ci_lo,ci_up), col = c("red","red"))
+```
+
+# Problem 2
+
+```{r}
+# Define the parameters
+lambda <- 20  # mean number of events
+x <- 0:100     # X-axis values
+
+# Calculate the Poisson probability mass function
+likelihood <- dpois(x, lambda)
+
+# Define the prior as a uniform distribution
+prior <- runif(100, min = 0, max = 100)
+
+# Calculate the unnormalized posterior
+unnorm_posterior <- likelihood * prior
+
+# Plot the posterior distribution
+plot(x, unnorm_posterior, type = 'h', main = "Poisson Posterior Distribution", xlab = "X", ylab = "Probability")
+
+```
+
+# Problem 3
+
+## Posterior Plotting
+```{r}
+theta <- seq(0, 1, by = 0.001)
+
+data <- data.frame(
+  Player = c("Stephen Curry", "Giannis Antetokounmpo", "John Wall", "LeBron James", "Kevin Durant"),
+  overallProb = c(0.898, 0.770, 0.801, 0.674, 0.875),
+  Y = c(24, 28, 66, 27, 13),
+  N = c(26, 41, 82, 39, 16)
+)
+
+par(mfrow = c(2, 3))
+
+for (x in 1:5) {
+  posterior <- dbeta(theta, data[x, "Y"] + 1, data[x, "N"] - data[x, "Y"] + 1)
+  plot(theta, posterior, type='l', main=data[x, "Player"])
+  
+  # Two-tailed test
+  lower_tail <- pbeta(data[x, "overallProb"], data[x, "Y"] + 1, data[x, "N"] - data[x, "Y"] + 1)
+  upper_tail <- 1 - pbeta(data[x, "overallProb"], data[x, "Y"] + 1, data[x, "N"] - data[x, "Y"] + 1)
+  
+  print(data[x, "Player"])
+  print(lower_tail)
+  print(upper_tail)
+  print("")
+}
+```
+
+
+
