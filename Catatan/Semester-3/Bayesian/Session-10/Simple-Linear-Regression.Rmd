@@ -1,0 +1,74 @@
+---
+title: "Linear-Regression"
+author: "Wilbert"
+date: "2023-11-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load rjags
+```{r}
+library(rjags)
+```
+## Load Data
+```{r}
+mass <- c(29.9, 1761, 1807, 2984, 3230, 5040, 5654)
+age <- c(2, 15, 14, 16, 18, 22, 28)
+n <- length(age)
+
+# Jags Require data to be a list
+data <- list(mass=mass, age=age, n=n)
+```
+
+## Define Model as String
+```{r}
+model_string <- textConnection("model{
+# Likelihood (dnorm uses a precision, not variance)
+for(i in 1:n){
+mass[i] ~ dnorm(beta1 + beta2*age[i],tau) #tau = 1/sigma^2
+}
+# Priors
+tau ~ dgamma(0.1, 0.1)
+sigma <- 1/sqrt(tau)
+beta1 ~ dnorm(0, 0.001)
+beta2 ~ dnorm(0, 0.001)
+}")
+```
+
+## Load Data and Compute MCMC Function
+```{r}
+# Set Initial Value
+inits <- list(beta1 = rnorm(1), beta2 = rnorm(1), tau = 10)
+
+# Make Model
+model <- jags.model(model_string, data = data, inits = inits, n.chains = 3, quiet = TRUE)
+```
+
+## Burn in 10000 Samples (Destroy 10000 first sample because it's useless)
+```{r}
+update(model, 10000, progress.bar = 'none')
+```
+
+## Generate 20000 post-burnin samples and keep parameters in params
+```{r}
+# Set Params
+params <- c('beta1','beta2','sigma')
+
+samples <- coda.samples(model, 
+                        variable.names = params,
+                        n.iter = 50000)
+```
+
+## Summarize Sample
+```{r}
+summary(samples)
+```
+
+## Plot Samples
+```{r}
+plot(samples)
+```
+
