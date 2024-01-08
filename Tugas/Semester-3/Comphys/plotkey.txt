@@ -1,0 +1,13 @@
+t = 1
+Voltmeter_LED3 = 2
+Voltmeter_LED2 = 3
+Voltmeter_LED1 = 4
+Voltmeter_load1 = 5
+Voltmeter_source = 6
+Voltmeter_load2 = 7
+Ammeter_LED3 = 8
+Ammeter_LED2 = 9
+Ammeter_LED1 = 10
+Ammeter_source = 11
+Ammeter_load1 = 12
+Ammeter_load2 = 13

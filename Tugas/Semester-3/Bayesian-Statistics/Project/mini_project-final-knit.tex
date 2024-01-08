@@ -1,0 +1,1759 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={MINI PROJECT BAYES\_},
+  pdfauthor={Elvina},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{MINI PROJECT BAYES\_}
+\author{Elvina}
+\date{2023-12-29}
+
+\begin{document}
+\maketitle
+
+\section{Load library}\label{load-library}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(coda)}
+\FunctionTok{library}\NormalTok{(rjags)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Linked to JAGS 4.3.1
+\end{verbatim}
+
+\begin{verbatim}
+## Loaded modules: basemod,bugs
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(knitr)}
+\FunctionTok{library}\NormalTok{(purrr)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{set seed}\label{set-seed}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Load Data}\label{load-data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{\textquotesingle{}./ParisHousing.csv\textquotesingle{}}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   squareMeters numberOfRooms hasYard hasPool floors cityCode cityPartRange
+## 1        75523             3       0       1     63     9373             3
+## 2        80771            39       1       1     98    39381             8
+## 3        55712            58       0       1     19    34457             6
+## 4        32316            47       0       0      6    27939            10
+## 5        70429            19       1       1     90    38045             3
+## 6        39223            36       0       1     17    39489             8
+##   numPrevOwners made isNewBuilt hasStormProtector basement attic garage
+## 1             8 2005          0                 1     4313  9005    956
+## 2             6 2015          1                 0     3653  2436    128
+## 3             8 2021          0                 0     2937  8852    135
+## 4             4 2012          0                 1      659  7141    359
+## 5             7 1990          1                 0     8435  2429    292
+## 6             6 2012          0                 1     2009  4552    757
+##   hasStorageRoom hasGuestRoom   price
+## 1              0            7 7559082
+## 2              1            2 8085990
+## 3              1            9 5574642
+## 4              0            3 3232561
+## 5              1            4 7055052
+## 6              0            1 3926647
+\end{verbatim}
+
+\section{Model 1}\label{model-1}
+
+\subsection{Set Dataframe as matrix and split dependent and independent
+variable}\label{set-dataframe-as-matrix-and-split-dependent-and-independent-variable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{price }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{price)}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ price}
+
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ df[, }\FunctionTok{c}\NormalTok{(}\StringTok{"squareMeters"}\NormalTok{, }\StringTok{"numberOfRooms"}\NormalTok{, }\StringTok{"hasYard"}\NormalTok{, }\StringTok{"hasPool"}\NormalTok{, }\StringTok{"floors"}\NormalTok{, }\StringTok{"cityCode"}\NormalTok{, }\StringTok{"numPrevOwners"}\NormalTok{, }\StringTok{"made"}\NormalTok{, }\StringTok{"isNewBuilt"}\NormalTok{, }\StringTok{"hasStormProtector"}\NormalTok{, }\StringTok{"basement"}\NormalTok{, }\StringTok{"attic"}\NormalTok{, }\StringTok{"garage"}\NormalTok{, }\StringTok{"hasStorageRoom"}\NormalTok{, }\StringTok{"hasGuestRoom"}\NormalTok{, }\StringTok{"cityPartRange"}\NormalTok{)]}
+
+\NormalTok{names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"price"}\NormalTok{,}\StringTok{"Square Meters"}\NormalTok{, }\StringTok{"Number of Rooms"}\NormalTok{, }\StringTok{"Has Yard"}\NormalTok{, }\StringTok{"Has Pool"}\NormalTok{, }\StringTok{"Number of Floors"}\NormalTok{, }\StringTok{"City Code"}\NormalTok{, }\StringTok{"Number of Previous Owners"}\NormalTok{, }\StringTok{"Year Made"}\NormalTok{, }\StringTok{"is Newly Built"}\NormalTok{, }\StringTok{"Has Storm Protector"}\NormalTok{, }\StringTok{"Basement Area"}\NormalTok{, }\StringTok{"Attic Area"}\NormalTok{, }\StringTok{"Garage Area"}\NormalTok{, }\StringTok{"Has Storage Room"}\NormalTok{, }\StringTok{"Has Guest Room"}\NormalTok{, }\StringTok{"City Part Range"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Delete Missing Value}\label{delete-missing-value}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{junk }\OtherTok{\textless{}{-}} \FunctionTok{is.na}\NormalTok{(}\FunctionTok{rowSums}\NormalTok{(X))}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ Y[}\SpecialCharTok{!}\NormalTok{junk]}
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ X[}\SpecialCharTok{!}\NormalTok{junk,]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Standardize Covariates}\label{standardize-covariates}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{scale}\NormalTok{(X))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{JAGS}\label{jags}
+
+\subsubsection{Put Data in JAGS Format}\label{put-data-in-jags-format}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(Y)}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(X)}
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{Y=}\NormalTok{Y,}\AttributeTok{X=}\NormalTok{X,}\AttributeTok{n=}\NormalTok{n,}\AttributeTok{p=}\NormalTok{p)}
+\NormalTok{params }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"alpha"}\NormalTok{,}\StringTok{"beta"}\NormalTok{)}
+\NormalTok{burn }\OtherTok{\textless{}{-}} \DecValTok{500}
+\NormalTok{n.iter }\OtherTok{\textless{}{-}} \DecValTok{2000}
+\NormalTok{n.chains }\OtherTok{\textless{}{-}} \DecValTok{3}
+\NormalTok{thin }\OtherTok{\textless{}{-}} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Make Jags Model}\label{make-jags-model}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_string }\OtherTok{\textless{}{-}} \FunctionTok{textConnection}\NormalTok{(}\StringTok{"model\{}
+\StringTok{  \# Likelihood}
+\StringTok{  for(i in 1:n)\{}
+\StringTok{    Y[i] \textasciitilde{} dnorm(alpha+mu[i],taue)}
+\StringTok{    mu[i] \textless{}{-} inprod(X[i,],beta[])}
+\StringTok{  \}}
+\StringTok{  }
+\StringTok{  \# Priors}
+\StringTok{  for(j in 1:p)\{}
+\StringTok{    beta[j] \textasciitilde{} dnorm(0,0.001)}
+\StringTok{  \}}
+\StringTok{  }
+\StringTok{  alpha \textasciitilde{} dnorm(0,0.001)}
+\StringTok{  taue \textasciitilde{} dgamma(0.1, 0.1)}
+\StringTok{  }
+\StringTok{  \# WAIC calculations}
+\StringTok{  for(i in 1:n)\{}
+\StringTok{    like[i] \textless{}{-} dnorm(Y[i],mu[i],taue)}
+\StringTok{  \}}
+
+\StringTok{\}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Set Initial Value}\label{set-initial-value}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{inits }\OtherTok{=} \FunctionTok{list}\NormalTok{()}
+
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{alpha }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p) \{}
+\NormalTok{    inits}\SpecialCharTok{$}\NormalTok{beta[i] }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{taue }\OtherTok{=} \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Compile Model}\label{compile-model}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model1 }\OtherTok{\textless{}{-}} \FunctionTok{jags.model}\NormalTok{(model\_string, }\AttributeTok{data =}\NormalTok{ data, }\AttributeTok{n.chains=}\NormalTok{n.chains, }\AttributeTok{quiet=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{inits =}\NormalTok{ inits)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Update Model}\label{update-model}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{update}\NormalTok{(model1, burn)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Get Posterior Samples from the
+model}\label{get-posterior-samples-from-the-model}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samples1 }\OtherTok{\textless{}{-}} \FunctionTok{coda.samples}\NormalTok{(model1, }\AttributeTok{variable.names=}\NormalTok{params, }\AttributeTok{n.iter=}\NormalTok{n.iter, }\AttributeTok{thin=}\NormalTok{thin)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Plot MCMC Chain Trace and Features Posterior
+Density}\label{plot-mcmc-chain-trace-and-features-posterior-density}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(samples1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-13-1.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-13-2.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-13-3.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-13-4.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-13-5.pdf}
+
+\subsection{Descriptive Statistics of
+model1}\label{descriptive-statistics-of-model1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(samples1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Iterations = 505:2500
+## Thinning interval = 5 
+## Number of chains = 3 
+## Sample size per chain = 400 
+## 
+## 1. Empirical mean and standard deviation for each variable,
+##    plus standard error of the mean:
+## 
+##              Mean    SD Naive SE Time-series SE
+## alpha     1.56555 31.76   0.9167         0.8834
+## beta[1]   0.60503 31.94   0.9219         0.9219
+## beta[2]  -0.10932 31.20   0.9007         0.9010
+## beta[3]   0.54899 30.53   0.8812         0.8884
+## beta[4]  -0.23191 32.07   0.9257         0.9898
+## beta[5]  -0.07371 31.84   0.9193         0.8762
+## beta[6]  -0.11810 32.38   0.9346         0.9089
+## beta[7]   0.33937 31.50   0.9094         0.9094
+## beta[8]  -0.18402 31.69   0.9149         0.9154
+## beta[9]  -0.59660 32.69   0.9437         0.9932
+## beta[10] -1.24700 31.32   0.9041         0.8716
+## beta[11]  0.15194 31.44   0.9075         0.8830
+## beta[12]  0.69039 30.77   0.8883         0.8891
+## beta[13]  0.94658 31.92   0.9215         0.9222
+## beta[14]  0.93503 31.99   0.9235         0.9287
+## beta[15] -0.84420 31.03   0.8957         0.8965
+## beta[16]  0.73780 31.17   0.8998         0.8999
+## 
+## 2. Quantiles for each variable:
+## 
+##            2.5%    25%      50%   75% 97.5%
+## alpha    -64.01 -18.60  0.69347 21.56 64.24
+## beta[1]  -64.67 -19.37 -0.02202 21.25 65.46
+## beta[2]  -59.62 -21.27 -0.77084 21.34 61.15
+## beta[3]  -60.34 -20.53  0.83176 22.25 59.67
+## beta[4]  -61.66 -21.39 -0.27128 21.25 66.02
+## beta[5]  -64.68 -21.19  0.23642 21.71 60.77
+## beta[6]  -59.62 -22.11 -1.12466 20.79 67.03
+## beta[7]  -57.02 -22.30 -0.22252 22.27 62.83
+## beta[8]  -64.66 -21.21 -0.77432 21.48 65.15
+## beta[9]  -63.71 -22.92  0.16132 21.64 65.10
+## beta[10] -58.69 -22.84 -2.41196 19.76 61.93
+## beta[11] -63.75 -20.09  1.33794 20.57 60.09
+## beta[12] -62.65 -19.24  0.75133 22.28 61.19
+## beta[13] -62.18 -20.93  0.69885 22.57 63.55
+## beta[14] -59.75 -20.50  0.30679 22.64 64.31
+## beta[15] -61.87 -21.41 -0.58195 19.85 60.49
+## beta[16] -59.54 -19.18  0.73906 20.13 61.69
+\end{verbatim}
+
+\subsection{Show Alpha and Betas to the corresponding
+Features}\label{show-alpha-and-betas-to-the-corresponding-features}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(samples1)}
+\FunctionTok{rownames}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{statistics) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\FunctionTok{rownames}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{quantiles) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\NormalTok{sum}\SpecialCharTok{$}\NormalTok{statistics }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{statistics,}\DecValTok{3}\NormalTok{)}
+\NormalTok{sum}\SpecialCharTok{$}\NormalTok{quantiles }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{quantiles,}\DecValTok{3}\NormalTok{)}
+\NormalTok{sum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Iterations = 505:2500
+## Thinning interval = 5 
+## Number of chains = 3 
+## Sample size per chain = 400 
+## 
+## 1. Empirical mean and standard deviation for each variable,
+##    plus standard error of the mean:
+## 
+##                             Mean    SD Naive SE Time-series SE
+## price                      1.566 31.75    0.917          0.883
+## Square Meters              0.605 31.93    0.922          0.922
+## Number of Rooms           -0.109 31.20    0.901          0.901
+## Has Yard                   0.549 30.52    0.881          0.888
+## Has Pool                  -0.232 32.07    0.926          0.990
+## Number of Floors          -0.074 31.84    0.919          0.876
+## City Code                 -0.118 32.38    0.935          0.909
+## Number of Previous Owners  0.339 31.50    0.909          0.909
+## Year Made                 -0.184 31.69    0.915          0.915
+## is Newly Built            -0.597 32.69    0.944          0.993
+## Has Storm Protector       -1.247 31.32    0.904          0.872
+## Basement Area              0.152 31.44    0.907          0.883
+## Attic Area                 0.690 30.77    0.888          0.889
+## Garage Area                0.947 31.92    0.921          0.922
+## Has Storage Room           0.935 31.99    0.924          0.929
+## Has Guest Room            -0.844 31.03    0.896          0.896
+## City Part Range            0.738 31.17    0.900          0.900
+## 
+## 2. Quantiles for each variable:
+## 
+##                             2.5%    25%    50%   75% 97.5%
+## price                     -64.01 -18.60  0.693 21.56 64.24
+## Square Meters             -64.67 -19.36 -0.022 21.25 65.46
+## Number of Rooms           -59.62 -21.27 -0.771 21.34 61.15
+## Has Yard                  -60.34 -20.53  0.832 22.25 59.67
+## Has Pool                  -61.66 -21.39 -0.271 21.25 66.02
+## Number of Floors          -64.68 -21.19  0.236 21.71 60.77
+## City Code                 -59.62 -22.11 -1.125 20.79 67.03
+## Number of Previous Owners -57.02 -22.30 -0.223 22.27 62.84
+## Year Made                 -64.66 -21.21 -0.774 21.48 65.15
+## is Newly Built            -63.71 -22.92  0.161 21.64 65.10
+## Has Storm Protector       -58.69 -22.84 -2.412 19.76 61.93
+## Basement Area             -63.76 -20.09  1.338 20.57 60.09
+## Attic Area                -62.65 -19.25  0.751 22.28 61.20
+## Garage Area               -62.18 -20.93  0.699 22.57 63.55
+## Has Storage Room          -59.75 -20.50  0.307 22.64 64.31
+## Has Guest Room            -61.87 -21.41 -0.582 19.85 60.49
+## City Part Range           -59.54 -19.18  0.739 20.13 61.69
+\end{verbatim}
+
+\subsection{Check Convergence}\label{check-convergence}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{gelman.diag}\NormalTok{(samples1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Potential scale reduction factors:
+## 
+##          Point est. Upper C.I.
+## alpha         1.000      1.000
+## beta[1]       1.001      1.005
+## beta[2]       0.999      1.000
+## beta[3]       0.999      1.000
+## beta[4]       0.999      1.001
+## beta[5]       1.002      1.011
+## beta[6]       1.002      1.010
+## beta[7]       1.000      1.002
+## beta[8]       1.000      1.004
+## beta[9]       1.000      1.006
+## beta[10]      1.007      1.031
+## beta[11]      1.000      1.002
+## beta[12]      1.000      1.002
+## beta[13]      0.999      1.001
+## beta[14]      1.004      1.012
+## beta[15]      0.998      0.998
+## beta[16]      1.001      1.008
+## 
+## Multivariate psrf
+## 
+## 1.02
+\end{verbatim}
+
+\subsubsection{Compile results}\label{compile-results}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ESS1 }\OtherTok{\textless{}{-}} \FunctionTok{effectiveSize}\NormalTok{(samples1)}
+\NormalTok{out1 }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(samples1)}\SpecialCharTok{$}\NormalTok{quantiles}
+\FunctionTok{rownames}\NormalTok{(out1)}\OtherTok{\textless{}{-}}\NormalTok{names}
+
+\NormalTok{ESS1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    alpha  beta[1]  beta[2]  beta[3]  beta[4]  beta[5]  beta[6]  beta[7] 
+## 1412.106 1200.000 1200.000 1206.756 1054.829 1332.658 1288.857 1200.000 
+##  beta[8]  beta[9] beta[10] beta[11] beta[12] beta[13] beta[14] beta[15] 
+## 1200.000 1102.948 1303.966 1281.183 1200.000 1200.000 1188.977 1200.000 
+## beta[16] 
+## 1200.000
+\end{verbatim}
+
+\subsection{Compute DIC \& WAIC}\label{compute-dic-waic}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DIC}
+\NormalTok{dic1 }\OtherTok{\textless{}{-}} \FunctionTok{dic.samples}\NormalTok{(model1,}\AttributeTok{n.iter=}\NormalTok{n.iter)}
+
+\CommentTok{\# WAIC}
+\NormalTok{waic1 }\OtherTok{\textless{}{-}} \FunctionTok{coda.samples}\NormalTok{(model1, }\AttributeTok{variable.names=}\FunctionTok{c}\NormalTok{(}\StringTok{"like"}\NormalTok{), }\AttributeTok{n.iter=}\NormalTok{n.iter)}
+\NormalTok{like1 }\OtherTok{\textless{}{-}}\NormalTok{ waic1[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{fbar1 }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(like1)}
+\NormalTok{P1 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{apply}\NormalTok{(}\FunctionTok{log}\NormalTok{(like1),}\DecValTok{2}\NormalTok{,var))}
+\NormalTok{WAIC1 }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(}\FunctionTok{log}\NormalTok{(fbar1))}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\NormalTok{P1}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Plot Posterior Density
+Individually}\label{plot-posterior-density-individually}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beta }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\ControlFlowTok{for}\NormalTok{(l }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n.chains)\{}
+\NormalTok{  beta }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(beta,samples1[[l]])}
+\NormalTok{\}}
+\FunctionTok{colnames}\NormalTok{(beta) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{17}\NormalTok{)\{}
+  \FunctionTok{hist}\NormalTok{(beta[,j],}\AttributeTok{xlab=}\FunctionTok{expression}\NormalTok{(beta[j]),}\AttributeTok{ylab=}\StringTok{"Posterior density"}\NormalTok{,}
+  \AttributeTok{breaks=}\DecValTok{100}\NormalTok{,}\AttributeTok{main=}\NormalTok{names[j])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-1.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-2.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-3.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-4.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-5.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-6.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-7.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-8.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-9.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-10.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-11.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-12.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-13.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-14.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-15.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-16.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-19-17.pdf}
+
+\subsection{SSVS}\label{ssvs}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(knitr)}
+\NormalTok{Inc\_Prob }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(beta}\SpecialCharTok{!=}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,mean)}
+\NormalTok{Q }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(}\FunctionTok{apply}\NormalTok{(beta,}\DecValTok{2}\NormalTok{,quantile,}\FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.05}\NormalTok{,}\FloatTok{0.95}\NormalTok{)))}
+\NormalTok{out }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(Inc\_Prob,Q)}
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{round}\NormalTok{(out,}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\toprule\noalign{}
+& Inc\_Prob & 50\% & 5\% & 95\% \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+price & 1 & 0.69 & -51.84 & 55.07 \\
+Square Meters & 1 & -0.02 & -51.56 & 52.51 \\
+Number of Rooms & 1 & -0.77 & -50.94 & 51.91 \\
+Has Yard & 1 & 0.83 & -51.08 & 49.85 \\
+Has Pool & 1 & -0.27 & -51.21 & 53.84 \\
+Number of Floors & 1 & 0.24 & -52.19 & 51.54 \\
+City Code & 1 & -1.12 & -51.07 & 54.89 \\
+Number of Previous Owners & 1 & -0.22 & -48.93 & 53.55 \\
+Year Made & 1 & -0.77 & -53.93 & 52.46 \\
+is Newly Built & 1 & 0.16 & -53.74 & 52.97 \\
+Has Storm Protector & 1 & -2.41 & -50.23 & 53.64 \\
+Basement Area & 1 & 1.34 & -54.42 & 52.44 \\
+Attic Area & 1 & 0.75 & -51.38 & 50.85 \\
+Garage Area & 1 & 0.70 & -51.08 & 53.55 \\
+Has Storage Room & 1 & 0.31 & -52.22 & 55.35 \\
+Has Guest Room & 1 & -0.58 & -52.38 & 49.48 \\
+City Part Range & 1 & 0.74 & -51.39 & 53.91 \\
+\end{longtable}
+
+\section{Model 2 (Using features that have strong correlation with the
+target variable based on the frequentist linear regression
+model)}\label{model-2-using-features-that-have-strong-correlation-with-the-target-variable-based-on-the-frequentist-linear-regression-model}
+
+\subsection{Build frequentist linear regression
+model}\label{build-frequentist-linear-regression-model}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{price.lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ X, }\AttributeTok{data =}\NormalTok{ df)}
+
+\FunctionTok{summary}\NormalTok{(price.lm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = price ~ X, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6988.9 -1192.2    -3.2  1198.7  7005.6 
+## 
+## Coefficients:
+##                      Estimate Std. Error    t value Pr(>|t|)    
+## (Intercept)         4.993e+06  1.898e+01 263030.498  < 2e-16 ***
+## XsquareMeters       2.877e+06  1.900e+01 151480.243  < 2e-16 ***
+## XnumberOfRooms      7.257e+00  1.901e+01      0.382 0.702640    
+## XhasYard            1.506e+03  1.899e+01     79.289  < 2e-16 ***
+## XhasPool            1.489e+03  1.900e+01     78.365  < 2e-16 ***
+## Xfloors             1.576e+03  1.900e+01     82.943  < 2e-16 ***
+## XcityCode          -2.332e+01  1.899e+01     -1.228 0.219513    
+## XnumPrevOwners     -1.130e+00  1.901e+01     -0.059 0.952580    
+## Xmade              -2.153e+01  1.899e+01     -1.134 0.256940    
+## XisNewBuilt         7.903e+01  1.900e+01      4.159 3.22e-05 ***
+## XhasStormProtector  7.060e+01  1.899e+01      3.718 0.000202 ***
+## Xbasement          -6.057e+00  1.900e+01     -0.319 0.749846    
+## Xattic             -1.305e+01  1.900e+01     -0.687 0.492064    
+## Xgarage             2.973e+01  1.901e+01      1.563 0.117967    
+## XhasStorageRoom     9.743e+00  1.901e+01      0.512 0.608332    
+## XhasGuestRoom      -1.785e+01  1.901e+01     -0.939 0.347641    
+## XcityPartRange      1.360e+02  1.900e+01      7.162 8.51e-13 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1898 on 9983 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 1.436e+09 on 16 and 9983 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+There are 7 variables that have a strong correlation with the variable
+price (indicated by 3 stars). These seven variables include
+squareMeters, hasYard, hasPool, floors, cityPartRange, isNewBuilt, and
+hasStormProtector.
+
+\subsection{Split dependent and independent
+variable}\label{split-dependent-and-independent-variable}
+
+Using 7 variables that have a strong correlation with the variable price
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ df[, }\FunctionTok{c}\NormalTok{(}\StringTok{"squareMeters"}\NormalTok{, }\StringTok{"hasYard"}\NormalTok{, }\StringTok{"hasPool"}\NormalTok{, }\StringTok{"floors"}\NormalTok{, }\StringTok{"cityPartRange"}\NormalTok{, }\StringTok{"isNewBuilt"}\NormalTok{, }\StringTok{"hasStormProtector"}\NormalTok{)]}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{price}
+\NormalTok{names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"price"}\NormalTok{, }\StringTok{"Square Meters"}\NormalTok{, }\StringTok{"Has Yard"}\NormalTok{, }\StringTok{"Has Pool"}\NormalTok{, }\StringTok{"Floors"}\NormalTok{, }\StringTok{"City Part Range"}\NormalTok{, }\StringTok{"Is New Built"}\NormalTok{, }\StringTok{"Has Storm Protector"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Delete Missing Value}\label{delete-missing-value-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{junk }\OtherTok{\textless{}{-}} \FunctionTok{is.na}\NormalTok{(}\FunctionTok{rowSums}\NormalTok{(X))}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ Y[}\SpecialCharTok{!}\NormalTok{junk]}
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ X[}\SpecialCharTok{!}\NormalTok{junk,]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Standardize Covariates}\label{standardize-covariates-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{scale}\NormalTok{(X))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{JAGS}\label{jags-1}
+
+\subsubsection{Put Data in JAGS Format}\label{put-data-in-jags-format-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(Y)}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(X)}
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{Y=}\NormalTok{Y,}\AttributeTok{X=}\NormalTok{X,}\AttributeTok{n=}\NormalTok{n,}\AttributeTok{p=}\NormalTok{p)}
+\NormalTok{params }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"alpha"}\NormalTok{,}\StringTok{"beta"}\NormalTok{)}
+\NormalTok{burn }\OtherTok{\textless{}{-}} \DecValTok{500}
+\NormalTok{n.iter }\OtherTok{\textless{}{-}} \DecValTok{2000}
+\NormalTok{n.chains }\OtherTok{\textless{}{-}} \DecValTok{3}
+\NormalTok{thin }\OtherTok{\textless{}{-}} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Make Jags Model}\label{make-jags-model-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_string }\OtherTok{\textless{}{-}} \FunctionTok{textConnection}\NormalTok{(}\StringTok{"model\{}
+\StringTok{  \# Likelihood}
+\StringTok{  for(i in 1:n)\{}
+\StringTok{    Y[i] \textasciitilde{} dnorm(alpha+mu[i],taue)}
+\StringTok{    mu[i] \textless{}{-} inprod(X[i,],beta[])}
+\StringTok{  \}}
+\StringTok{  }
+\StringTok{  \# Priors}
+\StringTok{  for(j in 1:p)\{}
+\StringTok{    beta[j] \textasciitilde{} dnorm(0,0.001)}
+\StringTok{  \}}
+\StringTok{  }
+\StringTok{  alpha \textasciitilde{} dnorm(0,0.001)}
+\StringTok{  taue \textasciitilde{} dgamma(0.1, 0.1)}
+\StringTok{  }
+\StringTok{  \# WAIC calculations}
+\StringTok{  for(i in 1:n)\{}
+\StringTok{    like[i] \textless{}{-} dnorm(Y[i],mu[i],taue)}
+\StringTok{  \}}
+
+\StringTok{\}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Set Initial Value}\label{set-initial-value-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{inits }\OtherTok{=} \FunctionTok{list}\NormalTok{()}
+
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{alpha }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p) \{}
+\NormalTok{    inits}\SpecialCharTok{$}\NormalTok{beta[i] }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{taue }\OtherTok{=} \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Compile Model}\label{compile-model-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model2 }\OtherTok{\textless{}{-}} \FunctionTok{jags.model}\NormalTok{(model\_string, }\AttributeTok{data =}\NormalTok{ data, }\AttributeTok{n.chains=}\NormalTok{n.chains, }\AttributeTok{quiet=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{inits =}\NormalTok{ inits)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Update Model}\label{update-model-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{update}\NormalTok{(model2, burn)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Get Posterior Samples from the
+model}\label{get-posterior-samples-from-the-model-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samples2 }\OtherTok{\textless{}{-}} \FunctionTok{coda.samples}\NormalTok{(model2, }\AttributeTok{variable.names=}\NormalTok{params, }\AttributeTok{n.iter=}\NormalTok{n.iter, }\AttributeTok{thin =}\NormalTok{ thin)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Plot MCMC Chain Trace and Features Posterior
+Density}\label{plot-mcmc-chain-trace-and-features-posterior-density-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(samples2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-31-1.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-31-2.pdf}
+
+\subsection{Descriptive Statistics of
+model2}\label{descriptive-statistics-of-model2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(samples2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Iterations = 505:2500
+## Thinning interval = 5 
+## Number of chains = 3 
+## Sample size per chain = 400 
+## 
+## 1. Empirical mean and standard deviation for each variable,
+##    plus standard error of the mean:
+## 
+##             Mean    SD Naive SE Time-series SE
+## alpha    2.35746 33.28   0.9608         1.0071
+## beta[1]  2.50862 32.08   0.9260         0.9400
+## beta[2] -0.52682 33.30   0.9613         0.9364
+## beta[3] -0.08356 32.11   0.9270         0.9343
+## beta[4]  0.81946 31.32   0.9042         0.8576
+## beta[5] -0.34096 31.50   0.9093         0.9097
+## beta[6]  0.97960 33.50   0.9672         0.9659
+## beta[7]  0.81462 31.35   0.9050         0.9384
+## 
+## 2. Quantiles for each variable:
+## 
+##           2.5%    25%      50%   75% 97.5%
+## alpha   -62.23 -19.79  3.23629 24.20 68.70
+## beta[1] -60.20 -19.48  3.02613 23.90 62.16
+## beta[2] -67.25 -23.36  0.68092 21.82 60.62
+## beta[3] -63.41 -20.67 -1.12391 21.67 63.34
+## beta[4] -59.30 -20.67  0.46072 20.74 63.51
+## beta[5] -64.82 -21.19 -0.96395 21.76 58.83
+## beta[6] -65.02 -21.27  2.18836 23.71 63.49
+## beta[7] -58.72 -21.02  0.02214 22.17 62.10
+\end{verbatim}
+
+\section{Show Alpha and Betas to the corresponding
+Features}\label{show-alpha-and-betas-to-the-corresponding-features-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(samples2)}
+\FunctionTok{rownames}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{statistics) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\FunctionTok{rownames}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{quantiles) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\NormalTok{sum}\SpecialCharTok{$}\NormalTok{statistics }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{statistics,}\DecValTok{3}\NormalTok{)}
+\NormalTok{sum}\SpecialCharTok{$}\NormalTok{quantiles }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{quantiles,}\DecValTok{3}\NormalTok{)}
+\NormalTok{sum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Iterations = 505:2500
+## Thinning interval = 5 
+## Number of chains = 3 
+## Sample size per chain = 400 
+## 
+## 1. Empirical mean and standard deviation for each variable,
+##    plus standard error of the mean:
+## 
+##                       Mean    SD Naive SE Time-series SE
+## price                2.357 33.28    0.961          1.007
+## Square Meters        2.509 32.08    0.926          0.940
+## Has Yard            -0.527 33.30    0.961          0.936
+## Has Pool            -0.084 32.11    0.927          0.934
+## Floors               0.819 31.32    0.904          0.858
+## City Part Range     -0.341 31.50    0.909          0.910
+## Is New Built         0.980 33.50    0.967          0.966
+## Has Storm Protector  0.815 31.35    0.905          0.938
+## 
+## 2. Quantiles for each variable:
+## 
+##                       2.5%    25%    50%   75% 97.5%
+## price               -62.23 -19.79  3.236 24.20 68.70
+## Square Meters       -60.20 -19.48  3.026 23.90 62.16
+## Has Yard            -67.25 -23.36  0.681 21.82 60.62
+## Has Pool            -63.41 -20.67 -1.124 21.67 63.34
+## Floors              -59.30 -20.67  0.461 20.74 63.51
+## City Part Range     -64.83 -21.19 -0.964 21.76 58.83
+## Is New Built        -65.02 -21.27  2.188 23.71 63.48
+## Has Storm Protector -58.72 -21.02  0.022 22.17 62.10
+\end{verbatim}
+
+\subsection{Check Convergence}\label{check-convergence-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{gelman.diag}\NormalTok{(samples2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Potential scale reduction factors:
+## 
+##         Point est. Upper C.I.
+## alpha        1.000       1.00
+## beta[1]      0.999       1.00
+## beta[2]      1.002       1.01
+## beta[3]      1.002       1.01
+## beta[4]      1.001       1.00
+## beta[5]      1.001       1.01
+## beta[6]      1.001       1.01
+## beta[7]      0.999       1.00
+## 
+## Multivariate psrf
+## 
+## 1.01
+\end{verbatim}
+
+\subsubsection{Compile results}\label{compile-results-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ESS2 }\OtherTok{\textless{}{-}} \FunctionTok{effectiveSize}\NormalTok{(samples2)}
+\NormalTok{out2 }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(samples2)}\SpecialCharTok{$}\NormalTok{quantiles}
+\FunctionTok{rownames}\NormalTok{(out2)}\OtherTok{\textless{}{-}}\NormalTok{names}
+
+\NormalTok{ESS2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    alpha  beta[1]  beta[2]  beta[3]  beta[4]  beta[5]  beta[6]  beta[7] 
+## 1094.158 1168.679 1265.096 1179.229 1382.996 1200.000 1200.000 1131.511
+\end{verbatim}
+
+\subsection{Compute DIC \& WAIC}\label{compute-dic-waic-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DIC}
+\NormalTok{dic2 }\OtherTok{\textless{}{-}} \FunctionTok{dic.samples}\NormalTok{(model2,}\AttributeTok{n.iter=}\NormalTok{n.iter)}
+
+\CommentTok{\# WAIC}
+\NormalTok{waic2 }\OtherTok{\textless{}{-}} \FunctionTok{coda.samples}\NormalTok{(model2, }\AttributeTok{variable.names=}\FunctionTok{c}\NormalTok{(}\StringTok{"like"}\NormalTok{), }\AttributeTok{n.iter=}\NormalTok{n.iter)}
+\NormalTok{like2 }\OtherTok{\textless{}{-}}\NormalTok{ waic2[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{fbar2 }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(like2)}
+\NormalTok{P2 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{apply}\NormalTok{(}\FunctionTok{log}\NormalTok{(like2),}\DecValTok{2}\NormalTok{,var))}
+\NormalTok{WAIC2 }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(}\FunctionTok{log}\NormalTok{(fbar2))}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\NormalTok{P2}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Plot Posterior Density
+Individually}\label{plot-posterior-density-individually-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beta }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\ControlFlowTok{for}\NormalTok{(l }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n.chains)\{}
+\NormalTok{  beta }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(beta,samples2[[l]])}
+\NormalTok{\}}
+\FunctionTok{colnames}\NormalTok{(beta) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{)\{}
+  \FunctionTok{hist}\NormalTok{(beta[,j],}\AttributeTok{xlab=}\FunctionTok{expression}\NormalTok{(beta[j]),}\AttributeTok{ylab=}\StringTok{"Posterior density"}\NormalTok{,}
+  \AttributeTok{breaks=}\DecValTok{100}\NormalTok{,}\AttributeTok{main=}\NormalTok{names[j])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-37-2.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-37-3.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-37-4.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-37-5.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-37-6.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-37-7.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-37-8.pdf}
+
+\section{Model 3 (Same like model 2, but using initial values (alpha and
+beta coefficients) from the estimation of frequentist linear
+model)}\label{model-3-same-like-model-2-but-using-initial-values-alpha-and-beta-coefficients-from-the-estimation-of-frequentist-linear-model}
+
+\subsection{Split dependent and independent
+variable}\label{split-dependent-and-independent-variable-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ df[, }\FunctionTok{c}\NormalTok{(}\StringTok{"squareMeters"}\NormalTok{, }\StringTok{"hasYard"}\NormalTok{, }\StringTok{"hasPool"}\NormalTok{, }\StringTok{"floors"}\NormalTok{, }\StringTok{"cityPartRange"}\NormalTok{, }\StringTok{"isNewBuilt"}\NormalTok{, }\StringTok{"hasStormProtector"}\NormalTok{)]}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{price}
+\NormalTok{names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"price"}\NormalTok{, }\StringTok{"Square Meters"}\NormalTok{, }\StringTok{"Has Yard"}\NormalTok{, }\StringTok{"Has Pool"}\NormalTok{, }\StringTok{"Floors"}\NormalTok{, }\StringTok{"City Part Range"}\NormalTok{, }\StringTok{"Is New Built"}\NormalTok{, }\StringTok{"Has Storm Protector"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Delete Missing Value}\label{delete-missing-value-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{junk }\OtherTok{\textless{}{-}} \FunctionTok{is.na}\NormalTok{(}\FunctionTok{rowSums}\NormalTok{(X))}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ Y[}\SpecialCharTok{!}\NormalTok{junk]}
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ X[}\SpecialCharTok{!}\NormalTok{junk,]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Standardize Covariates}\label{standardize-covariates-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{scale}\NormalTok{(X))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{JAGS}\label{jags-2}
+
+\subsubsection{Put Data in JAGS Format}\label{put-data-in-jags-format-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(Y)}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(X)}
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{Y=}\NormalTok{Y,}\AttributeTok{X=}\NormalTok{X,}\AttributeTok{n=}\NormalTok{n,}\AttributeTok{p=}\NormalTok{p)}
+\NormalTok{params }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"alpha"}\NormalTok{,}\StringTok{"beta"}\NormalTok{)}
+\NormalTok{burn }\OtherTok{\textless{}{-}} \DecValTok{500}
+\NormalTok{n.iter }\OtherTok{\textless{}{-}} \DecValTok{2000}
+\NormalTok{n.chains }\OtherTok{\textless{}{-}} \DecValTok{3}
+\NormalTok{thin }\OtherTok{\textless{}{-}} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Make Jags Model}\label{make-jags-model-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_string }\OtherTok{\textless{}{-}} \FunctionTok{textConnection}\NormalTok{(}\StringTok{"model\{}
+\StringTok{  \# Likelihood}
+\StringTok{  for(i in 1:n)\{}
+\StringTok{    Y[i] \textasciitilde{} dnorm(alpha+mu[i],taue)}
+\StringTok{    mu[i] \textless{}{-} inprod(X[i,],beta[])}
+\StringTok{  \}}
+\StringTok{  }
+\StringTok{  \# Priors}
+\StringTok{  for(j in 1:p)\{}
+\StringTok{    beta[j] \textasciitilde{} dnorm(0,0.001)}
+\StringTok{  \}}
+\StringTok{  }
+\StringTok{  alpha \textasciitilde{} dnorm(0,0.001)}
+\StringTok{  taue \textasciitilde{} dgamma(0.1, 0.1)}
+\StringTok{  }
+\StringTok{  \# WAIC calculations}
+\StringTok{  for(i in 1:n)\{}
+\StringTok{    like[i] \textless{}{-} dnorm(Y[i],mu[i],taue)}
+\StringTok{  \}}
+
+\StringTok{\}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Frequentist Linear
+Regression}\label{frequentist-linear-regression}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{price.lm2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ X, }\AttributeTok{data =}\NormalTok{ df)}
+
+\FunctionTok{summary}\NormalTok{(price.lm2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = price ~ X, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6976.4 -1193.3    -5.9  1201.2  6968.3 
+## 
+## Coefficients:
+##                     Estimate Std. Error   t value Pr(>|t|)    
+## (Intercept)        4.993e+06  1.898e+01 2.631e+05  < 2e-16 ***
+## XsquareMeters      2.877e+06  1.899e+01 1.516e+05  < 2e-16 ***
+## XhasYard           1.506e+03  1.899e+01 7.930e+01  < 2e-16 ***
+## XhasPool           1.489e+03  1.899e+01 7.841e+01  < 2e-16 ***
+## Xfloors            1.576e+03  1.898e+01 8.303e+01  < 2e-16 ***
+## XcityPartRange     1.355e+02  1.899e+01 7.135e+00 1.04e-12 ***
+## XisNewBuilt        7.868e+01  1.899e+01 4.144e+00 3.43e-05 ***
+## XhasStormProtector 7.105e+01  1.899e+01 3.742e+00 0.000183 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1898 on 9992 degrees of freedom
+## Multiple R-squared:      1,  Adjusted R-squared:      1 
+## F-statistic: 3.282e+09 on 7 and 9992 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Linear regression model : Yi = 4993000 + 2877000 * squareMeters + 1506 *
+hasYard + 1489 * hasPool + 1576 * floors + 135.5 * cityPartRange + 78.68
+* isNewBuilt + 71.05 * hasStormProtector
+
+\subsection{Set Initial Value}\label{set-initial-value-2}
+
+We use the estimation alpha and betas from Frequentist Linear Regression
+Model
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{inits }\OtherTok{=} \FunctionTok{list}\NormalTok{()}
+
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{alpha }\OtherTok{=} \DecValTok{4993000}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{beta[}\DecValTok{1}\NormalTok{] }\OtherTok{=} \DecValTok{2877000}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{beta[}\DecValTok{2}\NormalTok{] }\OtherTok{=} \DecValTok{1506}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{beta[}\DecValTok{3}\NormalTok{] }\OtherTok{=} \DecValTok{1489}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{beta[}\DecValTok{4}\NormalTok{] }\OtherTok{=} \DecValTok{1576}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{beta[}\DecValTok{5}\NormalTok{] }\OtherTok{=} \FloatTok{135.5}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{beta[}\DecValTok{6}\NormalTok{] }\OtherTok{=} \FloatTok{78.68}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{beta[}\DecValTok{7}\NormalTok{] }\OtherTok{=} \FloatTok{71.05}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{taue }\OtherTok{=} \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Compile Model}\label{compile-model-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model3 }\OtherTok{\textless{}{-}} \FunctionTok{jags.model}\NormalTok{(model\_string, }\AttributeTok{data =}\NormalTok{ data, }\AttributeTok{n.chains=}\NormalTok{n.chains, }\AttributeTok{quiet=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{inits =}\NormalTok{ inits)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Update Model}\label{update-model-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{update}\NormalTok{(model3, burn)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Get Posterior Samples from the
+model}\label{get-posterior-samples-from-the-model-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samples3 }\OtherTok{\textless{}{-}} \FunctionTok{coda.samples}\NormalTok{(model3, }\AttributeTok{variable.names=}\NormalTok{params, }\AttributeTok{n.iter=}\NormalTok{n.iter, }\AttributeTok{thin=}\NormalTok{thin)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Plot MCMC Chain Trace and Features Posterior
+Density}\label{plot-mcmc-chain-trace-and-features-posterior-density-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(samples3)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-48-1.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-48-2.pdf}
+
+\subsection{Descriptive Statistics of model
+3}\label{descriptive-statistics-of-model-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(samples3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Iterations = 505:2500
+## Thinning interval = 5 
+## Number of chains = 3 
+## Sample size per chain = 400 
+## 
+## 1. Empirical mean and standard deviation for each variable,
+##    plus standard error of the mean:
+## 
+##            Mean    SD Naive SE Time-series SE
+## alpha    1.6330 31.59   0.9120         0.9272
+## beta[1]  1.4384 32.08   0.9259         1.0159
+## beta[2]  1.5365 31.79   0.9178         0.9185
+## beta[3] -0.4511 32.53   0.9391         0.9721
+## beta[4]  2.0222 31.66   0.9140         0.9368
+## beta[5] -0.9076 30.49   0.8802         0.8808
+## beta[6] -1.1649 31.61   0.9126         0.9123
+## beta[7] -0.7059 30.09   0.8685         0.9109
+## 
+## 2. Quantiles for each variable:
+## 
+##           2.5%    25%     50%   75% 97.5%
+## alpha   -60.34 -19.12  2.8928 23.16 61.86
+## beta[1] -61.71 -20.43  1.8735 21.43 66.59
+## beta[2] -59.52 -20.02  2.0192 23.54 61.94
+## beta[3] -65.82 -22.21  1.0861 21.05 63.39
+## beta[4] -59.02 -20.76  2.7594 23.45 66.69
+## beta[5] -61.11 -21.02 -1.1670 19.10 60.41
+## beta[6] -63.23 -22.49 -1.9411 20.83 59.82
+## beta[7] -59.61 -21.66  0.2587 20.12 52.89
+\end{verbatim}
+
+\section{Show Alpha and Betas to the corresponding
+Features}\label{show-alpha-and-betas-to-the-corresponding-features-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(samples3)}
+\FunctionTok{rownames}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{statistics) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\FunctionTok{rownames}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{quantiles) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\NormalTok{sum}\SpecialCharTok{$}\NormalTok{statistics }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{statistics,}\DecValTok{3}\NormalTok{)}
+\NormalTok{sum}\SpecialCharTok{$}\NormalTok{quantiles }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{quantiles,}\DecValTok{3}\NormalTok{)}
+\NormalTok{sum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Iterations = 505:2500
+## Thinning interval = 5 
+## Number of chains = 3 
+## Sample size per chain = 400 
+## 
+## 1. Empirical mean and standard deviation for each variable,
+##    plus standard error of the mean:
+## 
+##                       Mean    SD Naive SE Time-series SE
+## price                1.633 31.59    0.912          0.927
+## Square Meters        1.438 32.08    0.926          1.016
+## Has Yard             1.536 31.79    0.918          0.919
+## Has Pool            -0.451 32.53    0.939          0.972
+## Floors               2.022 31.66    0.914          0.937
+## City Part Range     -0.908 30.49    0.880          0.881
+## Is New Built        -1.165 31.61    0.913          0.912
+## Has Storm Protector -0.706 30.09    0.869          0.911
+## 
+## 2. Quantiles for each variable:
+## 
+##                       2.5%    25%    50%   75% 97.5%
+## price               -60.34 -19.12  2.893 23.16 61.86
+## Square Meters       -61.71 -20.43  1.874 21.43 66.59
+## Has Yard            -59.52 -20.02  2.019 23.54 61.94
+## Has Pool            -65.82 -22.21  1.086 21.05 63.39
+## Floors              -59.02 -20.76  2.759 23.45 66.69
+## City Part Range     -61.11 -21.02 -1.167 19.10 60.41
+## Is New Built        -63.23 -22.48 -1.941 20.83 59.82
+## Has Storm Protector -59.61 -21.66  0.259 20.12 52.89
+\end{verbatim}
+
+\subsection{Check Convergence}\label{check-convergence-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{gelman.diag}\NormalTok{(samples3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Potential scale reduction factors:
+## 
+##         Point est. Upper C.I.
+## alpha        1.000       1.00
+## beta[1]      1.001       1.00
+## beta[2]      1.000       1.00
+## beta[3]      0.999       1.00
+## beta[4]      1.002       1.00
+## beta[5]      0.999       1.00
+## beta[6]      1.002       1.01
+## beta[7]      1.003       1.01
+## 
+## Multivariate psrf
+## 
+## 1
+\end{verbatim}
+
+\subsubsection{Compile results}\label{compile-results-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ESS3 }\OtherTok{\textless{}{-}} \FunctionTok{effectiveSize}\NormalTok{(samples3)}
+\NormalTok{out3 }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(samples3)}\SpecialCharTok{$}\NormalTok{quantiles}
+\FunctionTok{rownames}\NormalTok{(out3)}\OtherTok{\textless{}{-}}\NormalTok{names}
+
+\NormalTok{ESS3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    alpha  beta[1]  beta[2]  beta[3]  beta[4]  beta[5]  beta[6]  beta[7] 
+## 1163.780 1055.797 1200.000 1159.940 1145.019 1200.000 1200.000 1109.953
+\end{verbatim}
+
+\subsection{Compute DIC \& WAIC}\label{compute-dic-waic-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DIC}
+\NormalTok{dic3 }\OtherTok{\textless{}{-}} \FunctionTok{dic.samples}\NormalTok{(model3,}\AttributeTok{n.iter=}\NormalTok{n.iter)}
+
+\CommentTok{\# WAIC}
+\NormalTok{waic3 }\OtherTok{\textless{}{-}} \FunctionTok{coda.samples}\NormalTok{(model3, }\AttributeTok{variable.names=}\FunctionTok{c}\NormalTok{(}\StringTok{"like"}\NormalTok{), }\AttributeTok{n.iter=}\NormalTok{n.iter)}
+\NormalTok{like3 }\OtherTok{\textless{}{-}}\NormalTok{ waic3[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{fbar3 }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(like3)}
+\NormalTok{P3 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{apply}\NormalTok{(}\FunctionTok{log}\NormalTok{(like3),}\DecValTok{2}\NormalTok{,var))}
+\NormalTok{WAIC3 }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(}\FunctionTok{log}\NormalTok{(fbar3))}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\NormalTok{P3}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Plot Posterior Density
+Individually}\label{plot-posterior-density-individually-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beta }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\ControlFlowTok{for}\NormalTok{(l }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n.chains)\{}
+\NormalTok{  beta }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(beta,samples3[[l]])}
+\NormalTok{\}}
+\FunctionTok{colnames}\NormalTok{(beta) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{)\{}
+  \FunctionTok{hist}\NormalTok{(beta[,j],}\AttributeTok{xlab=}\FunctionTok{expression}\NormalTok{(beta[j]),}\AttributeTok{ylab=}\StringTok{"Posterior density"}\NormalTok{,}
+  \AttributeTok{breaks=}\DecValTok{100}\NormalTok{,}\AttributeTok{main=}\NormalTok{names[j])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-54-1.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-54-2.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-54-3.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-54-4.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-54-5.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-54-6.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-54-7.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-54-8.pdf}
+
+\section{Model 4}\label{model-4}
+
+\subsection{Set Dataframe as matrix and split dependent and independent
+variable}\label{set-dataframe-as-matrix-and-split-dependent-and-independent-variable-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{price }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{price)}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ price}
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{squareMeters, df}\SpecialCharTok{$}\NormalTok{numberOfRooms, df}\SpecialCharTok{$}\NormalTok{hasYard, df}\SpecialCharTok{$}\NormalTok{hasPool, df}\SpecialCharTok{$}\NormalTok{floors, df}\SpecialCharTok{$}\NormalTok{cityCode, df}\SpecialCharTok{$}\NormalTok{numPrevOwners, df}\SpecialCharTok{$}\NormalTok{made, df}\SpecialCharTok{$}\NormalTok{isNewBuilt, df}\SpecialCharTok{$}\NormalTok{hasStormProtector, df}\SpecialCharTok{$}\NormalTok{basement, df}\SpecialCharTok{$}\NormalTok{attic, df}\SpecialCharTok{$}\NormalTok{garage, df}\SpecialCharTok{$}\NormalTok{hasStorageRoom, df}\SpecialCharTok{$}\NormalTok{hasGuestRoom, df}\SpecialCharTok{$}\NormalTok{cityPartRange)}
+\NormalTok{names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"price"}\NormalTok{,}\StringTok{"Square Meters"}\NormalTok{, }\StringTok{"Number of Rooms"}\NormalTok{, }\StringTok{"Has Yard"}\NormalTok{, }\StringTok{"Has Pool"}\NormalTok{, }\StringTok{"Number of Floors"}\NormalTok{, }\StringTok{"City Code"}\NormalTok{, }\StringTok{"Number of Previous Owners"}\NormalTok{, }\StringTok{"Year Made"}\NormalTok{, }\StringTok{"is Newly Built"}\NormalTok{, }\StringTok{"Has Storm Protector"}\NormalTok{, }\StringTok{"Basement Area"}\NormalTok{, }\StringTok{"Attic Area"}\NormalTok{, }\StringTok{"Garage Area"}\NormalTok{, }\StringTok{"Has Storage Room"}\NormalTok{, }\StringTok{"Has Guest Room"}\NormalTok{, }\StringTok{"City Part Range"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Delete Missing Value}\label{delete-missing-value-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{junk }\OtherTok{\textless{}{-}} \FunctionTok{is.na}\NormalTok{(}\FunctionTok{rowSums}\NormalTok{(X))}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ Y[}\SpecialCharTok{!}\NormalTok{junk]}
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ X[}\SpecialCharTok{!}\NormalTok{junk,]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Standardize Covariates}\label{standardize-covariates-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{scale}\NormalTok{(X))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{JAGS}\label{jags-3}
+
+\subsubsection{Put Data in JAGS Format}\label{put-data-in-jags-format-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(Y)}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(X)}
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{Y=}\NormalTok{Y,}\AttributeTok{X=}\NormalTok{X,}\AttributeTok{n=}\NormalTok{n,}\AttributeTok{p=}\NormalTok{p)}
+\NormalTok{params }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"alpha"}\NormalTok{,}\StringTok{"beta"}\NormalTok{)}
+\NormalTok{burn }\OtherTok{\textless{}{-}} \DecValTok{500}
+\NormalTok{n.iter }\OtherTok{\textless{}{-}} \DecValTok{5000}
+\NormalTok{n.chains }\OtherTok{\textless{}{-}} \DecValTok{3}
+\NormalTok{thin }\OtherTok{\textless{}{-}} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Make Jags Model}\label{make-jags-model-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_string }\OtherTok{\textless{}{-}} \FunctionTok{textConnection}\NormalTok{(}\StringTok{"model\{}
+\StringTok{  \# Likelihood}
+\StringTok{  for(i in 1:n)\{}
+\StringTok{    Y[i] \textasciitilde{} dnorm(alpha+mu[i],taue)}
+\StringTok{    mu[i] \textless{}{-} theta[i] + inprod(X[i,],beta[])}
+\StringTok{  \}}
+\StringTok{  }
+\StringTok{  \# Random Effects }
+\StringTok{  for(j in 1:n)\{}
+\StringTok{    theta[j] \textasciitilde{} ddexp(0,taue)}
+\StringTok{  \}}
+\StringTok{  }
+\StringTok{  \# Priors}
+\StringTok{  for(j in 1:p)\{}
+\StringTok{    beta[j] \textasciitilde{} dnorm(0,0.001)}
+\StringTok{  \}}
+\StringTok{  }
+\StringTok{  alpha \textasciitilde{} dnorm(0,0.001)}
+\StringTok{  taue \textasciitilde{} dgamma(0.1, 0.1)}
+\StringTok{  }
+\StringTok{  \# WAIC calculations}
+\StringTok{  for(i in 1:n)\{}
+\StringTok{    like[i] \textless{}{-} dnorm(Y[i],mu[i],taue)}
+\StringTok{  \}}
+
+\StringTok{\}"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Set Initial Value}\label{set-initial-value-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{inits }\OtherTok{=} \FunctionTok{list}\NormalTok{()}
+
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{alpha }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p) \{}
+\NormalTok{    inits}\SpecialCharTok{$}\NormalTok{beta[i] }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{\}}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{    inits}\SpecialCharTok{$}\NormalTok{theta[i] }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{inits}\SpecialCharTok{$}\NormalTok{taue }\OtherTok{=} \DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Compile Model}\label{compile-model-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model4 }\OtherTok{\textless{}{-}} \FunctionTok{jags.model}\NormalTok{(model\_string, }\AttributeTok{data =}\NormalTok{ data, }\AttributeTok{n.chains=}\NormalTok{n.chains, }\AttributeTok{quiet=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{inits =}\NormalTok{ inits)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Update Model}\label{update-model-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{update}\NormalTok{(model4, burn)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Get Posterior Samples from the
+model}\label{get-posterior-samples-from-the-model-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samples4 }\OtherTok{\textless{}{-}} \FunctionTok{coda.samples}\NormalTok{(model4, }\AttributeTok{variable.names=}\NormalTok{params, }\AttributeTok{n.iter=}\NormalTok{n.iter, }\AttributeTok{thin=}\NormalTok{thin)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Plot MCMC Chain Trace and Features Posterior
+Density}\label{plot-mcmc-chain-trace-and-features-posterior-density-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(samples4)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-64-1.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-64-2.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-64-3.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-64-4.pdf}
+\includegraphics{mini_project-final-knit_files/figure-latex/unnamed-chunk-64-5.pdf}
+
+\section{Show Alpha and Betas to the corresponding
+Features}\label{show-alpha-and-betas-to-the-corresponding-features-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(samples4)}
+\FunctionTok{rownames}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{statistics) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\FunctionTok{rownames}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{quantiles) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\NormalTok{sum}\SpecialCharTok{$}\NormalTok{statistics }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{statistics,}\DecValTok{3}\NormalTok{)}
+\NormalTok{sum}\SpecialCharTok{$}\NormalTok{quantiles }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(sum}\SpecialCharTok{$}\NormalTok{quantiles,}\DecValTok{3}\NormalTok{)}
+\NormalTok{sum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Iterations = 1505:6500
+## Thinning interval = 5 
+## Number of chains = 3 
+## Sample size per chain = 1000 
+## 
+## 1. Empirical mean and standard deviation for each variable,
+##    plus standard error of the mean:
+## 
+##                             Mean    SD Naive SE Time-series SE
+## price                      2.216 31.61    0.577          0.650
+## Square Meters             -0.377 31.09    0.568          0.624
+## Number of Rooms            0.270 32.20    0.588          0.655
+## Has Yard                  -0.460 31.44    0.574          0.641
+## Has Pool                   0.744 31.80    0.581          0.671
+## Number of Floors           0.422 31.61    0.577          0.686
+## City Code                  0.724 31.65    0.578          0.678
+## Number of Previous Owners  1.502 31.19    0.569          0.629
+## Year Made                 -0.479 32.19    0.588          0.703
+## is Newly Built             0.353 31.70    0.579          0.667
+## Has Storm Protector        0.425 31.57    0.576          0.623
+## Basement Area              0.636 31.49    0.575          0.652
+## Attic Area                 0.584 31.46    0.574          0.629
+## Garage Area               -1.404 31.76    0.580          0.665
+## Has Storage Room           0.429 31.42    0.574          0.667
+## Has Guest Room             0.237 31.64    0.578          0.650
+## City Part Range            1.189 31.90    0.582          0.669
+## 
+## 2. Quantiles for each variable:
+## 
+##                             2.5%    25%    50%   75% 97.5%
+## price                     -59.70 -19.45  2.438 22.94 63.55
+## Square Meters             -59.01 -21.31 -1.243 21.07 62.43
+## Number of Rooms           -62.91 -21.04 -0.396 22.02 65.38
+## Has Yard                  -62.07 -21.88 -1.136 20.59 61.69
+## Has Pool                  -62.93 -20.63  1.286 21.81 62.80
+## Number of Floors          -61.77 -20.91  1.580 21.79 61.16
+## City Code                 -61.23 -20.82  1.277 21.51 61.37
+## Number of Previous Owners -60.99 -18.69  0.841 22.51 63.62
+## Year Made                 -64.59 -22.08  0.264 21.55 61.93
+## is Newly Built            -60.65 -21.00  0.212 21.65 62.18
+## Has Storm Protector       -61.02 -21.38  0.312 21.36 63.08
+## Basement Area             -60.80 -20.82  0.536 21.89 62.57
+## Attic Area                -60.94 -20.21  0.564 20.66 63.23
+## Garage Area               -61.70 -22.91 -1.713 19.72 61.23
+## Has Storage Room          -63.04 -20.79  0.307 21.29 63.44
+## Has Guest Room            -62.24 -21.22  0.176 21.82 61.35
+## City Part Range           -59.09 -20.72  0.754 22.26 64.64
+\end{verbatim}
+
+\subsection{Check Convergence}\label{check-convergence-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{gelman.diag}\NormalTok{(samples4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Potential scale reduction factors:
+## 
+##          Point est. Upper C.I.
+## alpha             1       1.00
+## beta[1]           1       1.00
+## beta[2]           1       1.01
+## beta[3]           1       1.00
+## beta[4]           1       1.01
+## beta[5]           1       1.00
+## beta[6]           1       1.01
+## beta[7]           1       1.00
+## beta[8]           1       1.00
+## beta[9]           1       1.00
+## beta[10]          1       1.01
+## beta[11]          1       1.01
+## beta[12]          1       1.00
+## beta[13]          1       1.01
+## beta[14]          1       1.01
+## beta[15]          1       1.01
+## beta[16]          1       1.00
+## 
+## Multivariate psrf
+## 
+## 1.01
+\end{verbatim}
+
+\subsubsection{Compile results}\label{compile-results-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ESS4 }\OtherTok{\textless{}{-}} \FunctionTok{effectiveSize}\NormalTok{(samples4)}
+\NormalTok{out4 }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(samples4)}\SpecialCharTok{$}\NormalTok{quantiles}
+\FunctionTok{rownames}\NormalTok{(out4)}\OtherTok{\textless{}{-}}\NormalTok{names}
+
+\NormalTok{ESS4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    alpha  beta[1]  beta[2]  beta[3]  beta[4]  beta[5]  beta[6]  beta[7] 
+## 2372.526 2483.958 2421.158 2413.890 2247.801 2124.336 2189.106 2468.915 
+##  beta[8]  beta[9] beta[10] beta[11] beta[12] beta[13] beta[14] beta[15] 
+## 2133.695 2273.476 2644.265 2335.682 2540.674 2299.938 2221.717 2392.410 
+## beta[16] 
+## 2281.206
+\end{verbatim}
+
+\subsection{Compute DIC \& WAIC}\label{compute-dic-waic-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DIC}
+\NormalTok{dic4 }\OtherTok{\textless{}{-}} \FunctionTok{dic.samples}\NormalTok{(model4,}\AttributeTok{n.iter=}\NormalTok{n.iter)}
+
+\CommentTok{\# WAIC}
+\NormalTok{waic4 }\OtherTok{\textless{}{-}} \FunctionTok{coda.samples}\NormalTok{(model4, }\AttributeTok{variable.names=}\FunctionTok{c}\NormalTok{(}\StringTok{"like"}\NormalTok{), }\AttributeTok{n.iter=}\NormalTok{n.iter)}
+\NormalTok{like4 }\OtherTok{\textless{}{-}}\NormalTok{ waic4[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{fbar4 }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(like4)}
+\NormalTok{P4 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{apply}\NormalTok{(}\FunctionTok{log}\NormalTok{(like4),}\DecValTok{2}\NormalTok{,var))}
+\NormalTok{WAIC4 }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{sum}\NormalTok{(}\FunctionTok{log}\NormalTok{(fbar4))}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\NormalTok{P4}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{DIC and WAIC comparison}\label{dic-and-waic-comparison}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"DIC Model 1:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "DIC Model 1:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(dic1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mean deviance:  339720 
+## penalty 1.005 
+## Penalized deviance: 339721
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"DIC Model 2:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "DIC Model 2:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(dic2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mean deviance:  339719 
+## penalty 1.046 
+## Penalized deviance: 339721
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"DIC Model 3:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "DIC Model 3:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(dic3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mean deviance:  339719 
+## penalty 0.9678 
+## Penalized deviance: 339720
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"DIC Model 4:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "DIC Model 4:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(dic4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mean deviance:  182614 
+## penalty 9999 
+## Penalized deviance: 192613
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"WAIC Model 1:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "WAIC Model 1:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(WAIC1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 339719.9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"WAIC Model 2:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "WAIC Model 2:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(WAIC2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 339719.8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"WAIC Model 3:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "WAIC Model 3:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(WAIC3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 339719.9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"WAIC Model 4:"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "WAIC Model 4:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(WAIC4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 189560.3
+\end{verbatim}
+
+\end{document}

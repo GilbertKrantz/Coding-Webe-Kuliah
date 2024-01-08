@@ -1,0 +1,936 @@
+---
+title: "Project-WB-Personal-Bayes"
+author: "Wilbert"
+date: "2023-12-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load rjags
+```{r}
+library(coda)
+library(rjags)
+```
+
+# Load Function
+```{r}
+SVSS_cal <- function(beta) {
+  library(knitr)
+  Inc_Prob <- apply(beta!=0,2,mean)
+  Q <- t(apply(beta,2,quantile,c(0.5,0.05,0.95)))
+  out <- cbind(Inc_Prob,Q)
+  kable(round(out,2))
+}
+```
+
+```{r}
+DIC_WAIC_cal <- function(model) {
+  # Compute DIC
+  dic1 <- dic.samples(model,n.iter=n.iter)
+  # Compute WAIC
+  waic1 <- coda.samples(model, variable.names=c("like"), n.iter=n.iter)
+  like1 <- waic1[[1]]
+  fbar1 <- colMeans(like1)
+  P1 <- sum(apply(log(like1),2,var))
+  WAIC1 <- -2*sum(log(fbar1))+2*P1
+  
+  print(dic1)
+  print(WAIC1)
+}
+```
+
+# Load Data
+```{r}
+df <- read.csv('./ParisHousing.csv')
+head(df)
+```
+
+## Set Dataframe as matrix and split dependent and independent variable 
+```{r}
+price <- as.matrix(df$price)
+Y <- price
+X <- cbind(df$squareMeters, df$numberOfRooms, df$hasYard, df$hasPool, df$floors, df$cityCode, df$numPrevOwners, df$made, df$isNewBuilt, df$hasStormProtector, df$basement, df$attic, df$garage, df$hasStorageRoom, df$hasGuestRoom, df$cityPartRange)
+names <- c("price","Square Meters", "Number of Rooms", "Has Yard", "Has Pool", "Number of Floors", "City Code", "Number of Previous Owners", "Year Made", "is Newly Built", "Has Storm Protector", "Basement Area", "Attic Area", "Garage Area", "Has Storage Room", "Has Guest Room", "City Part Range")
+
+```
+
+## Delete Missing Value
+```{r}
+junk <- is.na(rowSums(X))
+Y <- Y[!junk]
+X <- X[!junk,]
+```
+
+## Plot Data
+```{r}
+library(purrr)
+library(tidyr)
+library(ggplot2)
+
+df %>%
+  keep(is.numeric) %>%
+  gather() %>%
+  ggplot(aes(value)) +
+  facet_wrap(~ key, scales = "free") +
+  geom_histogram()
+```
+
+## Standardize Covariates
+```{r}
+X <- as.matrix(scale(X))
+```
+
+
+# JAGS
+## Put Data in JAGS Format
+```{r}
+n <- length(Y)
+p <- ncol(X)
+
+data <- list(Y=Y,X=X,n=n,p=p)
+params <- c("alpha","beta")
+burn <- 100
+n.iter <- 2000
+n.chains <- 3
+```
+
+## Make Jags Model
+```{r}
+model_string <- textConnection("model{
+# Likelihood
+for(i in 1:n){
+Y[i] ~ dnorm(alpha+mu[i],taue)
+mu[i] <- inprod(X[i,],beta[])
+}
+# Priors
+for(j in 1:p){
+beta[j] ~ dnorm(0,0.001)
+}
+alpha ~ dnorm(0,0.001)
+taue ~ dgamma(0.1, 0.1)
+
+# WAIC calculations
+for(i in 1:n){
+like[i] <- dnorm(Y[i],mu[i],taue)
+}
+
+}")
+```
+
+### Set Initial Value
+```{r}
+inits = list()
+
+inits$alpha = rnorm(1)
+for(i in 1:p) {
+    inits$beta[i] = rnorm(1)
+}
+inits$taue = 10
+```
+
+### Compile Model
+```{r}
+model <- jags.model(model_string,data = data, n.chains=n.chains,quiet=TRUE, inits = inits)
+```
+
+### Update Model
+```{r}
+update(model, burn)
+```
+
+### Get Posterior Samples from the model
+```{r}
+samples1 <- coda.samples(model, variable.names=params, n.iter=n.iter)
+```
+### Plot MCMC Chain Trace and Features Posterior Density
+```{r}
+par(mar=c(1,1,1,1))
+plot(samples1)
+```
+## Check Convergence
+```{r}
+gelman.diag(samples1)
+```
+The Chain in our model is convergent based on Gelma-Rubin Method with a value of 1.01
+
+### Descriptive Statistics of model1
+```{r}
+summary(samples1)
+```
+
+### Show Alpha and Betas to the corresponding Features
+```{r}
+sum <- summary(samples1)
+rownames(sum$statistics) <- names
+rownames(sum$quantiles) <- names
+sum$statistics <- round(sum$statistics,3)
+sum$quantiles <- round(sum$quantiles,3)
+sum
+```
+
+### Autocorr
+```{r}
+autocorr.plot(samples1)
+```
+
+
+## Selection
+
+```{r}
+# Compile results
+ESS1 <- effectiveSize(samples1)
+out1 <- summary(samples1)$quantiles
+rownames(out1)<-names
+
+ESS1
+```
+
+
+### Plot Posterior Density Individually
+```{r}
+beta <- NULL
+for(l in 1:n.chains){
+beta <- rbind(beta,samples1[[l]])
+}
+colnames(beta) <- names
+for(j in 1:17){
+hist(beta[,j],xlab=expression(beta[j]),ylab="Posterior density",
+breaks=100,main=names[j])
+}
+```
+
+### SSVS
+```{r}
+library(knitr)
+Inc_Prob <- apply(beta!=0,2,mean)
+Q <- t(apply(beta,2,quantile,c(0.5,0.05,0.95)))
+out <- cbind(Inc_Prob,Q)
+kable(round(out,2))
+```
+Summary: All are included with posterior probability one and are
+thus clearly important predictors of price. SO we decided to use all features
+
+### DIC-WAIC
+```{r}
+# Compute DIC
+dic1 <- dic.samples(model,n.iter=n.iter)
+# Compute WAIC
+waic1 <- coda.samples(model, variable.names=c("like"), n.iter=n.iter)
+like1 <- waic1[[1]]
+fbar1 <- colMeans(like1)
+P1 <- sum(apply(log(like1),2,var))
+WAIC1 <- -2*sum(log(fbar1))+2*P1
+```
+
+```{r}
+dic1
+WAIC1
+```
+
+# Model 2 -> With only Correlated Features
+
+## Get Correlation Heatmap
+```{r}
+corr_mat <- round(cor(df),2) 
+
+# Melted Corr Mat
+library(reshape2)
+melted_corr_mat <- melt(corr_mat)
+
+# plotting the correlation heatmap
+library(ggplot2)
+ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
+                                   fill=value)) + 
+geom_tile()
+```
+From the Heatmap above we can see that price is only correlated with squareMeters
+
+## Make into List
+## split dependent and independent variable 
+```{r}
+X <- df$squareMeters
+Y <- df$price
+names <- c("price","Square Meters")
+
+```
+
+## Delete Missing Value
+```{r}
+junk <- is.na(X)
+X <- X[!junk]
+```
+
+
+## JAGS
+### Put Data in JAGS Format
+```{r}
+n <- length(Y)
+n.chains <- 3
+burn <- 500
+n.iter <- 2000
+
+data <- list(Y=Y,X=X,n=n)
+params <- c("alpha","beta")
+```
+
+### Set Initial Value
+```{r}
+inits = list()
+
+inits$alpha = rnorm(1)
+inits$beta = rnorm(1)
+inits$taue = 10
+```
+
+## Make Jags Model
+```{r}
+model_string <- textConnection("model{
+# Likelihood
+for(i in 1:n){
+Y[i] ~ dnorm(alpha + beta*X[i],taue)
+}
+
+# Priors
+beta ~ dnorm(0,0.001)
+alpha ~ dnorm(0,0.001)
+taue ~ dgamma(0.1, 0.1)
+
+# WAIC calculations
+for(i in 1:n){
+like[i] <- dnorm(Y[i],beta * X[i],taue)
+}
+
+}")
+```
+
+### Compile Model
+```{r}
+model2 <- jags.model(model_string,data = data, n.chains=n.chains,quiet=TRUE, inits = inits)
+```
+
+### Update Model
+```{r}
+update(model2, burn)
+```
+
+### Get Posterior Samples from the model
+```{r}
+samples2 <- coda.samples(model2, variable.names=params, n.iter=n.iter)
+```
+### Plot MCMC Chain Trace and Features Posterior Density
+```{r}
+par(mar=c(1,1,1,1))
+plot(samples2)
+```
+## Check Convergence
+```{r}
+gelman.diag(samples2)
+```
+The Chain in our model is convergent based on Gelma-Rubin Method with a value of 1.01
+
+### Descriptive Statistics of model1
+```{r}
+summary(samples2)
+```
+
+### Show Alpha and Betas to the corresponding Features
+```{r}
+sum <- summary(samples2)
+rownames(sum$statistics) <- names
+rownames(sum$quantiles) <- names
+sum$statistics <- round(sum$statistics,3)
+sum$quantiles <- round(sum$quantiles,3)
+sum
+```
+
+### Autocorr
+```{r}
+autocorr.plot(samples2)
+```
+
+
+## Selection
+
+```{r}
+# Compile results
+ESS2 <- effectiveSize(samples2)
+out2 <- summary(samples2)$quantiles
+rownames(out2)<-names
+
+ESS2
+```
+
+
+### Plot Posterior Density Individually
+```{r}
+beta <- NULL
+for(l in 1:n.chains){
+beta <- rbind(beta,samples2[[l]])
+}
+colnames(beta) <- names
+for(j in 1:2){
+hist(beta[,j],xlab=expression(beta[j]),ylab="Posterior density",
+breaks=100,main=names[j])
+}
+```
+### SVSS
+```{r}
+SVSS_cal(beta)
+```
+Summary: All are included with posterior probability one and are
+thus clearly important predictors of price. SO we decided to use all features
+
+### DIC-WAIC
+
+```{r}
+DIC_WAIC_cal(model2)
+```
+
+
+# Frequentist Approach - Using only squareMeters
+```{r}
+head(df)
+```
+
+```{r}
+plot(price ~ squareMeters, data = df)
+```
+```{r}
+price.lm <- lm(price ~ squareMeters, data = df)
+
+summary(price.lm)
+```
+
+# Model3 -> Initial Value from Frequentist Estimate
+## Set Dataframe as matrix and split dependent and independent variable 
+```{r}
+X <- df$squareMeters
+Y <- df$price
+names <- c("price","Square Meters")
+
+```
+
+## Delete Missing Value
+```{r}
+junk <- is.na(X)
+X <- X[!junk]
+```
+
+
+## JAGS
+### Put Data in JAGS Format
+```{r}
+n <- length(Y)
+n.chains <- 3
+burn <- 500
+n.iter <- 2000
+
+data <- list(Y=Y,X=X,n=n)
+params <- c("alpha","beta")
+```
+
+### Set Initial Value
+```{r}
+inits = list()
+
+inits$alpha = 6461
+inits$beta = 100
+inits$taue = 10
+```
+
+## Make Jags Model
+```{r}
+model_string <- textConnection("model{
+# Likelihood
+for(i in 1:n){
+Y[i] ~ dnorm(alpha + beta*X[i],taue)
+}
+
+# Priors
+beta ~ dnorm(0,0.001)
+alpha ~ dnorm(0,0.001)
+taue ~ dgamma(0.1, 0.1)
+
+# WAIC calculations
+for(i in 1:n){
+like[i] <- dnorm(Y[i],beta * X[i],taue)
+}
+
+}")
+```
+
+### Compile Model
+```{r}
+model3 <- jags.model(model_string,data = data, n.chains=n.chains,quiet=TRUE, inits = inits)
+```
+
+### Update Model
+```{r}
+update(model3, burn)
+```
+
+### Get Posterior Samples from the model
+```{r}
+samples3 <- coda.samples(model3, variable.names=params, n.iter=n.iter)
+```
+### Plot MCMC Chain Trace and Features Posterior Density
+```{r}
+par(mar=c(1,1,1,1))
+plot(samples3)
+```
+## Check Convergence
+```{r}
+gelman.diag(samples3)
+```
+The Chain in our model is convergent based on Gelma-Rubin Method with a value of 1.01
+
+### Descriptive Statistics of model1
+```{r}
+summary(samples3)
+```
+
+### Show Alpha and Betas to the corresponding Features
+```{r}
+sum <- summary(samples3)
+rownames(sum$statistics) <- names
+rownames(sum$quantiles) <- names
+sum$statistics <- round(sum$statistics,3)
+sum$quantiles <- round(sum$quantiles,3)
+sum
+```
+
+### Autocorr
+```{r}
+autocorr.plot(samples3)
+```
+
+
+## Selection
+
+```{r}
+# Compile results
+ESS3 <- effectiveSize(samples3)
+out3 <- summary(samples3)$quantiles
+rownames(out3)<-names
+
+ESS3
+```
+
+
+### Plot Posterior Density Individually
+```{r}
+beta <- NULL
+for(l in 1:n.chains){
+beta <- rbind(beta,samples3[[l]])
+}
+colnames(beta) <- names
+for(j in 1:2){
+hist(beta[,j],xlab=expression(beta[j]),ylab="Posterior density",
+breaks=100,main=names[j])
+}
+```
+### SVSS
+```{r}
+SVSS_cal(beta)
+```
+Summary: All are included with posterior probability one and are
+thus clearly important predictors of price. SO we decided to use all features
+
+### DIC-WAIC
+
+```{r}
+DIC_WAIC_cal(model3)
+```
+
+# Model 4 (Model 3 but with thinning -> 5)
+## Set Dataframe as matrix and split dependent and independent variable 
+```{r}
+X <- df$squareMeters
+Y <- df$price
+names <- c("price","Square Meters")
+
+```
+
+## Delete Missing Value
+```{r}
+junk <- is.na(X)
+X <- X[!junk]
+```
+
+
+## JAGS
+### Put Data in JAGS Format
+```{r}
+n <- length(Y)
+n.chains <- 3
+burn <- 500
+n.iter <- 2000
+thin <- 5
+
+data <- list(Y=Y,X=X,n=n)
+params <- c("alpha","beta")
+```
+
+### Set Initial Value
+```{r}
+inits = list()
+
+inits$alpha = 6461
+inits$beta = 100
+inits$taue = 10
+```
+
+## Make Jags Model
+```{r}
+model_string <- textConnection("model{
+# Likelihood
+for(i in 1:n){
+Y[i] ~ dnorm(alpha + beta*X[i],taue)
+}
+
+# Priors
+beta ~ dnorm(0,0.001)
+alpha ~ dnorm(0,0.001)
+taue ~ dgamma(0.1, 0.1)
+
+# WAIC calculations
+for(i in 1:n){
+like[i] <- dnorm(Y[i],beta * X[i],taue)
+}
+
+}")
+```
+
+### Compile Model
+```{r}
+model4 <- jags.model(model_string,data = data, n.chains=n.chains,quiet=TRUE, inits = inits)
+```
+
+### Update Model
+```{r}
+update(model4, burn)
+```
+
+### Get Posterior Samples from the model
+```{r}
+samples4 <- coda.samples(model4, variable.names=params, n.iter=n.iter, thin = thin)
+```
+### Plot MCMC Chain Trace and Features Posterior Density
+```{r}
+par(mar=c(1,1,1,1))
+plot(samples4)
+```
+## Check Convergence
+```{r}
+gelman.diag(samples4)
+```
+The Chain in our model is convergent based on Gelma-Rubin Method with a value of 1.01
+
+### Descriptive Statistics of model1
+```{r}
+summary(samples4)
+```
+
+### Show Alpha and Betas to the corresponding Features
+```{r}
+sum <- summary(samples4)
+rownames(sum$statistics) <- names
+rownames(sum$quantiles) <- names
+sum$statistics <- round(sum$statistics,3)
+sum$quantiles <- round(sum$quantiles,3)
+sum
+```
+
+### Autocorr
+```{r}
+autocorr.plot(samples4)
+```
+
+
+## Selection
+
+```{r}
+# Compile results
+ESS3 <- effectiveSize(samples4)
+out3 <- summary(samples4)$quantiles
+rownames(out3)<-names
+
+ESS3
+```
+
+
+### Plot Posterior Density Individually
+```{r}
+beta <- NULL
+for(l in 1:n.chains){
+beta <- rbind(beta,samples4[[l]])
+}
+colnames(beta) <- names
+for(j in 1:2){
+hist(beta[,j],xlab=expression(beta[j]),ylab="Posterior density",
+breaks=100,main=names[j])
+}
+```
+### SVSS
+```{r}
+SVSS_cal(beta)
+```
+Summary: All are included with posterior probability one and are
+thus clearly important predictors of price. SO we decided to use all features
+
+### DIC-WAIC
+
+```{r}
+DIC_WAIC_cal(model4)
+```
+
+# Model 5 -> With only Correlated Features (3 stars)
+```{r}
+price.lm <- lm(price ~., data = df)
+
+summary(price.lm)
+```
+Terdapat 7 variabel yang memiliki korelasi kuat dengan variabel price (dengan 3 stars). Ketujuh variabel tersebut antara lain squareMeters, hasYard, hasPool, floors, cityPartRange, isNewBuilt, dan hasStormProtector.
+
+## Make into List
+## split dependent and independent variable 
+```{r}
+X <- df[, c("squareMeters", "hasYard", "hasPool", "floors", "cityPartRange", "isNewBuilt", "hasStormProtector")]
+Y <- df$price
+names <- c("price", "Square Meters", "Has Yard", "Has Pool", "Floors", "City Part Range", "Is New Built", "Has Storm Protector")
+```
+
+# JAGS
+## Put Data in JAGS Format
+```{r}
+n <- length(Y)
+p <- ncol(X)
+
+data <- list(Y=Y,X=X,n=n,p=p)
+params <- c("alpha","beta")
+burn <- 100
+n.iter <- 2000
+n.chains <- 3
+```
+
+## Make Jags Model
+```{r}
+model_string <- textConnection("model{
+  # Likelihood
+  for(i in 1:n){
+    Y[i] ~ dnorm(alpha+mu[i],taue)
+    mu[i] <- inprod(X[i,],beta[])
+  }
+  
+  # Priors
+  for(j in 1:p){
+    beta[j] ~ dnorm(0,0.001)
+  }
+  
+  alpha ~ dnorm(0,0.001)
+  taue ~ dgamma(0.1, 0.1)
+  
+  # WAIC calculations
+  for(i in 1:n){
+    like[i] <- dnorm(Y[i],mu[i],taue)
+  }
+
+}")
+```
+
+### Set Initial Value
+```{r}
+inits = list()
+
+inits$alpha = rnorm(1)
+for(i in 1:p) {
+    inits$beta[i] = rnorm(1)
+}
+inits$taue = 10
+```
+
+### Compile Model
+```{r}
+model5 <- jags.model(model_string,data = data, n.chains=n.chains,quiet=TRUE, inits = inits)
+```
+
+### Update Model
+```{r}
+update(model5, burn)
+```
+
+### Get Posterior Samples from the model
+```{r}
+samples5 <- coda.samples(model5, variable.names=params, n.iter=n.iter)
+```
+### Plot MCMC Chain Trace and Features Posterior Density
+```{r}
+par(mar=c(1,1,1,1))
+plot(samples5)
+```
+## Check Convergence
+```{r}
+gelman.diag(samples5)
+```
+The Chain in our model is convergent based on Gelman-Rubin Method with a value of 1
+
+
+### Descriptive Statistics of model1
+```{r}
+summary(samples5)
+```
+
+### Show Alpha and Betas to the corresponding Features
+```{r}
+sum <- summary(samples5)
+rownames(sum$statistics) <- names
+rownames(sum$quantiles) <- names
+sum$statistics <- round(sum$statistics,3)
+sum$quantiles <- round(sum$quantiles,3)
+sum
+```
+
+### Autocorr
+```{r}
+autocorr.plot(samples5)
+```
+## Selection
+
+```{r}
+# Compile results
+ESS5 <- effectiveSize(samples5)
+out5 <- summary(samples5)$quantiles
+rownames(out5)<-names
+
+ESS5
+```
+
+### Plot Posterior Density Individually
+```{r}
+beta <- NULL
+for(l in 1:n.chains){
+beta <- rbind(beta,samples5[[l]])
+}
+colnames(beta) <- names
+for(j in 1:8){
+hist(beta[,j],xlab=expression(beta[j]),ylab="Posterior density",
+breaks=100,main=names[j])
+}
+```
+
+### SSVS
+```{r}
+library(knitr)
+Inc_Prob <- apply(beta!=0,2,mean)
+Q <- t(apply(beta,2,quantile,c(0.5,0.05,0.95)))
+out <- cbind(Inc_Prob,Q)
+kable(round(out,2))
+```
+Summary: All are included with posterior probability one and are
+thus clearly important predictors of price. SO we decided to use all features
+
+### DIC-WAIC
+```{r}
+# Compute DIC-WAIC
+DIC_WAIC_cal(model5)
+```
+## Model 6 (Using features that have strong correlation with the target variable)
+We use features that have three stars.
+```{r}
+price.lm <- lm(price ~., data = df)
+
+summary(price.lm)
+```
+There are 7 variables that have a strong correlation with the variable price (indicated by 3 stars). These seven variables include squareMeters, hasYard, hasPool, floors, cityPartRange, isNewBuilt, and hasStormProtector.
+
+# Split dependent and independent variable 
+Using 7 variables that have a strong correlation with the variable price
+```{r}
+X <- df[, c("squareMeters", "hasYard", "hasPool", "floors", "cityPartRange", "isNewBuilt", "hasStormProtector")]
+Y <- df$price
+names <- c("price", "Square Meters", "Has Yard", "Has Pool", "Floors", "City Part Range", "Is New Built", "Has Storm Protector")
+```
+
+# Delete Missing Value
+```{r}
+junk <- is.na(rowSums(X))
+Y <- Y[!junk]
+X <- X[!junk,]
+```
+
+# Standardize Covariates
+```{r}
+X <- as.matrix(scale(X))
+```
+
+## JAGS
+# Put Data in JAGS Format
+```{r}
+n <- length(Y)
+p <- ncol(X)
+
+data <- list(Y=Y,X=X,n=n,p=p)
+params <- c("alpha","beta")
+burn <- 500
+n.iter <- 2000
+n.chains <- 3
+```
+
+# Make Jags Model
+```{r}
+model_string <- textConnection("model{
+  # Likelihood
+  for(i in 1:n){
+    Y[i] ~ dnorm(alpha+mu[i],taue)
+    mu[i] <- inprod(X[i,],beta[])
+  }
+  
+  # Priors
+  for(j in 1:p){
+    beta[j] ~ dnorm(0,0.001)
+  }
+  
+  alpha ~ dnorm(0,0.001)
+  taue ~ dgamma(0.1, 0.1)
+  
+  # WAIC calculations
+  for(i in 1:n){
+    like[i] <- dnorm(Y[i],mu[i],taue)
+  }
+
+}")
+```
+
+# Set Initial Value
+```{r}
+inits = list()
+
+inits$alpha = rnorm(1)
+for(i in 1:p) {
+    inits$beta[i] = rnorm(1)
+}
+inits$taue = 10
+```
+
+# Compile Model
+```{r}
+model6 <- jags.model(model_string, data = data, n.chains=n.chains, quiet=TRUE, inits = inits)
+```
+
+# Update Model
+```{r}
+update(model6, burn)
+```
+
+# Get Posterior Samples from the model
+```{r}
+samples6 <- coda.samples(model3, variable.names=params, n.iter=n.iter)
+```
+
+```{r}
+DIC_WAIC_cal(model3)
+```
+

@@ -1,0 +1,164 @@
+---
+title: "Bayesian-Project"
+author: "Wilbert"
+date: "2023-12-04"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load rjags
+```{r}
+library(coda)
+library(rjags)
+```
+
+# Load Data
+```{r}
+df <- read.csv('./ParisHousing.csv')
+head(df)
+```
+
+## Set Dataframe as matrix and split dependent and independent variable 
+```{r}
+price <- as.matrix(df$price)
+Y <- price
+X <- cbind(df$squareMeters, df$numberOfRooms, df$hasYard, df$hasPool, df$floors, df$cityCode, df$numPrevOwners, df$made, df$isNewBuilt, df$hasStormProtector, df$basement, df$attic, df$garage, df$hasStorageRoom, df$hasGuestRoom, df$cityPartRange)
+names <- c("price","Square Meters", "Number of Rooms", "Has Yard", "Has Pool", "Number of Floors", "City Code", "Number of Previous Owners", "Year Made", "is Newly Built", "Has Storm Protector", "Basement Area", "Attic Area", "Garage Area", "Has Storage Room", "Has Guest Room", "City Part Range")
+
+```
+
+## Delete Missing Value
+```{r}
+junk <- is.na(rowSums(X))
+Y <- Y[!junk]
+X <- X[!junk,]
+```
+
+## Standardize Covariates
+```{r}
+X <- as.matrix(scale(X))
+```
+
+# JAGS
+## Put Data in JAGS Format
+```{r}
+n <- length(Y)
+p <- ncol(X)
+
+data <- list(Y=Y,X=X,n=n,p=p)
+params <- c("alpha","beta")
+burn <- 10000
+n.iter <- 20000
+thin <- 10
+n.chains <- 2
+```
+
+## Fit Uninformative Gaussian Model
+```{r}
+model_string <- textConnection("model{
+# Likelihood
+for(i in 1:n){
+Y[i] ~ dnorm(alpha+inprod(X[i,],beta[]),taue)
+}
+# Priors
+for(j in 1:p){
+beta[j] ~ dnorm(0,0.001)
+}
+alpha ~ dnorm(0,0.001)
+taue ~ dgamma(0.1, 0.1)
+}")
+```
+
+
+### Set Initial Value
+```{r}
+inits = list()
+
+inits$alpha = rnorm(1)
+for(i in 1:p) {
+    inits$beta[i] = rnorm(1)
+}
+inits$taue = 10
+```
+
+
+```{r}
+model <- jags.model(model_string, inits = inits,data = data, n.chains=n.chains,quiet=TRUE)
+```
+
+```{r}
+update(model, burn)
+```
+
+```{r}
+samples1 <- coda.samples(model, variable.names=params, thin=thin, n.iter=n)
+```
+
+```{r}
+par(mar=c(1,1,1,1))
+plot(samples1)
+```
+
+```{r}
+summary(samples1)
+```
+
+```{r}
+sum <- summary(samples1)
+rownames(sum$statistics) <- names
+rownames(sum$quantiles) <- names
+sum$statistics <- round(sum$statistics,3)
+sum$quantiles <- round(sum$quantiles,3)
+sum
+```
+
+## Fit the Gaussian Shrinkage Model
+```{r}
+model_string <- textConnection("model{
+# Likelihood
+for(i in 1:n){
+Y[i] ~ dnorm(alpha+inprod(X[i,],beta[]),taue)
+}
+# Priors
+for(j in 1:p){
+beta[j] ~ dnorm(0,taue*taub)
+}
+alpha ~ dnorm(0,0.001)
+taue ~ dgamma(0.1, 0.1)
+taub ~ dgamma(0.1, 0.1)
+}")
+```
+
+```{r}
+model <- jags.model(model_string,data = data, n.chains=n.chains,quiet=TRUE)
+```
+
+```{r}
+update(model, burn)
+```
+
+```{r}
+samples2 <- coda.samples(model, variable.names=params, thin=thin, n.iter=n.iter)
+```
+
+```{r}
+par(mar=c(1,1,1,1))
+plot(samples2)
+```
+
+```{r}
+sum <- summary(samples2)
+rownames(sum$statistics) <- names
+rownames(sum$quantiles) <- names
+sum$statistics <- round(sum$statistics,3)
+sum$quantiles <- round(sum$quantiles,3)
+sum
+```
+
+
+

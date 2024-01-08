@@ -1,0 +1,31 @@
+,,,,,,,,,,,,,,,,,,,,wire,wire,Voltmeter_LED3,wire,wire,wire,,,
+,,,,,,,,,,,,,,,,,,,,wire,,,,,wire,,,
+,,,,,,,,,,,,,,,,wire,wire,Resistor_R3,wire,wire,Ammeter_LED3,wire,Resistor_LED3,Diode_LED3,wire,wire,wire,wire
+,,,,,,,,,,,,,,,,wire,,,,,,,,,,,,wire
+,,,,,,,,,,,,,,,,wire,,,,wire,wire,Voltmeter_LED2,wire,wire,wire,,,wire
+,,,,,,,,,,,,,,,,wire,,,,wire,,,,,wire,,,wire
+,,,,,,,,,,,,,,,,wire,wire,Resistor_R2,wire,wire,Ammeter_LED2,wire,Resistor_LED2,Diode_LED2,wire,wire,wire,wire
+,,,,,,,,,,,,,,,,wire,,,,,,,,,,,,wire
+,,,,,,,,,,,,,,,,wire,,,,wire,wire,Voltmeter_LED1,wire,wire,wire,,,wire
+,,,,,,,,,,,,,,,,wire,,,,wire,,,,,wire,,,wire
+,,,,,,,,,,,,,,,,wire,wire,Resistor_R1,wire,wire,Ammeter_LED1,wire,Resistor_LED1,Diode_LED1,wire,wire,wire,wire
+Diode_D1,wire,wire,wire,Ammeter_source,wire,wire,Resistor_load1,wire,Ammeter_load1,wire,wire,wire,wire,wire,wire,wire,,,,,,,,,,,,wire
+wire,,,,,,wire,,,,wire,,,,,wire,,,,,,,,,,,,,wire
+wire,,            ,,,,wire,,,,wire,,,,,Capacitor_filter,,,,,,,,,,,,,wire
+wire,wire,wire,,,,wire,Voltmeter_load1,wire,wire,wire,,,,,wire,,,,,,,,,,,,,wire
+Resistor_Rsource,,wire,,,,,,,,,,,,,Resistor_Cfilter,,,,,,,,,,,,,wire
+wire,,Voltmeter_source,,,,,,,,,,,,,wire,,,,,,,,,,,,,wire
+VoltageSource_Vsource,,wire,,,,,,,,,,,,,Inductor_filter,,,,,,,,,,,,,wire
+wire,,wire,, ,,,,,,,,,,,wire,,,,,,,,,,,,,wire
+wire,wire,wire,,,,,,,,,,,,,Resistor_inductor,,,,,,,,,,,,,wire
+wire,,,,,,,,,,,,,,,wire,,,,,,,,,,,,,wire
+wire,,,,,,,,,,,,,,,wire,,,,,,,,,,,,,wire
+wire,wire,wire,wire,wire,wire,wire,Resistor_load2,wire,Ammeter_load2,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire,wire
+,,,,,,wire,,,,wire,,,,,,,,,,,,,,,,,,
+,,,,,,wire,,,,wire,,,,,,,,,,,,,,,,,,
+,,,,,,wire,Voltmeter_load2,wire,wire,wire,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,     ,,,,,,,,,,,,,,,,,,,,,,,,

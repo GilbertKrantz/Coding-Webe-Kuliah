@@ -1,0 +1,30 @@
+Voltmeter,LED3,1W,Rated voltage level to be measured = 120.0,Positive polarity towards (cell) = 1V
+Voltmeter,LED2,5W,Rated voltage level to be measured = 120.0,Positive polarity towards (cell) = 5V
+Voltmeter,LED1,9W,Rated voltage level to be measured = 120.0,Positive polarity towards (cell) = 9V
+Voltmeter,load1,15H,Rated voltage level to be measured = 120.0,Positive polarity towards (cell) = 15I
+Voltmeter,source,17C,Rated voltage level to be measured = 120.0,Positive polarity towards (cell) = 18C
+Voltmeter,load2,26H,Rated voltage level to be measured = 120.0,Positive polarity towards (cell) = 26I
+Resistor,R3,3S,220.0
+Resistor,LED3,3X,0.1
+Resistor,R2,7S,220.0
+Resistor,LED2,7X,0.1
+Resistor,R1,11S,220.0
+Resistor,LED1,11X,0.1
+Resistor,load1,12H,22.0
+Resistor,Rsource,16A,0.1
+Resistor,Cfilter,16P,361.0
+Resistor,inductor,20P,0.1
+Resistor,load2,23H,0.1
+Ammeter,LED3,3V,Positive polarity towards (cell) = 3W
+Ammeter,LED2,7V,Positive polarity towards (cell) = 7W
+Ammeter,LED1,11V,Positive polarity towards (cell) = 11W
+Ammeter,source,12E,Positive polarity towards (cell) = 12F
+Ammeter,load1,12J,Positive polarity towards (cell) = 12K
+Ammeter,load2,23J,Positive polarity towards (cell) = 23I
+Diode,LED3,3Y,Voltage level (V) = 120.000000,Cathode polarity towards (cell) = 3Z
+Diode,LED2,7Y,Voltage level (V) = 120.000000,Cathode polarity towards (cell) = 7Z
+Diode,LED1,11Y,Voltage level (V) = 120.000000,Cathode polarity towards (cell) = 11Z
+Diode,D1,12A,Voltage level (V) = 120.000000,Cathode polarity towards (cell) = 12B
+Capacitor,filter,14P,0.022,Positive polarity towards (cell) = 13P
+VoltageSource,Vsource,18A,Peak (Volts) = 1.414214,Frequency (Hertz) = 20.000000,Phase (degrees) = 0.000000,Dc offset = 0.000000,Positive polarity towards (cell) = 17A
+Inductor,filter,18P,0.001
