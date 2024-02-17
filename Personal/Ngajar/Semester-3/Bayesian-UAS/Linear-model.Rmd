@@ -1,0 +1,123 @@
+---
+title: "Linear-Bayes"
+author: "Wilbert"
+date: "2024-01-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Load library
+```{r}
+library(coda)
+library(rjags)
+library(knitr)
+library(purrr)
+library(tidyr)
+library(ggplot2)
+```
+
+# set seed
+```{r}
+set.seed(123)
+```
+
+
+# Load Data
+```{r}
+df <- read.csv('./ParisHousing.csv')
+head(df)
+```
+
+# Model 1
+## Set Dataframe as matrix and split dependent and independent variable 
+```{r}
+price <- as.matrix(df$price)
+Y <- price
+
+X <- df[, c("squareMeters", "numberOfRooms", "hasYard", "hasPool", "floors", "cityCode", "numPrevOwners", "made", "isNewBuilt", "hasStormProtector", "basement", "attic", "garage", "hasStorageRoom", "hasGuestRoom", "cityPartRange")]
+
+names <- c("price","Square Meters", "Number of Rooms", "Has Yard", "Has Pool", "Number of Floors", "City Code", "Number of Previous Owners", "Year Made", "is Newly Built", "Has Storm Protector", "Basement Area", "Attic Area", "Garage Area", "Has Storage Room", "Has Guest Room", "City Part Range")
+```
+
+## Delete Missing Value
+```{r}
+junk <- is.na(rowSums(X))
+Y <- Y[!junk]
+X <- X[!junk,]
+```
+
+## Standardize Covariates
+```{r}
+X <- as.matrix(scale(X))
+```
+
+## JAGS
+### Put Data in JAGS Format
+```{r}
+n <- length(Y)
+p <- ncol(X)
+
+data <- list(Y=Y,X=X,n=n,p=p)
+params <- c("alpha","beta")
+burn <- 500
+n.iter <- 2000
+n.chains <- 3
+thin <- 5
+```
+
+### Make Jags Model
+```{r}
+model_string <- textConnection("model{
+  # Likelihood
+  for(i in 1:n){
+    Y[i] ~ dnorm(alpha+mu[i],taue)
+    mu[i] <- inprod(X[i,],beta[])
+  }
+  
+  # Priors
+  for(j in 1:p){
+    beta[j] ~ dnorm(0,0.001)
+  }
+  
+  alpha ~ dnorm(0,0.001)
+  taue ~ dgamma(0.1, 0.1)
+  
+  # WAIC calculations
+  for(i in 1:n){
+    like[i] <- dnorm(Y[i],mu[i],taue)
+  }
+
+}")
+```
+
+### Set Initial Value
+```{r}
+# Set initial value list
+inits = list()
+
+# Set Initila value of random value
+inits$alpha = rnorm(1)
+for(i in 1:p) {
+    inits$beta[i] = rnorm(1)
+}
+inits$taue = 10
+```
+
+## Compile Model
+```{r}
+model1 <- jags.model(model_string, data = data, n.chains=n.chains, quiet=TRUE, inits = inits)
+```
+
+## Update Model
+```{r}
+update(model1, burn)
+```
+
+## Get Posterior Samples from the model
+```{r}
+samples1 <- coda.samples(model1, variable.names=params, n.iter=n.iter, thin=thin)
+```

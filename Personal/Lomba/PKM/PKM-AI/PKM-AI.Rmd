@@ -1,0 +1,183 @@
+---
+title: "PKM-AI"
+author: "Wilbert"
+date: "2024-02-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load library
+```{r}
+library(coda)
+library(rjags)
+library(knitr)
+library(purrr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
+# set seed
+```{r}
+set.seed(123)
+```
+
+# Load Dataset
+```{r}
+df <- read.csv("./Global_Education.csv")
+show(df)
+```
+
+# Prepare Dataset
+## Set 0 as missing value
+
+```{r}
+df[sapply(df, function(x) as.character(x) %in% c("0"))] <- NA
+```
+
+## Change Missing Value to median
+```{r}
+# Calculate medians for all numeric columns
+numeric_columns <- sapply(df, is.numeric)
+column_medians <- sapply(df[, numeric_columns], median, na.rm = TRUE)
+
+# Replace NA values in numeric columns with their respective medians
+for (col in names(column_medians)) {
+    df[, col][is.na(df[, col])] <- column_medians[col]
+}
+```
+
+
+## Drop useless variable
+```{r}
+df$Countries.and.areas <- NULL
+```
+
+## scale dataset
+```{r}
+df$Unemployment_Rate <- df$Unemployment_Rate / 100
+head(df)
+```
+```{r}
+for (x in colnames(df)) {
+  cat(x, sep = "", ", ")
+}
+```
+
+
+## Split features adn target
+```{r}
+Y <- as.matrix(df$Unemployment_Rate)
+X <- cbind(df$OOSR_Pre0Primary_Age_Male, df$OOSR_Pre0Primary_Age_Female, df$OOSR_Primary_Age_Male, df$OOSR_Primary_Age_Female, df$OOSR_Lower_Secondary_Age_Male, df$OOSR_Lower_Secondary_Age_Female, df$OOSR_Upper_Secondary_Age_Male, df$OOSR_Upper_Secondary_Age_Female, df$Completion_Rate_Primary_Male, df$Completion_Rate_Primary_Female, df$Completion_Rate_Lower_Secondary_Male, df$Completion_Rate_Lower_Secondary_Female, df$Completion_Rate_Upper_Secondary_Male, df$Completion_Rate_Upper_Secondary_Female, df$Grade_2_3_Proficiency_Reading, df$Grade_2_3_Proficiency_Math, df$Primary_End_Proficiency_Reading, df$Primary_End_Proficiency_Math, df$Lower_Secondary_End_Proficiency_Reading, df$Lower_Secondary_End_Proficiency_Math, df$Youth_15_24_Literacy_Rate_Male, df$Youth_15_24_Literacy_Rate_Female, df$Birth_Rate, df$Gross_Primary_Education_Enrollment, df$Gross_Tertiary_Education_Enrollment)
+names <- c("Intercepst","OOSR_Pre0Primary_Age_Male", "OOSR_Pre0Primary_Age_Female", "OOSR_Primary_Age_Male", "OOSR_Primary_Age_Female", "OOSR_Lower_Secondary_Age_Male", "OOSR_Lower_Secondary_Age_Female", "OOSR_Upper_Secondary_Age_Male", "OOSR_Upper_Secondary_Age_Female", "Completion_Rate_Primary_Male", "Completion_Rate_Primary_Female", "Completion_Rate_Lower_Secondary_Male", "Completion_Rate_Lower_Secondary_Female", "Completion_Rate_Upper_Secondary_Male", "Completion_Rate_Upper_Secondary_Female", "Grade_2_3_Proficiency_Reading", "Grade_2_3_Proficiency_Math", "Primary_End_Proficiency_Reading", "Primary_End_Proficiency_Math", "Lower_Secondary_End_Proficiency_Reading", "Lower_Secondary_End_Proficiency_Math", "Youth_15_24_Literacy_Rate_Male", "Youth_15_24_Literacy_Rate_Female", "Birth_Rate", "Gross_Primary_Education_Enrollment", "Gross_Tertiary_Education_Enrollment")
+```
+
+## Remove Missing Values
+```{r}
+junk <- is.na(rowSums(X))
+Y <- Y[!junk]
+X <- X[!junk,]
+```
+
+## Set X as Matrix
+```{r}
+X <- as.matrix(scale(X))
+```
+
+## Set Final Params
+```{r}
+X <- cbind(1,X) # add the intercept
+colnames(X) <- names
+n <- length(Y)
+p <- ncol(X)
+data <- list(Y=Y,X=X,n=n,p=p)
+params <- c("beta","r")
+```
+
+# Model 1 
+```{r}
+model_string <- textConnection("model{
+for(i in 1:n){
+  Y[i] ~ dbeta(r*mu[i],r*(1-mu[i]))
+  logit(mu[i]) <- inprod(X[i,],beta[])
+}
+for(j in 1:p){
+  beta[j] ~ dnorm(0,0.01)
+  } 
+  r ~ dgamma(0.1,0.1)
+}")
+```
+
+## Fit Model
+```{r}
+model <- jags.model(model_string,data = data, n.chains=2,quiet=TRUE)
+```
+
+## Update Model
+```{r}
+update(model, 10000)
+```
+
+## Generate Samples
+```{r}
+samples <- coda.samples(model, variable.names = params, n.iter = 75000, thin = 5)
+```
+
+## Evaluate Model
+### Sample Plot
+```{r}
+par(mar=c(1,1,1,1))
+plot(samples)
+```
+
+### Check Convergence
+```{r}
+gelman.diag(samples)
+```
+
+### Compile results
+```{r}
+ESS <- effectiveSize(samples)
+
+ESS
+```
+
+```{r}
+sum <- summary(samples)
+rownames(sum$statistics) <- c(names,"r")
+rownames(sum$quantiles) <- c(names,"r")
+sum$statistics <- round(sum$statistics,3)
+sum$quantiles <- round(sum$quantiles,3)
+sum
+
+```
+
+### Autocorr Plot
+```{r}
+autocorr.plot(samples)
+```
+
+
+### DIC-WAIC Computation
+```{r}
+#DIC
+#dic <- dic.samples(model,n.iter=10000)
+```
+
+
+```{r}
+#dic1
+```
+
+
+
+
+
+
+
+
+
+

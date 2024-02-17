@@ -77,6 +77,7 @@ model_string <- textConnection("model{
   for(i in 1:n){
     Y[i] ~ dnorm(alpha+mu[i],taue)
     mu[i] <- inprod(X[i,],beta[])
+    like[i] <- dnorm(Y[i],mu[i],taue)
   }
   
   # Priors
@@ -86,11 +87,6 @@ model_string <- textConnection("model{
   
   alpha ~ dnorm(0,0.001)
   taue ~ dgamma(0.1, 0.1)
-  
-  # WAIC calculations
-  for(i in 1:n){
-    like[i] <- dnorm(Y[i],mu[i],taue)
-  }
 
 }")
 ```

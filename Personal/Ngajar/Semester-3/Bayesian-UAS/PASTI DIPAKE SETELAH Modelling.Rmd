@@ -1,0 +1,83 @@
+---
+title: "PASTI DIPAKE"
+author: "Wilbert"
+date: "2024-01-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Plot MCMC Chain Trace and Features Posterior Density
+```{r}
+par(mar=c(1,1,1,1))
+plot(samples1)
+```
+
+## Descriptive Statistics of model1
+```{r}
+summary(samples1)
+```
+
+
+## Show Alpha and Betas to the corresponding Features
+```{r}
+sum <- summary(samples1)
+rownames(sum$statistics) <- names
+rownames(sum$quantiles) <- names
+sum$statistics <- round(sum$statistics,3)
+sum$quantiles <- round(sum$quantiles,3)
+sum
+```
+
+## Check Convergence
+```{r}
+gelman.diag(samples1)
+```
+
+### Compile results
+```{r}
+ESS1 <- effectiveSize(samples1)
+out1 <- summary(samples1)$quantiles
+rownames(out1)<-names
+
+ESS1
+```
+
+## Compute DIC & WAIC
+DIC - WAIC : For Model Selection The Lower the better 
+```{r}
+# DIC
+dic1 <- dic.samples(model1,n.iter=n.iter)
+
+# WAIC
+waic1 <- coda.samples(model1, variable.names=c("like"), n.iter=n.iter)
+like1 <- waic1[[1]]
+fbar1 <- colMeans(like1)
+P1 <- sum(apply(log(like1),2,var))
+WAIC1 <- -2*sum(log(fbar1))+2*P1
+```
+
+## Plot Posterior Density Individually
+```{r}
+beta <- NULL
+for(l in 1:n.chains){
+  beta <- rbind(beta,samples1[[l]])
+}
+colnames(beta) <- names
+for(j in 1:17){
+  hist(beta[,j],xlab=expression(beta[j]),ylab="Posterior density",
+  breaks=100,main=names[j])
+}
+```
+
+## SSVS
+For Feature Selection
+```{r}
+library(knitr)
+Inc_Prob <- apply(beta!=0,2,mean)
+Q <- t(apply(beta,2,quantile,c(0.5,0.05,0.95)))
+out <- cbind(Inc_Prob,Q)
+kable(round(out,2))
+```

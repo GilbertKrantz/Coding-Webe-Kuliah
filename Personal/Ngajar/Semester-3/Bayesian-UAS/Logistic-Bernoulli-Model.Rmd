@@ -1,0 +1,138 @@
+---
+title: "Logistic-Bernouilli-Model"
+author: "Wilbert"
+date: "2024-01-23"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load library
+```{r}
+library(coda)
+library(rjags)
+library(knitr)
+library(purrr)
+library(tidyr)
+library(ggplot2)
+```
+
+# set seed
+```{r}
+set.seed(123)
+```
+
+# Load Data
+```{r}
+df <- read.csv('./drug200.csv')
+head(df)
+```
+
+# Feature Encoding
+Skip aja gak butuh di ujian
+```{r}
+df$Sex <- as.numeric(factor(df$Sex))
+df$BP <- as.numeric(factor(df$BP))
+df$Drug <- as.numeric(factor(df$Drug))
+df$Cholesterol <- replace(df$Cholesterol, df$Cholesterol=='HIGH', 1)
+df$Cholesterol<- replace(df$Cholesterol, df$Cholesterol=='NORMAL', 0)
+```
+
+# Split Train-Test Data
+Skip aja kalau gak disuruh
+```{r}
+## 70% of the sample size
+smp_size <- floor(0.7 * nrow(df))
+
+## set the seed to make your partition reproducible
+set.seed(123)
+train_ind <- sample(seq_len(nrow(df)), size = smp_size)
+
+train <- df[train_ind, ]
+test <- df[-train_ind, ]
+```
+
+# Set Input Variables
+```{r}
+Y <- as.matrix(train$Cholesterol)
+X <- train[, cbind('Age', 'Sex', 'BP', 'Na_to_K', 'Drug')]
+names <- cbind('Age', 'Sex', 'BP', 'Na_to_K', 'Drug')
+n <- length(Y)
+p <- ncol(X)
+
+burn <- 500
+iters <- 2000
+chains <- 2
+```
+
+## Delete Missing Value
+```{r}
+junk <- is.na(rowSums(X))
+Y <- Y[!junk]
+X <- X[!junk,]
+```
+
+## Scale X
+```{r}
+X <- as.matrix(scale(X))
+```
+
+# Modelling
+## Make Model String
+```{r}
+mod <- textConnection("model{
+# Likelyhood
+for(i in 1:n){
+  Y[i] ~ dbern(pi[i])
+  logit(pi[i]) <- alpha + mu[i]
+  mu[i] <- inprod(X[i,], beta[])
+  like[i] <- dbin(Y[i],pi[i],1) # For WAIC computation
+  }
+
+# Prior
+alpha ~ dnorm(0,0.01)
+for(j in 1:p){
+  beta[j] ~ dnorm(0,0.01)
+}
+}")
+
+```
+
+## Fit and Compile Model
+```{r}
+data <- list(Y=Y,X=X,n=n,p=p)
+model <- jags.model(mod,data = data, n.chains=chains,quiet=TRUE)
+update(model, burn)
+samps <- coda.samples(model, variable.names=c("like"),
+n.iter=iters, n.thin = 5)
+```
+
+## DIC and WAIC
+```{r}
+# Compute DIC
+DIC <- dic.samples(model,n.iter=iters,n.thin = 5)
+# Compute WAIC
+like <- rbind(samps[[1]],samps[[2]]) # Combine samples from the two chain
+fbar <- colMeans(like)
+Pw <- sum(apply(log(like),2,var))
+WAIC <- -2*sum(log(fbar))+2*Pw
+DIC
+```
+```{r}
+WAIC
+```
+
+
+
+
+
+
+
+
+
+
+
