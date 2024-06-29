@@ -1,0 +1,3952 @@
+[
+    {
+        "id": 1,
+        "name": "Student 1",
+        "nim": "2602127781",
+        "avatar": defaultAvatar,
+        "email": "student1@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 2.18,
+        "totalAttendance": 90,
+        "SATPoints": 118,
+        "comservHours": 22,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 2.22,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 1.64,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 1.6,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 1.35,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 1.63,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 3.82,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 0.92,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 0.99,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 3.34,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 3.9,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 1.42,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 3.76,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 3.45,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 2.8,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 0.42,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 3.81,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 2.34,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 0.57,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 1.88,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 1.91,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 0.33,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 3.66,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 2.66,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 3.9,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 84.4,
+                        "attended": 119,
+                        "mustAttend": 141,
+                        "canAbsent": 22
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 21.17,
+                        "attended": 29,
+                        "mustAttend": 137,
+                        "canAbsent": 108
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 17.04,
+                        "attended": 23,
+                        "mustAttend": 135,
+                        "canAbsent": 112
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 47.73,
+                        "attended": 21,
+                        "mustAttend": 44,
+                        "canAbsent": 23
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 26.92,
+                        "attended": 7,
+                        "mustAttend": 26,
+                        "canAbsent": 19
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 13,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 88.46,
+                        "attended": 23,
+                        "mustAttend": 26,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 57.89,
+                        "attended": 11,
+                        "mustAttend": 19,
+                        "canAbsent": 8
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 45.45,
+                        "attended": 10,
+                        "mustAttend": 22,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 31.58,
+                        "attended": 6,
+                        "mustAttend": 19,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 53.85,
+                        "attended": 7,
+                        "mustAttend": 13,
+                        "canAbsent": 6
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 86.36,
+                        "attended": 38,
+                        "mustAttend": 44,
+                        "canAbsent": 6
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 30.77,
+                        "attended": 4,
+                        "mustAttend": 13,
+                        "canAbsent": 9
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 69.23,
+                        "attended": 9,
+                        "mustAttend": 13,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 23.08,
+                        "attended": 3,
+                        "mustAttend": 13,
+                        "canAbsent": 10
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 15.91,
+                        "attended": 7,
+                        "mustAttend": 44,
+                        "canAbsent": 37
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 10.53,
+                        "attended": 2,
+                        "mustAttend": 19,
+                        "canAbsent": 17
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 84.62,
+                        "attended": 11,
+                        "mustAttend": 13,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 65.0,
+                        "attended": 13,
+                        "mustAttend": 20,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 30.77,
+                        "attended": 4,
+                        "mustAttend": 13,
+                        "canAbsent": 9
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 30.77,
+                        "attended": 4,
+                        "mustAttend": 13,
+                        "canAbsent": 9
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 19,
+                        "canAbsent": 19
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Student 2",
+        "nim": "2602127782",
+        "avatar": "defaultAvatar",
+        "email": "student2@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 1.3,
+        "totalAttendance": 59,
+        "SATPoints": 37,
+        "comservHours": 18,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 3.5,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 2.16,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 0.45,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 2.37,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 3.24,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 0.97,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 0.87,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 1.38,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 3.99,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 2.52,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 3.56,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 3.05,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 2.94,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 2.87,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 3.18,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 3.18,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 3.58,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 0.1,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 1.2,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 1.83,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 2.54,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 1.7,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 0.0,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 3.64,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 84.4,
+                        "attended": 119,
+                        "mustAttend": 141,
+                        "canAbsent": 22
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 87.59,
+                        "attended": 120,
+                        "mustAttend": 137,
+                        "canAbsent": 17
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 51.11,
+                        "attended": 69,
+                        "mustAttend": 135,
+                        "canAbsent": 66
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 47.73,
+                        "attended": 21,
+                        "mustAttend": 44,
+                        "canAbsent": 23
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 69.23,
+                        "attended": 18,
+                        "mustAttend": 26,
+                        "canAbsent": 8
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 100.0,
+                        "attended": 13,
+                        "mustAttend": 13,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 100.0,
+                        "attended": 26,
+                        "mustAttend": 26,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 61.54,
+                        "attended": 8,
+                        "mustAttend": 13,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 42.11,
+                        "attended": 8,
+                        "mustAttend": 19,
+                        "canAbsent": 11
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 77.27,
+                        "attended": 17,
+                        "mustAttend": 22,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 15.79,
+                        "attended": 3,
+                        "mustAttend": 19,
+                        "canAbsent": 16
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 84.62,
+                        "attended": 11,
+                        "mustAttend": 13,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 40.91,
+                        "attended": 18,
+                        "mustAttend": 44,
+                        "canAbsent": 26
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 69.23,
+                        "attended": 9,
+                        "mustAttend": 13,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 23.08,
+                        "attended": 3,
+                        "mustAttend": 13,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 15.38,
+                        "attended": 2,
+                        "mustAttend": 13,
+                        "canAbsent": 11
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 88.64,
+                        "attended": 39,
+                        "mustAttend": 44,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 36.84,
+                        "attended": 7,
+                        "mustAttend": 19,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 38.46,
+                        "attended": 5,
+                        "mustAttend": 13,
+                        "canAbsent": 8
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 45.0,
+                        "attended": 9,
+                        "mustAttend": 20,
+                        "canAbsent": 11
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 13,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 23.08,
+                        "attended": 3,
+                        "mustAttend": 13,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 78.95,
+                        "attended": 15,
+                        "mustAttend": 19,
+                        "canAbsent": 4
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Student 3",
+        "nim": "2602127783",
+        "avatar": "defaultAvatar",
+        "email": "student3@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 1.46,
+        "totalAttendance": 93,
+        "SATPoints": 27,
+        "comservHours": 21,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 1.44,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 0.39,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 0.3,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 3.65,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 2.23,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 0.01,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 0.93,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 2.24,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 0.25,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 2.29,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 3.97,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 2.4,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 0.57,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 2.55,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 1.55,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 0.33,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 2.8,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 2.36,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 0.26,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 3.09,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 1.98,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 0.97,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 2.39,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 3.26,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 12.77,
+                        "attended": 18,
+                        "mustAttend": 141,
+                        "canAbsent": 123
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 16.79,
+                        "attended": 23,
+                        "mustAttend": 137,
+                        "canAbsent": 114
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 82.96,
+                        "attended": 112,
+                        "mustAttend": 135,
+                        "canAbsent": 23
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 59.09,
+                        "attended": 26,
+                        "mustAttend": 44,
+                        "canAbsent": 18
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 3.85,
+                        "attended": 1,
+                        "mustAttend": 26,
+                        "canAbsent": 25
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 61.54,
+                        "attended": 8,
+                        "mustAttend": 13,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 38.46,
+                        "attended": 10,
+                        "mustAttend": 26,
+                        "canAbsent": 16
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 61.54,
+                        "attended": 8,
+                        "mustAttend": 13,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 94.74,
+                        "attended": 18,
+                        "mustAttend": 19,
+                        "canAbsent": 1
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 45.45,
+                        "attended": 10,
+                        "mustAttend": 22,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 89.47,
+                        "attended": 17,
+                        "mustAttend": 19,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 100.0,
+                        "attended": 13,
+                        "mustAttend": 13,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 70.45,
+                        "attended": 31,
+                        "mustAttend": 44,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 84.62,
+                        "attended": 11,
+                        "mustAttend": 13,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 13,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 7.69,
+                        "attended": 1,
+                        "mustAttend": 13,
+                        "canAbsent": 12
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 81.82,
+                        "attended": 36,
+                        "mustAttend": 44,
+                        "canAbsent": 8
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 73.68,
+                        "attended": 14,
+                        "mustAttend": 19,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 69.23,
+                        "attended": 9,
+                        "mustAttend": 13,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 35.0,
+                        "attended": 7,
+                        "mustAttend": 20,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 13,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 15.38,
+                        "attended": 2,
+                        "mustAttend": 13,
+                        "canAbsent": 11
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 23.08,
+                        "attended": 3,
+                        "mustAttend": 13,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 10.53,
+                        "attended": 2,
+                        "mustAttend": 19,
+                        "canAbsent": 17
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Student 4",
+        "nim": "2602127784",
+        "avatar": "defaultAvatar",
+        "email": "student4@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 3.96,
+        "totalAttendance": 71,
+        "SATPoints": 367,
+        "comservHours": 21,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 3.69,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 2.15,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 2.86,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 1.7,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 0.45,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 1.37,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 1.44,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 0.06,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 3.63,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 1.16,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 1.56,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 1.53,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 3.37,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 3.56,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 0.46,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 1.66,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 3.22,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 2.94,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 1.77,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 3.91,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 0.6,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 3.46,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 1.17,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 1.44,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 26.95,
+                        "attended": 38,
+                        "mustAttend": 141,
+                        "canAbsent": 103
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 0.73,
+                        "attended": 1,
+                        "mustAttend": 137,
+                        "canAbsent": 136
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 81.48,
+                        "attended": 110,
+                        "mustAttend": 135,
+                        "canAbsent": 25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 27.27,
+                        "attended": 12,
+                        "mustAttend": 44,
+                        "canAbsent": 32
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 7.69,
+                        "attended": 2,
+                        "mustAttend": 26,
+                        "canAbsent": 24
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 26.92,
+                        "attended": 7,
+                        "mustAttend": 26,
+                        "canAbsent": 19
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 26.32,
+                        "attended": 5,
+                        "mustAttend": 19,
+                        "canAbsent": 14
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 36.36,
+                        "attended": 8,
+                        "mustAttend": 22,
+                        "canAbsent": 14
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 47.37,
+                        "attended": 9,
+                        "mustAttend": 19,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 4.55,
+                        "attended": 2,
+                        "mustAttend": 44,
+                        "canAbsent": 42
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 13,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 15.38,
+                        "attended": 2,
+                        "mustAttend": 13,
+                        "canAbsent": 11
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 45.45,
+                        "attended": 20,
+                        "mustAttend": 44,
+                        "canAbsent": 24
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 68.42,
+                        "attended": 13,
+                        "mustAttend": 19,
+                        "canAbsent": 6
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 100.0,
+                        "attended": 13,
+                        "mustAttend": 13,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 85.0,
+                        "attended": 17,
+                        "mustAttend": 20,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 38.46,
+                        "attended": 5,
+                        "mustAttend": 13,
+                        "canAbsent": 8
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 84.62,
+                        "attended": 11,
+                        "mustAttend": 13,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 69.23,
+                        "attended": 9,
+                        "mustAttend": 13,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 78.95,
+                        "attended": 15,
+                        "mustAttend": 19,
+                        "canAbsent": 4
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Student 5",
+        "nim": "2602127785",
+        "avatar": "defaultAvatar",
+        "email": "student5@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 0.19,
+        "totalAttendance": 69,
+        "SATPoints": 252,
+        "comservHours": 46,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 1.63,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 3.86,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 2.58,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 3.86,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 0.49,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 2.28,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 3.27,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 3.49,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 1.49,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 3.64,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 3.85,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 0.48,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 2.59,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 2.02,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 2.39,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 2.39,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 1.05,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 1.15,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 2.27,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 3.55,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 2.51,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 2.63,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 2.82,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 0.98,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 141,
+                        "canAbsent": 141
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 51.82,
+                        "attended": 71,
+                        "mustAttend": 137,
+                        "canAbsent": 66
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 3.7,
+                        "attended": 5,
+                        "mustAttend": 135,
+                        "canAbsent": 130
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 20.45,
+                        "attended": 9,
+                        "mustAttend": 44,
+                        "canAbsent": 35
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 88.46,
+                        "attended": 23,
+                        "mustAttend": 26,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 65.38,
+                        "attended": 17,
+                        "mustAttend": 26,
+                        "canAbsent": 9
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 92.31,
+                        "attended": 12,
+                        "mustAttend": 13,
+                        "canAbsent": 1
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 57.89,
+                        "attended": 11,
+                        "mustAttend": 19,
+                        "canAbsent": 8
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 27.27,
+                        "attended": 6,
+                        "mustAttend": 22,
+                        "canAbsent": 16
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 47.37,
+                        "attended": 9,
+                        "mustAttend": 19,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 61.54,
+                        "attended": 8,
+                        "mustAttend": 13,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 31.82,
+                        "attended": 14,
+                        "mustAttend": 44,
+                        "canAbsent": 30
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 38.46,
+                        "attended": 5,
+                        "mustAttend": 13,
+                        "canAbsent": 8
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 15.38,
+                        "attended": 2,
+                        "mustAttend": 13,
+                        "canAbsent": 11
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 38.64,
+                        "attended": 17,
+                        "mustAttend": 44,
+                        "canAbsent": 27
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 42.11,
+                        "attended": 8,
+                        "mustAttend": 19,
+                        "canAbsent": 11
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 90.0,
+                        "attended": 18,
+                        "mustAttend": 20,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 100.0,
+                        "attended": 13,
+                        "mustAttend": 13,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 23.08,
+                        "attended": 3,
+                        "mustAttend": 13,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 15.38,
+                        "attended": 2,
+                        "mustAttend": 13,
+                        "canAbsent": 11
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 19,
+                        "canAbsent": 19
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Student 6",
+        "nim": "2602127786",
+        "avatar": "defaultAvatar",
+        "email": "student6@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 2.5,
+        "totalAttendance": 91,
+        "SATPoints": 259,
+        "comservHours": 8,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 2.69,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 3.7,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 1.15,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 2.15,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 2.26,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 1.4,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 2.68,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 2.15,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 3.19,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 0.3,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 3.42,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 0.96,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 3.36,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 3.77,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 1.08,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 1.46,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 3.11,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 3.16,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 0.37,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 1.71,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 3.72,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 3.88,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 0.9,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 0.65,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 90.78,
+                        "attended": 128,
+                        "mustAttend": 141,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 96.35,
+                        "attended": 132,
+                        "mustAttend": 137,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 36.3,
+                        "attended": 49,
+                        "mustAttend": 135,
+                        "canAbsent": 86
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 4.55,
+                        "attended": 2,
+                        "mustAttend": 44,
+                        "canAbsent": 42
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 69.23,
+                        "attended": 18,
+                        "mustAttend": 26,
+                        "canAbsent": 8
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 100.0,
+                        "attended": 13,
+                        "mustAttend": 13,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 53.85,
+                        "attended": 14,
+                        "mustAttend": 26,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 7.69,
+                        "attended": 1,
+                        "mustAttend": 13,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 52.63,
+                        "attended": 10,
+                        "mustAttend": 19,
+                        "canAbsent": 9
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 100.0,
+                        "attended": 22,
+                        "mustAttend": 22,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 42.11,
+                        "attended": 8,
+                        "mustAttend": 19,
+                        "canAbsent": 11
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 23.08,
+                        "attended": 3,
+                        "mustAttend": 13,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 34.09,
+                        "attended": 15,
+                        "mustAttend": 44,
+                        "canAbsent": 29
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 23.08,
+                        "attended": 3,
+                        "mustAttend": 13,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 92.31,
+                        "attended": 12,
+                        "mustAttend": 13,
+                        "canAbsent": 1
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 13,
+                        "canAbsent": 13
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 29.55,
+                        "attended": 13,
+                        "mustAttend": 44,
+                        "canAbsent": 31
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 36.84,
+                        "attended": 7,
+                        "mustAttend": 19,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 100.0,
+                        "attended": 13,
+                        "mustAttend": 13,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 30.0,
+                        "attended": 6,
+                        "mustAttend": 20,
+                        "canAbsent": 14
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 69.23,
+                        "attended": 9,
+                        "mustAttend": 13,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 69.23,
+                        "attended": 9,
+                        "mustAttend": 13,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 21.05,
+                        "attended": 4,
+                        "mustAttend": 19,
+                        "canAbsent": 15
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Student 7",
+        "nim": "2602127787",
+        "avatar": "defaultAvatar",
+        "email": "student7@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 0.52,
+        "totalAttendance": 64,
+        "SATPoints": 176,
+        "comservHours": 46,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 3.9,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 0.62,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 3.36,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 3.56,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 1.39,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 1.07,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 2.45,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 3.34,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 2.72,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 0.93,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 0.94,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 3.4,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 1.91,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 0.15,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 1.41,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 0.78,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 0.39,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 2.16,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 3.18,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 1.48,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 0.99,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 3.45,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 0.52,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 1.38,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 87.23,
+                        "attended": 123,
+                        "mustAttend": 141,
+                        "canAbsent": 18
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 77.37,
+                        "attended": 106,
+                        "mustAttend": 137,
+                        "canAbsent": 31
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 20.74,
+                        "attended": 28,
+                        "mustAttend": 135,
+                        "canAbsent": 107
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 88.64,
+                        "attended": 39,
+                        "mustAttend": 44,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 76.92,
+                        "attended": 20,
+                        "mustAttend": 26,
+                        "canAbsent": 6
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 26,
+                        "canAbsent": 26
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 84.62,
+                        "attended": 11,
+                        "mustAttend": 13,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 21.05,
+                        "attended": 4,
+                        "mustAttend": 19,
+                        "canAbsent": 15
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 4.55,
+                        "attended": 1,
+                        "mustAttend": 22,
+                        "canAbsent": 21
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 89.47,
+                        "attended": 17,
+                        "mustAttend": 19,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 90.91,
+                        "attended": 40,
+                        "mustAttend": 44,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 13,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 7.69,
+                        "attended": 1,
+                        "mustAttend": 13,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 52.27,
+                        "attended": 23,
+                        "mustAttend": 44,
+                        "canAbsent": 21
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 31.58,
+                        "attended": 6,
+                        "mustAttend": 19,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 7.69,
+                        "attended": 1,
+                        "mustAttend": 13,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 45.0,
+                        "attended": 9,
+                        "mustAttend": 20,
+                        "canAbsent": 11
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 7.69,
+                        "attended": 1,
+                        "mustAttend": 13,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 61.54,
+                        "attended": 8,
+                        "mustAttend": 13,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 57.89,
+                        "attended": 11,
+                        "mustAttend": 19,
+                        "canAbsent": 8
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Student 8",
+        "nim": "2602127788",
+        "avatar": "defaultAvatar",
+        "email": "student8@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 0.82,
+        "totalAttendance": 95,
+        "SATPoints": 260,
+        "comservHours": 50,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 3.98,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 0.61,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 2.48,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 2.22,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 3.11,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 0.09,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 2.34,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 2.8,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 3.88,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 0.5,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 0.4,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 2.01,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 1.86,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 2.8,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 1.13,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 2.71,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 3.5,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 0.79,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 2.39,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 2.39,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 4.0,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 2.06,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 1.74,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 2.72,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 65.96,
+                        "attended": 93,
+                        "mustAttend": 141,
+                        "canAbsent": 48
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 64.23,
+                        "attended": 88,
+                        "mustAttend": 137,
+                        "canAbsent": 49
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 52.59,
+                        "attended": 71,
+                        "mustAttend": 135,
+                        "canAbsent": 64
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 65.91,
+                        "attended": 29,
+                        "mustAttend": 44,
+                        "canAbsent": 15
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 92.31,
+                        "attended": 24,
+                        "mustAttend": 26,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 53.85,
+                        "attended": 7,
+                        "mustAttend": 13,
+                        "canAbsent": 6
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 50.0,
+                        "attended": 13,
+                        "mustAttend": 26,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 15.38,
+                        "attended": 2,
+                        "mustAttend": 13,
+                        "canAbsent": 11
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 73.68,
+                        "attended": 14,
+                        "mustAttend": 19,
+                        "canAbsent": 5
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 18.18,
+                        "attended": 4,
+                        "mustAttend": 22,
+                        "canAbsent": 18
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 63.16,
+                        "attended": 12,
+                        "mustAttend": 19,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 13,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 27.27,
+                        "attended": 12,
+                        "mustAttend": 44,
+                        "canAbsent": 32
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 30.77,
+                        "attended": 4,
+                        "mustAttend": 13,
+                        "canAbsent": 9
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 92.31,
+                        "attended": 12,
+                        "mustAttend": 13,
+                        "canAbsent": 1
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 13.64,
+                        "attended": 6,
+                        "mustAttend": 44,
+                        "canAbsent": 38
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 52.63,
+                        "attended": 10,
+                        "mustAttend": 19,
+                        "canAbsent": 9
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 80.0,
+                        "attended": 16,
+                        "mustAttend": 20,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 100.0,
+                        "attended": 13,
+                        "mustAttend": 13,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 92.31,
+                        "attended": 12,
+                        "mustAttend": 13,
+                        "canAbsent": 1
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 23.08,
+                        "attended": 3,
+                        "mustAttend": 13,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 36.84,
+                        "attended": 7,
+                        "mustAttend": 19,
+                        "canAbsent": 12
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Student 9",
+        "nim": "2602127789",
+        "avatar": "defaultAvatar",
+        "email": "student9@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 0.14,
+        "totalAttendance": 80,
+        "SATPoints": 119,
+        "comservHours": 35,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 2.7,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 0.98,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 3.71,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 1.85,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 1.3,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 2.52,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 2.04,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 1.85,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 2.88,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 1.81,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 1.4,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 1.71,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 2.91,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 3.81,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 3.73,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 3.28,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 3.11,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 0.28,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 3.16,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 1.1,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 3.5,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 3.72,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 3.51,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 2.24,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 93.62,
+                        "attended": 132,
+                        "mustAttend": 141,
+                        "canAbsent": 9
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 90.51,
+                        "attended": 124,
+                        "mustAttend": 137,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 56.3,
+                        "attended": 76,
+                        "mustAttend": 135,
+                        "canAbsent": 59
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 77.27,
+                        "attended": 34,
+                        "mustAttend": 44,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 19.23,
+                        "attended": 5,
+                        "mustAttend": 26,
+                        "canAbsent": 21
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 100.0,
+                        "attended": 13,
+                        "mustAttend": 13,
+                        "canAbsent": 0
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 7.69,
+                        "attended": 2,
+                        "mustAttend": 26,
+                        "canAbsent": 24
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 30.77,
+                        "attended": 4,
+                        "mustAttend": 13,
+                        "canAbsent": 9
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 5.26,
+                        "attended": 1,
+                        "mustAttend": 19,
+                        "canAbsent": 18
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 54.55,
+                        "attended": 12,
+                        "mustAttend": 22,
+                        "canAbsent": 10
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 26.32,
+                        "attended": 5,
+                        "mustAttend": 19,
+                        "canAbsent": 14
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 86.36,
+                        "attended": 38,
+                        "mustAttend": 44,
+                        "canAbsent": 6
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 69.23,
+                        "attended": 9,
+                        "mustAttend": 13,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 15.91,
+                        "attended": 7,
+                        "mustAttend": 44,
+                        "canAbsent": 37
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 19,
+                        "canAbsent": 19
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 61.54,
+                        "attended": 8,
+                        "mustAttend": 13,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 25.0,
+                        "attended": 5,
+                        "mustAttend": 20,
+                        "canAbsent": 15
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 53.85,
+                        "attended": 7,
+                        "mustAttend": 13,
+                        "canAbsent": 6
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 7.69,
+                        "attended": 1,
+                        "mustAttend": 13,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 76.92,
+                        "attended": 10,
+                        "mustAttend": 13,
+                        "canAbsent": 3
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 21.05,
+                        "attended": 4,
+                        "mustAttend": 19,
+                        "canAbsent": 15
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Student 10",
+        "nim": "2602127790",
+        "avatar": "defaultAvatar",
+        "email": "student10@binus.ac.id",
+        "password": "a",
+        "classes": [
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Linear Algebra"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Calculus"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Human Computer Interaction"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Model Deployment"
+            },
+            {
+                "instructorAvatar": instructorDefaultAvatar,
+                "instructor": "Franz",
+                "course": "Artificial Intelligence"
+            }
+        ],
+        "cummulativeGPA": 0.6,
+        "totalAttendance": 92,
+        "SATPoints": 246,
+        "comservHours": 38,
+        "GPA": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "description": "Semester 1",
+                        "myGPA": 1.24,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 2",
+                        "myGPA": 3.18,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Semester 3",
+                        "myGPA": 0.32,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "description": "Algorithm and Programming",
+                        "myGPA": 0.89,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Calculus",
+                        "myGPA": 3.52,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Pancasila",
+                        "myGPA": 2.48,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Discrete Math",
+                        "myGPA": 2.02,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Introduction to Data Science",
+                        "myGPA": 3.81,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Program Design Method",
+                        "myGPA": 3.61,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "description": "Data Mining and Visualization",
+                        "myGPA": 2.7,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Scientific Computing",
+                        "myGPA": 3.43,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Character Building: Kewarganegaraan",
+                        "myGPA": 0.12,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Data Structure",
+                        "myGPA": 0.3,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Basic Statistic",
+                        "myGPA": 0.89,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Entrepreneurship: Ideation",
+                        "myGPA": 2.31,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Linear Algebra",
+                        "myGPA": 1.98,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "description": "Artificial Inteligence",
+                        "myGPA": 2.06,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Database Technology",
+                        "myGPA": 3.31,
+                        "classGPA": 3.5,
+                        "binusGPA": 3.75
+                    },
+                    {
+                        "description": "Data Management and Organization",
+                        "myGPA": 0.18,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Machine Learning",
+                        "myGPA": 1.41,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Character Building: Agama",
+                        "myGPA": 1.02,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Bayesian Data Analysis",
+                        "myGPA": 0.7,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Indonesian",
+                        "myGPA": 0.82,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    },
+                    {
+                        "description": "Computational Physics",
+                        "myGPA": 2.69,
+                        "classGPA": 3.6,
+                        "binusGPA": 3.25
+                    }
+                ]
+            }
+        ],
+        "attendance": [
+            {
+                "semester": "Overall",
+                "details": [
+                    {
+                        "course": "Semester 1",
+                        "attendanceStatus": 84.4,
+                        "attended": 119,
+                        "mustAttend": 141,
+                        "canAbsent": 22
+                    },
+                    {
+                        "course": "Semester 2",
+                        "attendanceStatus": 51.82,
+                        "attended": 71,
+                        "mustAttend": 137,
+                        "canAbsent": 66
+                    },
+                    {
+                        "course": "Semester 3",
+                        "attendanceStatus": 11.11,
+                        "attended": 15,
+                        "mustAttend": 135,
+                        "canAbsent": 120
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 1",
+                "details": [
+                    {
+                        "course": "Algorithm and Programming",
+                        "attendanceStatus": 15.91,
+                        "attended": 7,
+                        "mustAttend": 44,
+                        "canAbsent": 37
+                    },
+                    {
+                        "course": "Calculus",
+                        "attendanceStatus": 92.31,
+                        "attended": 24,
+                        "mustAttend": 26,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Character Building: Pancasila",
+                        "attendanceStatus": 92.31,
+                        "attended": 12,
+                        "mustAttend": 13,
+                        "canAbsent": 1
+                    },
+                    {
+                        "course": "Discrete Math",
+                        "attendanceStatus": 46.15,
+                        "attended": 12,
+                        "mustAttend": 26,
+                        "canAbsent": 14
+                    },
+                    {
+                        "course": "Introduction to Data Science",
+                        "attendanceStatus": 61.54,
+                        "attended": 8,
+                        "mustAttend": 13,
+                        "canAbsent": 5
+                    },
+                    {
+                        "course": "Program Design Method",
+                        "attendanceStatus": 36.84,
+                        "attended": 7,
+                        "mustAttend": 19,
+                        "canAbsent": 12
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 2",
+                "details": [
+                    {
+                        "course": "Data Mining and Visualization",
+                        "attendanceStatus": 68.18,
+                        "attended": 15,
+                        "mustAttend": 22,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Scientific Computing",
+                        "attendanceStatus": 31.58,
+                        "attended": 6,
+                        "mustAttend": 19,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Character Building: Kewarganegaraan",
+                        "attendanceStatus": 84.62,
+                        "attended": 11,
+                        "mustAttend": 13,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Data Structure",
+                        "attendanceStatus": 52.27,
+                        "attended": 23,
+                        "mustAttend": 44,
+                        "canAbsent": 21
+                    },
+                    {
+                        "course": "Basic Statistic",
+                        "attendanceStatus": 69.23,
+                        "attended": 9,
+                        "mustAttend": 13,
+                        "canAbsent": 4
+                    },
+                    {
+                        "course": "Entrepreneurship: Ideation",
+                        "attendanceStatus": 7.69,
+                        "attended": 1,
+                        "mustAttend": 13,
+                        "canAbsent": 12
+                    },
+                    {
+                        "course": "Linear Algebra",
+                        "attendanceStatus": 30.77,
+                        "attended": 4,
+                        "mustAttend": 13,
+                        "canAbsent": 9
+                    }
+                ]
+            },
+            {
+                "semester": "Semester 3",
+                "details": [
+                    {
+                        "course": "Artificial Inteligence",
+                        "attendanceStatus": 36.36,
+                        "attended": 16,
+                        "mustAttend": 44,
+                        "canAbsent": 28
+                    },
+                    {
+                        "course": "Database Technology",
+                        "attendanceStatus": 94.74,
+                        "attended": 18,
+                        "mustAttend": 19,
+                        "canAbsent": 1
+                    },
+                    {
+                        "course": "Data Management and Organization",
+                        "attendanceStatus": 0.0,
+                        "attended": 0,
+                        "mustAttend": 13,
+                        "canAbsent": 13
+                    },
+                    {
+                        "course": "Machine Learning",
+                        "attendanceStatus": 55.0,
+                        "attended": 11,
+                        "mustAttend": 20,
+                        "canAbsent": 9
+                    },
+                    {
+                        "course": "Character Building: Agama",
+                        "attendanceStatus": 84.62,
+                        "attended": 11,
+                        "mustAttend": 13,
+                        "canAbsent": 2
+                    },
+                    {
+                        "course": "Bayesian Data Analysis",
+                        "attendanceStatus": 46.15,
+                        "attended": 6,
+                        "mustAttend": 13,
+                        "canAbsent": 7
+                    },
+                    {
+                        "course": "Indonesian",
+                        "attendanceStatus": 53.85,
+                        "attended": 7,
+                        "mustAttend": 13,
+                        "canAbsent": 6
+                    },
+                    {
+                        "course": "Computational Physics",
+                        "attendanceStatus": 94.74,
+                        "attended": 18,
+                        "mustAttend": 19,
+                        "canAbsent": 1
+                    }
+                ]
+            }
+        ]
+    }
+]

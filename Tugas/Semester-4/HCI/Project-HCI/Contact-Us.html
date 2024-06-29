@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VKellog’s</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="navbar">
+        <nav class="navbar-container container">
+          <a href="/" class="home-link">
+            VKellogs
+          </a>
+          <button type="button" id="navbar-toggle" aria-controls="navbar-menu" aria-label="Toggle menu" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div id="navbar-menu" aria-labelledby="navbar-toggle">
+            <ul class="navbar-links">
+              <li class="navbar-item"><a class="navbar-link" href="index.html">Home</a></li>
+              <li class="navbar-item"><a class="navbar-link" href="Products.html">Products</a></li>
+              <li class="navbar-item"><a class="navbar-link" href="Recipies.html">Recipes</a></li>
+              <li class="navbar-item"><a class="navbar-link" href="About-Us.html">About Us</a></li>
+            <li class="navbar-item"><a class="navbar-link" href="Contact-Us.html">Contact Us</a></li>
+            </ul>
+          </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-container">
+            <h2>Contact VKellogs</h2>
+            <section class="form-container">
+                <form action="" method="get" id="contact-form">
+                    <div class="form-group-container">
+                        <div class="form-group">
+                            <div class="form-item">
+                                <label for="fname">First Name</label>
+                                <input type="text" id="fname" name="fname" required>
+                            </div>
+                            <div class="form-item">
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-item">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-item">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="radio-group">
+                            <p>Nature of Inquiry</p>
+                            <div class="radio-item">
+                                <input type="radio" id="product-rad" name="inquiry" value="product">
+                                <label for="product-rad">Product Inquiry</label>
+                                <input type="radio" name="inquiry" id="feedback-rad" value="feedback">
+                                <label for="feedback-rad">Feedback</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="inquiry" id="order-rad" value="order">
+                                <label for="order-rad">Order Inquiry</label>
+                                <input type="radio" name="inquiry" id="other-rad" value="other">
+                                <label for="other-rad">Other</label>
+                            </div>
+                        </div>
+                        <div class="inquiry-container">
+                            <label for="inquiry-desc">Inquiry</label>
+                            <textarea name="inquiry-desc" id="inquiry-desc" cols="30" rows="10" required></textarea>
+                        </div>
+                        <button type="submit" id="submit-btn">Submit</button>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright © 2024 VKellog’s - All Rights Reserved.</p>
+    </footer>
+</body>
+<script src="script.js"></script>
+</html>
