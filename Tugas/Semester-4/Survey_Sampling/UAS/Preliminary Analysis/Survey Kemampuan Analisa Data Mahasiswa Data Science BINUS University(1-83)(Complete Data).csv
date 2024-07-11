@@ -1,0 +1,84 @@
+ID,"Nama Lengkap","NIM","Usia","Berapa nilai akhir Introduction to Data Science yang kamu peroleh? ","Berapa nilai UTS Data Mining and Visualization yang kamu peroleh?",Points - 1. Terdapat outlier pada ketiga variabel,Points - 2.  Variabel Family_Size berdistribusi normal,Points - 3. Variabel Work_Experience memiliki nilai minimum paling kecil jika dibandingkan 2 variabel lainnya,Points - 4. Nilai median dari Family_Size adalah 0,"Points - 5. Diketahui jumlah record pada data adalah 2000, namun terdapat 10 record yang memiliki missing value pada variabel CreditScore. Dengan memperhatikan boxplot di bawah, dengan apa sebaiknya kita m...","Points - 6. Pada gambar di bawah, dapat diketahui unique value dan frekuensi masing-masing unique value pada variabel Gender. Tentukan metode encoding yang paling tepat untuk variabel Gender!","Points - 7. Pada gambar di bawah, dapat diketahui unique value dan frekuensi masing-masing unique value pada variabel Completion_Rate_Primary_Female. Tentukan metode encoding yang paling tepat untuk variab...",Points - 8. Dari heatmap di atas kita dapat melihat korelasi antar variable. Tentukan pasangan variabel yang memiliki korelasi tertinggi dengan mencentang dua pilihan jawaban yang tepat.,Points - 9. Menghapus salah satu variabel yang berkorelasi tinggi,Points - 10. Menggunakan Principal Component Analysis (PCA) ,Points - 11. Menambahkan Lebih Banyak Variabel Independen ,"Points - 12. Jika kamu diminta untuk menggambarkan central tendency dari distribusi data, metrik mana yang paling tepat digunakan?","Points - 13.  Dalam sebuah uji hipotesis, jika kamu mendapatkan nilai p-value sebesar 0.03 dan tingkat signifikansi (alpha) sebesar 0.05. Apa kesimpulan yang dapat diambil?",Points - 14. Variabel mana yang paling mungkin menjadi variabel target dalam analisis ini?,"Points - 15. Variabel mana yang mungkin menjadi variabel kategorikal dalam analisis ini?",Total Score
+4,Maria Linneke Adjie,2602076374,20,99,90,6,6,6,6,7,7,7,0,0,6,0,7,0,7,0,65
+5,marvin sachio,2602064475,20,83,96,6,6,6,6,7,7,0,7,0,6,6,7,8,7,8,87
+6,Phoebe Patricia Wibowo,2602080825,19,97,83,6,6,6,6,0,0,7,0,0,6,6,0,0,7,0,50
+7,Jennifer Ardelia Limicia ,2602105090,19,99,80,6,6,6,6,7,7,7,7,6,6,6,7,8,7,8,100
+8,Steve Marcello Liem,2602071410,20,90,100,6,6,6,6,7,7,7,7,6,6,6,7,8,7,8,100
+9,Yosep Krisna Sugiharto,2602074450,20,88,90,6,0,6,6,0,0,0,0,6,6,0,0,8,0,0,38
+10,Wilson Gregory Pribadi,2602071000,20,84,88,6,6,6,6,7,7,7,7,0,6,0,0,0,7,0,65
+11,Anastasia Jocelyn Hilman,2602073031,19,85,80,6,0,6,6,0,7,0,7,0,6,0,7,8,7,8,68
+12,Felix Cristiano Bungaran,2602170612,19,84,74,6,6,6,6,7,7,7,7,6,6,6,7,0,7,0,84
+13,Hendry Setiawan,2602103356,20,97,80,6,6,6,6,0,7,7,7,6,0,6,0,8,7,0,72
+14,Matthew Lefrandt,2602107934,20,70,90,6,6,6,6,7,7,7,7,0,6,0,7,0,7,0,72
+15,Kasandika Andariefli,2602141032,19,71,79,6,6,6,6,7,7,0,7,6,6,0,0,8,7,8,80
+16,Jervino Leonard Handaya,2602148814,20,88,80,6,6,6,6,7,7,7,7,0,6,6,7,8,7,8,94
+17,Muhammad Naufal Perdana ,2602156526,19,81,66,6,6,6,6,7,7,7,7,6,6,6,7,8,7,8,100
+18,Jason Pangestu,2602107650,20,90,80,6,0,6,6,7,7,0,7,6,6,0,0,0,7,8,66
+19,Keitaro Alexander Herman,2602227775,21,65,65,6,6,6,6,0,7,7,7,6,6,6,7,8,7,0,85
+20,Anastasia Putri Hartanti,2602100120,20,88,82,6,0,6,6,0,7,7,7,0,6,6,7,0,7,0,65
+21,Caroline Angelina Sunarya,2501995093,20,83,96,6,6,6,6,0,0,0,7,0,6,6,0,8,7,0,58
+22,Steven Halim ,2540133783 ,21,85,80,6,0,6,6,7,7,7,7,6,6,6,0,8,7,0,79
+23,Stevanus Febrian,2502010925,21,75,91,6,6,6,6,0,0,7,7,0,6,6,7,8,7,8,80
+24,Farren Angelica Dinzani,2702243546,19,88,36,0,0,6,6,7,0,7,7,6,0,0,0,0,7,0,46
+25,Marcelline Cathrine Wilison,2702210604,17,89,85,6,6,6,6,7,7,7,7,0,6,6,7,0,0,8,79
+26,Andreas Immanuel Lukito,2702211595,18,83,42,6,6,6,6,0,7,0,7,0,0,6,0,8,7,0,59
+27,Jonathan William Gunawan,2702251794,19,99,100,6,0,6,6,7,0,0,7,0,6,0,7,8,7,8,68
+28,Nicholas Ananda Heryanto ,2702213695,19,87,59,6,6,6,6,7,7,0,7,0,6,6,7,0,7,8,79
+29,Imerson Sanmarlow Krysthio,2702281260,18,94,84,6,6,6,6,7,7,7,7,0,6,6,7,8,7,0,86
+30,Andrew Jonathan,2602072262,19,75,80,0,6,6,6,0,7,7,7,0,6,6,7,0,7,0,65
+31,Laurel Evelina Widjaja,2702213770,19,98,75,6,6,6,6,7,7,7,7,0,6,6,7,8,7,8,94
+32,Jocelyn Verna Siswanto,2502008006,20,92,97,6,6,6,6,7,7,7,0,6,6,6,7,8,7,8,93
+33,Tifara Beata Wibowo,2501975223,20,92,97,6,6,6,6,7,7,7,0,6,6,6,7,8,7,8,93
+34,Natali Valentina Sutanto,2502022162,20,86,80,6,6,6,6,7,0,0,7,0,6,0,0,0,7,0,51
+35,Vincentius Dewanto,2602169926,19,83,66,6,0,6,6,0,7,7,7,6,6,6,7,0,7,8,79
+36,Gladys Lionardi,2602073076,19,98,85,6,6,6,6,7,7,7,0,0,6,0,7,8,7,0,73
+37,Derrick Verichi,2702291305,18,99,96,6,6,6,6,7,0,7,7,0,6,0,7,0,0,8,66
+38,athia zahra,2602183760,20,70,77,6,6,6,0,0,0,0,0,0,0,0,0,0,0,0,18
+39,Angela Valerie Christy,2702244624,18,78,80,6,0,6,6,0,0,0,7,0,6,6,7,8,0,0,52
+40,Arvio Anandi,2501975684,18,78,80,6,0,6,6,0,0,0,7,0,0,6,7,8,0,8,54
+41,Veron Fujimori,2702236156,19,92,87,6,6,6,6,7,0,7,0,0,6,6,0,0,7,0,57
+42,Florencia,2540129262,19,92,87,6,6,6,6,7,0,7,0,0,6,0,0,0,7,0,51
+43,Pandu Jatayu Satrio Aji,2602182764,19,88,76,6,0,6,6,0,7,0,7,0,6,6,0,8,0,8,60
+44,Jeffrey Wijaya,2602158784,19,68,64,6,6,6,6,0,7,0,7,6,6,6,0,0,7,0,63
+45,Stevia Anlena Putri,2602092144,20,89,90,6,6,6,6,7,7,7,7,0,6,0,7,8,0,0,73
+46,Alicia Jocelyn Siahaya,2602072552,19,96,85,6,6,0,6,7,7,7,7,0,6,0,7,0,7,0,66
+47,Louis Deron,2602191964,20,50,73,6,0,6,6,0,7,0,7,0,6,0,0,8,7,8,61
+48,Kelvin,2602101823,20,99,87,6,0,0,6,0,0,0,0,6,6,0,0,8,0,0,32
+49,Patricia Pepita,2602174176,20,80,74,6,6,6,6,0,7,7,7,6,6,6,0,8,7,8,86
+50,Stanley Raditya,2602103671,19,90,80,6,6,6,6,7,7,0,7,6,6,6,7,8,7,8,93
+51,Fanes Hanestan,2502000193,21,91,90,6,6,6,6,0,0,7,0,0,6,6,0,0,7,0,50
+52,Rafael Nicholas Tanaja,2540118656,21,91,93,6,6,6,6,7,7,0,7,6,6,0,7,8,7,8,87
+53,Meisa Kamilia,2602135446,19,63,90,6,0,6,6,7,7,7,0,6,6,6,7,8,7,0,79
+54,Johnny Lim,2502029370,21,85,77,6,0,6,6,0,0,0,7,0,6,6,0,0,7,8,52
+55,Narendra Nusantara Handradika,2502018064,20,79,83,6,6,6,6,0,0,0,7,0,6,0,0,0,7,0,44
+56,Richie Muljana,2540131840,21,98,100,6,0,6,6,0,0,0,7,6,6,6,7,8,7,8,73
+57,Andrew,2540119601,21,86,75,6,6,6,6,0,7,0,7,6,0,0,0,0,7,8,59
+58,Jovan samuel hendra,2602167832,19,76,77,6,0,6,6,0,7,0,7,0,6,6,7,8,7,8,74
+59,Patricia,2602117626,19,80,78,6,6,0,6,0,0,0,0,0,6,6,0,8,7,0,45
+60,William Alan Cahyadi,2602110752,19,60,85,6,6,6,6,0,0,7,7,0,6,6,0,0,7,0,57
+61,Muhammad Kaisar Novrenza,2602113546,20,78,45,6,6,6,6,7,0,7,7,6,0,6,7,8,0,0,72
+62,Dennis Emir Adrian,2602206594,20,100,64,6,0,6,6,7,0,0,7,6,6,0,7,8,7,0,66
+63,Kayla Masayuningtyas,2602141871,19,51,62,6,0,6,6,0,0,0,7,0,6,0,7,8,7,8,61
+64,Jennifer patricia,2602186472,20,99,99,6,6,6,6,0,0,0,7,0,6,0,0,0,7,8,52
+65,Salma Khaira Almuna,2602205736,21,98,60,6,0,6,6,0,7,7,7,0,6,0,7,8,7,0,67
+66,Adam Ferdinand Malik,2602172050,20,59,91,6,6,6,6,0,0,0,7,0,0,0,7,0,7,8,53
+67,Maxcell Rimba,2602110046,19,45,78,0,0,6,6,0,0,0,7,0,6,6,0,8,0,0,39
+68,Muhammad Athariq Naufal,2602162522,18,94,82,6,6,6,6,7,0,7,0,0,6,0,0,0,7,0,51
+69,David Paul Ong,2602164433,19,84,77,6,6,6,6,7,0,7,7,6,0,6,0,8,7,0,72
+70,Rachel Andrea Sumaiku,2602179334,20,70,73,6,0,6,6,0,0,7,7,6,6,6,7,8,7,0,72
+71,Rio Rafli Adinanta,2702305714,19,55,44,6,0,0,6,0,0,7,7,0,6,0,7,0,7,0,46
+72,Aaron winston Gho,2702210522,18,82,76,6,6,6,6,0,0,0,7,0,6,6,0,0,7,8,58
+73,Vincent Moswen,2702299863,19,63,41,6,6,6,6,7,0,7,0,0,6,6,7,8,7,8,80
+74,Justin Hartanto Widjaja,2702222610,18,81,72,6,0,6,6,7,0,7,7,6,6,6,7,8,7,8,87
+75,Ririn Saprina Kadang,2702315715,19,75,38,0,0,6,6,7,0,0,0,0,6,6,0,8,7,0,46
+76,Joseph Adinata Elkos,2702224282,18,80,65,6,6,6,6,7,0,0,7,6,6,6,7,0,7,8,78
+77,Arnoldus Purbrayen Delasabtejo,2602136890,19,78,80,6,0,6,6,7,0,7,0,0,6,6,0,8,7,0,59
+78,Matthew Anthony Tjahjadi,2702404576,20,95,80,6,6,6,6,0,7,7,7,0,6,0,7,8,7,0,73
+79,Rayhan Permana,2702215896,18,90,40,6,6,6,6,7,7,0,7,6,6,0,0,8,7,0,72
+80,Wella Priscillia,2602135963,19,72,79,6,0,6,6,0,7,0,7,0,6,6,0,0,7,0,51
+81,Nicholas Sugijono,2602064714,19,90,97,6,0,6,6,7,0,7,0,0,6,0,0,0,7,8,53
+82,Lauren Abigail,2602108426,20,90,81,6,6,6,0,7,7,0,0,6,0,0,0,0,0,0,38
+83,Matthew Nicholas Alfian,2602105960,20,27,70,6,6,6,0,7,7,0,0,6,6,0,0,0,7,0,51
+84,Adiartha Wibisono Hasnan ,2702315236,19,75,20,6,6,6,6,0,7,0,0,6,6,6,0,8,7,0,64
+85,Allin Setiawan,2602191391,19,66,60,6,6,0,6,7,7,7,0,0,6,0,0,8,0,0,53
+86,Janice Ashley Kurniawan,2602203794,19,99,83,6,0,6,6,0,0,7,7,0,6,0,7,8,7,8,68

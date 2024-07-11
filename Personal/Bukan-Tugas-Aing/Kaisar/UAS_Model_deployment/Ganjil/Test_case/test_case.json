@@ -1,0 +1,44 @@
+{
+    "Test_case": [
+        {
+            "age": 40,
+            "job": "technician",
+            "marital": "single",
+            "education": "basic.9y",
+            "housing": "no",
+            "loan": "no",
+            "contact": "cellular",
+            "duration": 1000.0,
+            "campaign": 1,
+            "previous": 0,
+            "poutcome": "nonexistent"
+        },
+        {
+            "age": 70,
+            "job": "retired",
+            "marital": "married",
+            "education": "university.degree",
+            "housing": "yes",
+            "loan": "no",
+            "contact": "cellular",
+            "duration": 50.0,
+            "campaign": 1,
+            "previous": 0,
+            "poutcome": "success"
+        },
+        {
+            "age": 20,
+            "job": "blue-collar",
+            "marital": "married",
+            "education": "basic.4y",
+            "housing": "yes",
+            "loan": "yes",
+            "contact": "telephone",
+            "duration": 10.0,
+            "campaign": 1,
+            "previous": 0,
+            "poutcome": "failure"
+        }
+    ]
+}
+

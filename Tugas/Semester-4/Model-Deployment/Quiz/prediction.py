@@ -2,7 +2,9 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import numpy as np
-import pandas as pd API()
+import pandas as pd 
+
+app = FastAPI()
 # Load the machine learning model
 model_scaler = joblib.load('model_and_scaler.pkl')
 model = model_scaler['model']
