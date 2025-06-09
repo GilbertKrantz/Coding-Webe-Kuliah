@@ -1,0 +1,425 @@
+import { BaseLLM } from "@langchain/core/language_models/base";
+import { CallbackManagerForLLMRun } from "@langchain/core/callbacks/manager";
+import { LLMResult, Generation } from "@langchain/core/outputs";
+import { BaseLanguageModelInput } from "@langchain/core/language_models/base";
+import { spawn } from 'child_process';
+import { promisify } from 'util';
+import { exec } from 'child_process';
+
+const execAsync = promisify(exec);
+
+export interface CurlLLMInput {
+  apiUrl: string;
+  apiKey?: string;
+  modelName?: string;
+  temperature?: number;
+  maxTokens?: number;
+  timeout?: number;
+  headers?: Record<string, string>;
+  showReasoning?: boolean;
+  streaming?: boolean;
+}
+
+interface ParsedResponse {
+  content: string;
+  reasoning?: string;
+}
+
+interface StreamChunk {
+  content: string;
+  reasoning?: string;
+}
+
+export class CurlLLM extends BaseLLM implements CurlLLMInput {
+  apiUrl: string;
+  apiKey?: string;
+  modelName: string;
+  temperature: number;
+  maxTokens: number;
+  timeout: number;
+  headers: Record<string, string>;
+  showReasoning: boolean;
+  streaming: boolean;
+
+  static lc_name() {
+    return "CurlLLM";
+  }
+
+  constructor(fields: CurlLLMInput) {
+    super(fields);
+    this.apiUrl = fields.apiUrl;
+    this.apiKey = fields.apiKey;
+    this.modelName = fields.modelName || 'curl-model';
+    this.temperature = fields.temperature ?? 0.7;
+    this.maxTokens = fields.maxTokens ?? 2000;
+    this.timeout = fields.timeout ?? 30;
+    this.headers = fields.headers ?? {};
+    this.showReasoning = fields.showReasoning ?? false;
+    this.streaming = fields.streaming ?? false;
+  }
+
+  _llmType(): string {
+    return "curl_llm";
+  }
+
+  get _identifyingParams(): Record<string, any> {
+    return {
+      apiUrl: this.apiUrl,
+      modelName: this.modelName,
+      temperature: this.temperature,
+      maxTokens: this.maxTokens,
+      timeout: this.timeout,
+      showReasoning: this.showReasoning,
+    };
+  }
+
+  private prepareHeaders(): Record<string, string> {
+    const defaultHeaders: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+
+    if (this.apiKey) {
+      defaultHeaders['Authorization'] = `Bearer ${this.apiKey}`;
+    }
+
+    return { ...defaultHeaders, ...this.headers };
+  }
+
+  private preparePayload(prompt: string, stream: boolean = false): object {
+    return {
+      model: this.modelName,
+      messages: [{ role: 'user', content: prompt }],
+      temperature: this.temperature,
+      max_tokens: this.maxTokens,
+      stream,
+    };
+  }
+
+  private async makeCurlRequest(payload: object, stream: boolean = false): Promise<string> {
+    const headers = this.prepareHeaders();
+    const curlCmd = [
+      'curl',
+      '-s',
+      '-X',
+      'POST',
+      '--ssl-no-revoke',
+      '--tlsv1.2',
+      '--max-time',
+      this.timeout.toString(),
+    ];
+
+    // Add headers
+    Object.entries(headers).forEach(([key, value]) => {
+      curlCmd.push('-H', `${key}: ${value}`);
+    });
+
+    // Add data and URL
+    curlCmd.push('-d', JSON.stringify(payload), this.apiUrl);
+
+    console.log(`Executing curl command: ${curlCmd.slice(0, 10).join(' ')}...`);
+
+    try {
+      const { stdout, stderr } = await execAsync(curlCmd.join(' '), {
+        timeout: (this.timeout + 5) * 1000,
+        encoding: 'utf8',
+      });
+
+      if (stderr) {
+        console.error(`Curl stderr: ${stderr}`);
+      }
+
+      if (!stdout) {
+        throw new Error('Curl command returned empty output');
+      }
+
+      console.log(`Curl request successful, response length: ${stdout.length}`);
+      return stdout;
+    } catch (error) {
+      const errorMsg = `Curl request failed: ${error instanceof Error ? error.message : String(error)}`;
+      console.error(errorMsg);
+      throw new Error(errorMsg);
+    }
+  }
+
+  private parseResponse(responseText: string): ParsedResponse {
+    try {
+      const cleanedResponse = responseText.trim();
+      const startIdx = cleanedResponse.indexOf('{');
+      const jsonResponse = startIdx !== -1 ? cleanedResponse.substring(startIdx) : cleanedResponse;
+      
+      const responseData = JSON.parse(jsonResponse);
+      console.log(`Parsed response data: ${JSON.stringify(responseData, null, 2).substring(0, 200)}...`);
+
+      const result: ParsedResponse = { content: '', reasoning: '' };
+
+      // Handle OpenAI-style response
+      if (responseData.choices && responseData.choices.length > 0) {
+        const choice = responseData.choices[0];
+        
+        if (choice.message) {
+          const message = choice.message;
+          if (message.content) {
+            result.content = message.content.trim();
+            if (message.reasoning && this.showReasoning) {
+              result.reasoning = message.reasoning.trim();
+            }
+          } else if (message.reasoning) {
+            result.content = message.reasoning.trim();
+            console.warn('Content field empty, using reasoning as fallback');
+          }
+        } else if (choice.text) {
+          result.content = choice.text.trim();
+        } else {
+          result.content = String(choice).trim();
+        }
+      }
+      // Handle other response formats
+      else if (responseData.response) {
+        result.content = responseData.response.trim();
+      } else if (responseData.content) {
+        result.content = responseData.content.trim();
+      } else if (responseData.text) {
+        result.content = responseData.text.trim();
+      } else {
+        console.warn('Unknown response format');
+        throw new Error('Unknown response format, no content found');
+      }
+
+      if (!result.content) {
+        console.warn('Empty content in response, using raw response');
+        result.content = cleanedResponse.trim();
+      }
+
+      return result;
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        console.warn(`Failed to parse JSON response: ${error.message}`);
+        return { content: responseText.trim() };
+      } else {
+        console.error(`Error parsing response: ${error}`);
+        return { content: `Error parsing response: ${error instanceof Error ? error.message : String(error)}` };
+      }
+    }
+  }
+
+  async _generate(
+    prompts: string[],
+    options: this["ParsedCallOptions"],
+    runManager?: CallbackManagerForLLMRun
+  ): Promise<LLMResult> {
+    console.log(`Generating responses for ${prompts.length} prompt(s)`);
+    
+    const generations: Generation[][] = [];
+    
+    for (let i = 0; i < prompts.length; i++) {
+      const prompt = prompts[i];
+      try {
+        console.log(`Processing prompt ${i + 1}/${prompts.length}`);
+        
+        const payload = this.preparePayload(prompt);
+        if (options.stop) {
+          (payload as any).stop = options.stop;
+        }
+
+        console.log(`Payload for prompt ${i + 1}: ${JSON.stringify(payload)}`);
+        
+        const responseText = await this.makeCurlRequest(payload);
+        const generated = this.parseResponse(responseText);
+        
+        const generation = new Generation({
+          text: generated.content,
+          generationInfo: generated.reasoning ? { reasoning: generated.reasoning } : undefined,
+        });
+        
+        generations.push([generation]);
+        
+        // Call the callback if provided
+        if (runManager) {
+          await runManager.handleLLMNewToken(generated.content);
+        }
+        
+        console.log(`Generated response length: ${generated.content.length}`);
+        
+      } catch (error) {
+        const errorMsg = `Error generating response for prompt ${i + 1}: ${error instanceof Error ? error.message : String(error)}`;
+        console.error(errorMsg);
+        
+        const errorGeneration = new Generation({
+          text: `Error: ${error instanceof Error ? error.message : String(error)}`,
+        });
+        generations.push([errorGeneration]);
+      }
+    }
+    
+    console.log(`Generated ${generations.length} response(s)`);
+    return new LLMResult({ generations });
+  }
+
+  async *_streamResponseChunks(
+    prompt: string,
+    options: this["ParsedCallOptions"],
+    runManager?: CallbackManagerForLLMRun
+  ): AsyncGenerator<{ text: string; generationInfo?: Record<string, any> }> {
+    console.log(`Streaming response for prompt: ${prompt.substring(0, 100)}...`);
+    
+    try {
+      const payload = this.preparePayload(prompt, true);
+      if (options.stop) {
+        (payload as any).stop = options.stop;
+      }
+
+      const headers = this.prepareHeaders();
+      const curlCmd = [
+        'curl',
+        '-s',
+        '-X',
+        'POST',
+        '--ssl-no-revoke',
+        '--tlsv1.2',
+        '--max-time',
+        this.timeout.toString(),
+      ];
+
+      Object.entries(headers).forEach(([key, value]) => {
+        curlCmd.push('-H', `${key}: ${value}`);
+      });
+
+      curlCmd.push('-d', JSON.stringify(payload), this.apiUrl);
+
+      const process = spawn('curl', curlCmd.slice(1), {
+        stdio: ['pipe', 'pipe', 'pipe'],
+      });
+
+      let buffer = '';
+
+      const streamPromise = new Promise<void>((resolve, reject) => {
+        process.stdout.on('data', async (chunk: Buffer) => {
+          buffer += chunk.toString();
+          const lines = buffer.split('\n');
+          buffer = lines.pop() || '';
+
+          for (const line of lines) {
+            if (line.trim() && line.startsWith('data:')) {
+              try {
+                const data = JSON.parse(line.substring(5).trim());
+                const result: StreamChunk = { content: '', reasoning: '' };
+
+                if (data.choices && data.choices.length > 0) {
+                  const choice = data.choices[0];
+                  if (choice.delta) {
+                    if (choice.delta.content) {
+                      result.content = choice.delta.content;
+                    }
+                    if (choice.delta.reasoning && this.showReasoning) {
+                      result.reasoning = choice.delta.reasoning;
+                    }
+                  }
+                }
+
+                if (result.content || result.reasoning) {
+                  yield {
+                    text: result.content,
+                    generationInfo: result.reasoning ? { reasoning: result.reasoning } : undefined,
+                  };
+                  
+                  if (runManager) {
+                    await runManager.handleLLMNewToken(result.content);
+                  }
+                }
+              } catch (parseError) {
+                console.log(`Skipping non-JSON stream line: ${line.substring(0, 100)}...`);
+              }
+            }
+          }
+        });
+
+        process.stderr.on('data', (chunk: Buffer) => {
+          console.error(`Stream stderr: ${chunk.toString()}`);
+        });
+
+        process.on('close', (code) => {
+          if (code !== 0) {
+            reject(new Error(`Stream failed with exit code ${code}`));
+          } else {
+            resolve();
+          }
+        });
+
+        process.on('error', (error) => {
+          reject(error);
+        });
+      });
+
+      await streamPromise;
+
+    } catch (error) {
+      console.error(`Streaming failed: ${error}`);
+      throw error;
+    }
+  }
+
+  // Factory methods
+  static createOpenAICompatible(
+    apiUrl: string,
+    apiKey?: string,
+    modelName: string = 'gpt-3.5-turbo',
+    options: Partial<CurlLLMInput> = {}
+  ): CurlLLM {
+    return new CurlLLM({
+      apiUrl,
+      apiKey,
+      modelName,
+      ...options,
+    });
+  }
+
+  static createCustomAPI(
+    apiUrl: string,
+    apiKey?: string,
+    headers: Record<string, string> = {},
+    options: Partial<CurlLLMInput> = {}
+  ): CurlLLM {
+    return new CurlLLM({
+      apiUrl,
+      apiKey,
+      headers,
+      ...options,
+    });
+  }
+}
+
+// Test function for LangChain.js integration
+export async function testCurlLLM(): Promise<boolean> {
+  console.log('Testing CurlLLM with LangChain.js');
+  
+  const curlLlmUrl = (process.env.CURL_LLM_URL || 'https://openrouter.ai/api/v1') + '/chat/completions';
+  const curlLlmKey = process.env.CURL_LLM_API_KEY;
+  const curlModelName = process.env.CURL_LLM_MODEL || 'test-model';
+
+  const llm = new CurlLLM({
+    apiUrl: curlLlmUrl,
+    apiKey: curlLlmKey,
+    modelName: curlModelName,
+    temperature: 0.7,
+    maxTokens: 2000,
+    timeout: 60,
+    showReasoning: true,
+  });
+
+  try {
+    const testPrompt = 'Hello, how are you?';
+    
+    // Test using LangChain's invoke method
+    const response = await llm.invoke(testPrompt);
+    console.log(`Test response: ${response}`);
+    
+    return true;
+  } catch (error) {
+    console.error(`Test failed: ${error}`);
+    return false;
+  }
+}
+
+// Export for CommonJS compatibility
+export default CurlLLM;
